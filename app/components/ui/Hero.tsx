@@ -45,24 +45,25 @@ export default function Hero() {
       <div
         style={{
           position: "absolute",
-          left: "70px",
-          top: "42%",
-          transform: "translateY(-50%)",
+          top: "55px",
+          left: "60px",
           display: "flex",
           flexDirection: "column",
-          gap: "30px",
+          gap: "22px",
           zIndex: 20,
         }}
       >
         <Link
           href="/"
           style={{
-            color: "#d6b76a",
+            color: "#e2c67d",
             fontFamily: "Cinzel, serif",
-            fontSize: "17px",
-            letterSpacing: "4px",
+            fontSize: "18px",
+            letterSpacing: "5px",
             textTransform: "uppercase",
-            transition: ".3s",
+            textDecoration: "none",
+            textShadow: "0 0 14px rgba(212,178,90,.30)",
+            transition: "all .3s ease",
           }}
         >
           HOME
@@ -71,11 +72,14 @@ export default function Hero() {
         <Link
           href="/universes"
           style={{
-            color: "#d6b76a",
+            color: "#e2c67d",
             fontFamily: "Cinzel, serif",
-            fontSize: "17px",
-            letterSpacing: "4px",
+            fontSize: "18px",
+            letterSpacing: "5px",
             textTransform: "uppercase",
+            textDecoration: "none",
+            textShadow: "0 0 14px rgba(212,178,90,.30)",
+            transition: "all .3s ease",
           }}
         >
           UNIVERSES
@@ -86,24 +90,26 @@ export default function Hero() {
       <div
         style={{
           position: "absolute",
-          right: "70px",
-          top: "42%",
-          transform: "translateY(-50%)",
+          top: "55px",
+          right: "60px",
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-end",
-          gap: "30px",
+          gap: "22px",
           zIndex: 20,
         }}
       >
         <Link
           href="/library"
           style={{
-            color: "#d6b76a",
+            color: "#e2c67d",
             fontFamily: "Cinzel, serif",
-            fontSize: "17px",
-            letterSpacing: "4px",
+            fontSize: "18px",
+            letterSpacing: "5px",
             textTransform: "uppercase",
+            textDecoration: "none",
+            textShadow: "0 0 14px rgba(212,178,90,.30)",
+            transition: "all .3s ease",
           }}
         >
           LIBRARY
@@ -112,18 +118,20 @@ export default function Hero() {
         <Link
           href="/characters"
           style={{
-            color: "#d6b76a",
+            color: "#e2c67d",
             fontFamily: "Cinzel, serif",
-            fontSize: "17px",
-            letterSpacing: "4px",
+            fontSize: "18px",
+            letterSpacing: "5px",
             textTransform: "uppercase",
+            textDecoration: "none",
+            textShadow: "0 0 14px rgba(212,178,90,.30)",
+            transition: "all .3s ease",
           }}
         >
           CHARACTERS
         </Link>
       </div>
-
-      {/* Content */}
+            {/* Content */}
       <div
         style={{
           position: "relative",
@@ -209,7 +217,8 @@ export default function Hero() {
         >
           AENAR IKUL
         </h1>
-                {/* Decorative Divider */}
+
+        {/* Decorative Divider */}
         <div
           style={{
             display: "flex",
