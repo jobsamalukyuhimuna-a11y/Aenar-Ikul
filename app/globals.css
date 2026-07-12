@@ -84,40 +84,47 @@ body::after {
   }
 }
 /* =========================
-   Universes Mobile Fix
+   Universes Mobile Final Fix
 ========================= */
 
-@media (max-width: 768px) {
+@media (max-width:768px){
 
-  .universes-page {
-    padding: 80px 20px !important;
-    overflow-x: hidden;
+  .universes-page{
+    padding:80px 15px !important;
+    overflow-x:hidden;
   }
 
 
-  .universes-page h1 {
-    font-size: 44px !important;
-    letter-spacing: 3px !important;
-    line-height: 1.2 !important;
-    text-align: center !important;
+  .universes-grid{
+    display:flex !important;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:100%;
   }
 
 
-  .universes-page section {
-    width: 100%;
-    text-align: center !important;
+  .universe-card{
+    width:100% !important;
+    max-width:390px !important;
+    margin:0 auto !important;
   }
 
 
-  .universes-page section p {
-    font-size: 18px !important;
-    line-height: 1.8 !important;
-    text-align: center !important;
+  .universes-page h1{
+    font-size:42px !important;
+    letter-spacing:3px !important;
   }
 
 
-  .universes-page a {
-    width: 100%;
+  .universes-page section p{
+    text-align:center !important;
+  }
+
+
+  .universe-card a{
+    width:100%;
+    box-sizing:border-box;
   }
 
 }

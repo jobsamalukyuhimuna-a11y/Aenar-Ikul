@@ -1,6 +1,6 @@
 "use client";
 
-const stars = Array.from({ length: 6 });
+const stars = Array.from({ length: 3 });
 
 export default function ShootingStars() {
   return (
@@ -10,43 +10,58 @@ export default function ShootingStars() {
           key={i}
           style={{
             position: "absolute",
-            top: `${10 + i * 12}%`,
-            left: "-20%",
-            width: "180px",
+            top: `${18 + i * 22}%`,
+            left: "-30%",
+            width: "240px",
             height: "2px",
             background:
-              "linear-gradient(to right, rgba(255,255,255,0), rgba(255,245,200,.95), rgba(255,255,255,0))",
+              "linear-gradient(to right, transparent, rgba(255,245,200,.95), transparent)",
             transform: "rotate(-25deg)",
-            animation: `shoot ${8 + i * 3}s linear infinite`,
-            animationDelay: `${i * 4}s`,
+            animation: `shoot ${10 + i * 4}s linear infinite`,
+            animationDelay: `${i * 5}s`,
             opacity: 0,
             pointerEvents: "none",
-            zIndex: 2,
-            filter: "drop-shadow(0 0 8px rgba(255,230,150,.8))",
+            zIndex: 1,
+            filter:
+              "drop-shadow(0 0 10px rgba(255,220,120,.9))",
           }}
         />
       ))}
 
       <style jsx>{`
         @keyframes shoot {
+
           0% {
-            transform: translateX(0) translateY(0) rotate(-25deg);
-            opacity: 0;
+            transform:
+              translateX(0)
+              translateY(0)
+              rotate(-25deg);
+            opacity:0;
           }
 
-          5% {
-            opacity: 1;
+
+          8% {
+            opacity:1;
           }
 
-          20% {
-            transform: translateX(1600px) translateY(500px) rotate(-25deg);
-            opacity: 0;
+
+          25% {
+            transform:
+              translateX(1400px)
+              translateY(420px)
+              rotate(-25deg);
+            opacity:0;
           }
+
 
           100% {
-            transform: translateX(1600px) translateY(500px) rotate(-25deg);
-            opacity: 0;
+            transform:
+              translateX(1400px)
+              translateY(420px)
+              rotate(-25deg);
+            opacity:0;
           }
+
         }
       `}</style>
     </>
