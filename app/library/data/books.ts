@@ -5,13 +5,13 @@ export const books = [
     slug: "the-king-without-a-Kingdom",
 
     title: "The King Without a Kingdom",
-    
+    subtitle: "The Beginning of Aenar Ikul",
     universe: "Aenar Ikul",
     type: "Novel",
 
     cover: "/images/books/the-king-without-a-throne.jpg",
 
-    author: "Anas",
+    author: "Aenar Ikul",
 
     description:
       "A forgotten king begins a journey through ruined kingdoms in search of the truth behind the fall of the ancient crown.",
