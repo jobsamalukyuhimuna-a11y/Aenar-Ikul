@@ -42,8 +42,7 @@ export default function Hero() {
           mixBlendMode: "screen",
         }}
       />
-
-      {/* Left Navigation */}
+            {/* Left Navigation */}
       <div
         className="desktop-nav desktop-nav-left"
         style={{
@@ -88,7 +87,8 @@ export default function Hero() {
           UNIVERSES
         </Link>
       </div>
-            {/* Right Navigation */}
+
+      {/* Right Navigation */}
       <div
         className="desktop-nav desktop-nav-right"
         style={{
@@ -134,8 +134,7 @@ export default function Hero() {
           CHARACTERS
         </Link>
       </div>
-
-      {/* Content */}
+            {/* Content */}
       <div
         className="hero-content"
         style={{
@@ -166,7 +165,8 @@ export default function Hero() {
         >
           THE ROYAL ARCHIVE
         </p>
-                {/* Decorative Line */}
+
+        {/* Decorative Line */}
         <div
           className="hero-divider"
           style={{
@@ -224,8 +224,7 @@ export default function Hero() {
         >
           AENAR IKUL
         </h1>
-
-        {/* Decorative Divider */}
+                {/* Decorative Divider */}
         <div
           className="hero-divider"
           style={{
@@ -264,7 +263,8 @@ export default function Hero() {
             }}
           />
         </div>
-                {/* Subtitle */}
+
+        {/* Subtitle */}
         <p
           className="hero-subtitle"
           style={{
@@ -298,8 +298,7 @@ export default function Hero() {
         >
           Philosophy ✦ Music ✦ Art ✦ Stories
         </p>
-
-        <Link
+                <Link
           href="/library"
           className="hero-button"
           style={{
@@ -332,7 +331,8 @@ export default function Hero() {
             →
           </span>
         </Link>
-                {/* Scroll Indicator */}
+
+        {/* Scroll Indicator */}
         <div
           className="hero-scroll"
           style={{
@@ -357,6 +357,13 @@ export default function Hero() {
               "linear-gradient(to bottom,#8d6b30,transparent)",
           }}
         />
+      </div>
+            {/* Mobile Navigation */}
+      <div className="mobile-nav">
+        <Link href="/">HOME</Link>
+        <Link href="/universes">UNIVERSES</Link>
+        <Link href="/library">LIBRARY</Link>
+        <Link href="/characters">CHARACTERS</Link>
       </div>
 
       {/* Bottom Fade */}
