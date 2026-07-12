@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const universes = [
   {
-    title: "Ithan Ithan",
-    subtitle: "The King Without a Throne",
+    title: "Isan Ithan",
+    subtitle: "The King Without A Kingdom Novel",
     href: "/universes",
   },
   {
