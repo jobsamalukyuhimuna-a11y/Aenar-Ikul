@@ -5,7 +5,7 @@ export const books = [
     slug: "the-king-without-a-Kingdom",
 
     title: "The King Without a Kingdom",
-    
+    subtitle: "The King Without A Kingdom",
     universe: "Aenar Ikul",
     type: "Novel",
 
