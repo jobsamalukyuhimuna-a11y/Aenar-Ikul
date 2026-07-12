@@ -1,0 +1,53 @@
+/* ==========================
+   Desktop
+========================== */
+
+.story-page {
+  width: 100%;
+}
+
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width: 768px) {
+
+  .story-page {
+    padding: 40px 12px !important;
+  }
+
+  .story-container {
+    padding: 24px !important;
+    border-radius: 14px !important;
+  }
+
+  .story-inner {
+    padding: 20px !important;
+  }
+
+  .story-title {
+    font-size: 34px !important;
+    line-height: 1.2 !important;
+  }
+
+  .story-subtitle {
+    font-size: 18px !important;
+    margin-bottom: 35px !important;
+  }
+
+  .story-content {
+    font-size: 18px !important;
+    line-height: 1.9 !important;
+    text-align: left !important;
+  }
+
+  .story-end {
+    font-size: 13px !important;
+    letter-spacing: 3px !important;
+  }
+
+  .story-corner {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
