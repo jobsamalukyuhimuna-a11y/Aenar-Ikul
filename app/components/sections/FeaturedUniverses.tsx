@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "./FeaturedUniverses.css";
 
 const universes = [
   {
@@ -21,6 +22,7 @@ const universes = [
 export default function FeaturedUniverses() {
   return (
     <section
+      className="featured-universes"
       style={{
         background: "#0a0a0a",
         padding: "120px 60px",
@@ -38,12 +40,13 @@ export default function FeaturedUniverses() {
       </h2>
 
       <div
+        className="featured-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))",
           gap: "35px",
           maxWidth: "1400px",
-          margin: "auto",
+          margin: "0 auto",
         }}
       >
         {universes.map((item) => (
@@ -52,9 +55,12 @@ export default function FeaturedUniverses() {
             href={item.href}
             style={{
               textDecoration: "none",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <div
+              className="featured-card"
               style={{
                 background: "#161616",
                 border: "1px solid rgba(200,164,77,.2)",
@@ -63,6 +69,9 @@ export default function FeaturedUniverses() {
                 transition: ".3s",
                 cursor: "pointer",
                 minHeight: "220px",
+                width: "100%",
+                maxWidth: "380px",
+                boxSizing: "border-box",
               }}
             >
               <h3
