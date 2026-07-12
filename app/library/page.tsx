@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import "./LibraryPage.css";
 import { books } from "./data/books";
 
 export default function LibraryPage() {
   return (
     <main
+      className="library-page"
       style={{
         minHeight: "100vh",
         background: "#080808",
@@ -15,6 +17,7 @@ export default function LibraryPage() {
       {/* Header */}
 
       <div
+        className="library-header"
         style={{
           textAlign: "center",
           marginBottom: "90px",
@@ -33,6 +36,7 @@ export default function LibraryPage() {
         </p>
 
         <h1
+          className="library-title"
           style={{
             fontSize: "72px",
             color: "#d7b56d",
@@ -46,6 +50,7 @@ export default function LibraryPage() {
         </h1>
 
         <p
+          className="library-subtitle"
           style={{
             color: "#bdbdbd",
             fontSize: "22px",
@@ -58,6 +63,7 @@ export default function LibraryPage() {
       {/* Search */}
 
       <div
+        className="library-search"
         style={{
           maxWidth: "650px",
           margin: "0 auto 60px",
@@ -81,6 +87,7 @@ export default function LibraryPage() {
       {/* Categories */}
 
       <div
+        className="library-categories"
         style={{
           display: "flex",
           justifyContent: "center",
@@ -105,10 +112,10 @@ export default function LibraryPage() {
           </button>
         ))}
       </div>
-
-      {/* Books */}
+            {/* Books */}
 
       <div
+        className="library-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill,320px)",
@@ -120,6 +127,7 @@ export default function LibraryPage() {
         {books.map((book) => (
           <div
             key={book.id}
+            className="library-card"
             style={{
               width: "320px",
               background: "#121212",
@@ -133,6 +141,7 @@ export default function LibraryPage() {
             {/* Cover */}
 
             <div
+              className="library-cover"
               style={{
                 position: "relative",
                 width: "100%",
@@ -155,11 +164,13 @@ export default function LibraryPage() {
             {/* Content */}
 
             <div
+              className="library-card-content"
               style={{
                 padding: "28px",
               }}
             >
               <h2
+                className="library-book-title"
                 style={{
                   color: "#d7b56d",
                   fontSize: "28px",
@@ -181,8 +192,8 @@ export default function LibraryPage() {
               >
                 {book.universe}
               </p>
-
-              <p
+                            <p
+                className="library-description"
                 style={{
                   color: "#bdbdbd",
                   lineHeight: 1.8,
@@ -195,6 +206,7 @@ export default function LibraryPage() {
 
               <Link
                 href={`/library/stories/${book.slug}`}
+                className="library-button"
                 style={{
                   display: "block",
                   width: "100%",
@@ -216,6 +228,6 @@ export default function LibraryPage() {
           </div>
         ))}
       </div>
-    </main>
+          </main>
   );
 }
