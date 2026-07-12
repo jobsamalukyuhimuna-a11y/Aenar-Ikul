@@ -1,481 +1,221 @@
-import "./StoryPage.css";
-
 import Image from "next/image";
+import Link from "next/link";
+import { books } from "./data/books";
 
-import { notFound } from "next/navigation";
-
-import { books } from "../../data/books";
-
-import StoryMusic from "./StoryMusic";
-
-import FadeIn from "./FadeIn";
-
-import GoldenDust from "./GoldenDust";
-
-
-
-type Props = {
-
-  params: Promise<{
-
-    slug: string;
-
-  }>;
-
-};
-
-
-
-export default async function StoryPage({ params }: Props) {
-
-  const { slug } = await params;
-
-
-
-  const book = books.find((b) => b.slug === slug);
-
-
-
-  if (!book) {
-
-    notFound();
-
-  }
-
-
-
+export default function LibraryPage() {
   return (
-
     <main
-
-      className="story-page"
-
       style={{
-
         minHeight: "100vh",
-
-        background:
-
-          "radial-gradient(circle at top,#241b0f 0%, #0b0b0b 45%, #050505 100%)",
-
-        padding: "90px 20px",
-
-        position: "relative",
-
-        overflow: "hidden",
-
+        background: "#080808",
+        color: "#fff",
+        padding: "140px 60px",
       }}
-
     >
-
-      <StoryMusic />
-
-      <GoldenDust />
-
-
+      {/* Header */}
 
       <div
-
-        className="story-background"
-
         style={{
-
-          position: "fixed",
-
-          inset: 0,
-
-          overflow: "hidden",
-
-          pointerEvents: "none",
-
-          zIndex: 0,
-
+          textAlign: "center",
+          marginBottom: "90px",
         }}
-
       >
-
-        <Image
-
-          src={book.cover}
-
-          alt={book.title}
-
-          fill
-
-          priority
-
+        <p
           style={{
-
-            objectFit: "cover",
-
-            opacity: 0.12,
-
-            filter: "blur(4px)",
-
-            transform: "scale(1.08)",
-
+            color: "#9d7d3d",
+            letterSpacing: "8px",
+            textTransform: "uppercase",
+            fontSize: "15px",
+            marginBottom: "20px",
           }}
+        >
+          THE ROYAL ARCHIVE
+        </p>
 
-        />
+        <h1
+          style={{
+            fontSize: "72px",
+            color: "#d7b56d",
+            marginBottom: "20px",
+            fontWeight: 400,
+            letterSpacing: "6px",
+            fontFamily: "Cinzel, serif",
+          }}
+        >
+          Library
+        </h1>
 
+        <p
+          style={{
+            color: "#bdbdbd",
+            fontSize: "22px",
+          }}
+        >
+          Discover every story, every world and every legend.
+        </p>
       </div>
 
+      {/* Search */}
 
-
-      <FadeIn>
-
-        <section
-
-          className="story-container"
-
+      <div
+        style={{
+          maxWidth: "650px",
+          margin: "0 auto 60px",
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Search..."
           style={{
-
-            position: "relative",
-
-            zIndex: 2,
-
-            maxWidth: "980px",
-
-            margin: "0 auto",
-
-            background: "rgba(245,236,213,.95)",
-
-            backdropFilter: "blur(12px)",
-
-            border: "4px solid #caa24b",
-
-            borderRadius: "20px",
-
-            padding: "80px",
-
-            boxShadow:
-
-              "0 0 0 4px rgba(255,220,120,.25),0 0 90px rgba(0,0,0,.75)",
-
+            width: "100%",
+            padding: "18px 24px",
+            background: "#111",
+            border: "1px solid rgba(200,164,77,.3)",
+            color: "#fff",
+            fontSize: "18px",
+            outline: "none",
           }}
+        />
+      </div>
 
-        >
+      {/* Categories */}
 
-          <div
-
-            className="story-corner"
-
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "18px",
+          marginBottom: "80px",
+          flexWrap: "wrap",
+        }}
+      >
+        {["All", "Novels", "Stories", "Poetry"].map((item) => (
+          <button
+            key={item}
             style={{
-
-              position: "absolute",
-
-              top: 18,
-
-              left: 18,
-
-              width: 80,
-
-              height: 80,
-
-              borderTop: "3px solid #caa24b",
-
-              borderLeft: "3px solid #caa24b",
-
-              borderTopLeftRadius: 18,
-
+              padding: "14px 28px",
+              background: "#151515",
+              color: "#d7b56d",
+              border: "1px solid rgba(200,164,77,.25)",
+              cursor: "pointer",
+              fontSize: "16px",
             }}
-
-          />
-
-
-
-          <div
-
-            className="story-corner"
-
-            style={{
-
-              position: "absolute",
-
-              top: 18,
-
-              right: 18,
-
-              width: 80,
-
-              height: 80,
-
-              borderTop: "3px solid #caa24b",
-
-              borderRight: "3px solid #caa24b",
-
-              borderTopRightRadius: 18,
-
-            }}
-
-          />
-
-
-
-          <div
-
-            className="story-corner"
-
-            style={{
-
-              position: "absolute",
-
-              bottom: 18,
-
-              left: 18,
-
-              width: 80,
-
-              height: 80,
-
-              borderBottom: "3px solid #caa24b",
-
-              borderLeft: "3px solid #caa24b",
-
-              borderBottomLeftRadius: 18,
-
-            }}
-
-          />
-
-
-
-          <div
-
-            className="story-corner"
-
-            style={{
-
-              position: "absolute",
-
-              bottom: 18,
-
-              right: 18,
-
-              width: 80,
-
-              height: 80,
-
-              borderBottom: "3px solid #caa24b",
-
-              borderRight: "3px solid #caa24b",
-
-              borderBottomRightRadius: 18,
-
-            }}
-
-          />
-
-
-
-          <div
-
-            className="story-inner"
-
-            style={{
-
-              border: "2px solid rgba(184,138,47,.45)",
-
-              padding: "60px",
-
-            }}
-
           >
+            {item}
+          </button>
+        ))}
+      </div>
 
-            <p
+      {/* Books */}
 
-              style={{
-
-                color: "#86621f",
-
-                textAlign: "center",
-
-                letterSpacing: "8px",
-
-                fontSize: "14px",
-
-                marginBottom: "18px",
-
-              }}
-
-            >
-
-              THE ROYAL CHRONICLE
-
-            </p>
-
-
-
-            <h1
-
-              className="story-title"
-
-              style={{
-
-                textAlign: "center",
-
-                color: "#5f4312",
-
-                fontSize: "58px",
-
-                fontFamily: "Cinzel, serif",
-
-                fontWeight: 500,
-
-                marginBottom: "14px",
-
-              }}
-
-            >
-
-              {book.title}
-
-            </h1>
-
-
-
-            <p
-
-              className="story-subtitle"
-
-              style={{
-
-                textAlign: "center",
-
-                color: "#8c6c2d",
-
-                fontSize: "22px",
-
-                fontStyle: "italic",
-
-                marginBottom: "60px",
-
-              }}
-
-            >
-
-              {book.subtitle}
-
-            </p>
-
-
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill,320px)",
+          justifyContent: "center",
+          gap: "40px",
+          margin: "0 auto",
+        }}
+      >
+        {books.map((book) => (
+          <div
+            key={book.id}
+            style={{
+              width: "320px",
+              background: "#121212",
+              border: "1px solid rgba(200,164,77,.18)",
+              borderRadius: "12px",
+              overflow: "hidden",
+              transition: ".35s",
+              boxShadow: "0 10px 30px rgba(0,0,0,.35)",
+            }}
+          >
+            {/* Cover */}
 
             <div
-
               style={{
-
-                width: "180px",
-
-                height: "2px",
-
-                background:
-
-                  "linear-gradient(to right, transparent, #caa24b, transparent)",
-
-                margin: "0 auto 60px",
-
+                position: "relative",
+                width: "100%",
+                height: "470px",
+                overflow: "hidden",
+                background: "#090909",
               }}
-
-            />
-
-            <article
-
-              className="story-content"
-
-              style={{
-
-                color: "#2b2214",
-
-                fontSize: "22px",
-
-                lineHeight: 2.2,
-
-                whiteSpace: "pre-wrap",
-
-                fontFamily: "Georgia, serif",
-
-                textAlign: "center",
-
-                textShadow: "0 1px 0 rgba(255,255,255,.35)",
-
-              }}
-
             >
-
-              {book.story}
-
-            </article>
-
-
-
-            <div
-
-              style={{
-
-                display: "flex",
-
-                justifyContent: "center",
-
-                marginTop: "70px",
-
-              }}
-
-            >
-
-              <div
-
+              <Image
+                src={book.cover}
+                alt={book.title}
+                fill
                 style={{
-
-                  width: "240px",
-
-                  height: "2px",
-
-                  background:
-
-                    "linear-gradient(to right, transparent, #caa24b, transparent)",
-
+                  objectFit: "cover",
+                  objectPosition: "center top",
                 }}
-
               />
-
             </div>
 
+            {/* Content */}
 
-
-            <p
-
-              className="story-end"
-
+            <div
               style={{
-
-                marginTop: "30px",
-
-                textAlign: "center",
-
-                color: "#8b6b29",
-
-                letterSpacing: "6px",
-
-                fontSize: "15px",
-
-                fontFamily: "Cinzel, serif",
-
+                padding: "28px",
               }}
-
             >
+              <h2
+                style={{
+                  color: "#d7b56d",
+                  fontSize: "28px",
+                  marginBottom: "10px",
+                  fontFamily: "Cinzel, serif",
+                  fontWeight: 400,
+                }}
+              >
+                {book.title}
+              </h2>
 
-              ✦ THE END OF THE SECOND BOOK ✦
+              <p
+                style={{
+                  color: "#888",
+                  marginBottom: "20px",
+                  fontSize: "16px",
+                  letterSpacing: "1px",
+                }}
+              >
+                {book.universe}
+              </p>
 
-            </p>
+              <p
+                style={{
+                  color: "#bdbdbd",
+                  lineHeight: 1.8,
+                  marginBottom: "25px",
+                  fontSize: "16px",
+                }}
+              >
+                {book.description}
+              </p>
 
+              <Link
+                href={`/library/stories/${book.slug}`}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  padding: "14px",
+                  background: "transparent",
+                  border: "1px solid rgba(200,164,77,.35)",
+                  color: "#d7b56d",
+                  textDecoration: "none",
+                  textAlign: "center",
+                  fontSize: "15px",
+                  letterSpacing: "2px",
+                  textTransform: "uppercase",
+                  transition: ".3s",
+                }}
+              >
+                Read Story →
+              </Link>
+            </div>
           </div>
-
-        </section>
-
-      </FadeIn>
-
+        ))}
+      </div>
     </main>
-
   );
-
 }
