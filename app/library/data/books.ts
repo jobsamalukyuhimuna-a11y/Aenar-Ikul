@@ -2,7 +2,7 @@ export const books = [
   {
     id: 1,
 
-    slug: "the-king-without-a-throne",
+    slug: "the-king-without-a-Kingdom",
 
     title: "The King Without a Throne",
     subtitle: "The Beginning of Aenar Ikul",
