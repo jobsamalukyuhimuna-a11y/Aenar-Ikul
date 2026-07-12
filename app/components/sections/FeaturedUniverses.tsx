@@ -2,18 +2,18 @@ import Link from "next/link";
 
 const universes = [
   {
-    title: "إيسان إيثان",
-    subtitle: "الملك بلا عرش",
+    title: "Ithan Ithan",
+    subtitle: "The King Without a Throne",
     href: "/universes",
   },
   {
-    title: "قريبًا...",
-    subtitle: "عالم جديد",
+    title: "Coming Soon...",
+    subtitle: "A New World",
     href: "/universes",
   },
   {
-    title: "قريبًا...",
-    subtitle: "عالم جديد",
+    title: "Coming Soon...",
+    subtitle: "A New World",
     href: "/universes",
   },
 ];
@@ -34,7 +34,7 @@ export default function FeaturedUniverses() {
           marginBottom: "70px",
         }}
       >
-        العوالم
+        Universes
       </h2>
 
       <div
