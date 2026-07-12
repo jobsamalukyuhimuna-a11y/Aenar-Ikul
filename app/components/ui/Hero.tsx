@@ -142,8 +142,8 @@ export default function Hero() {
             margin: 0,
             marginBottom: "145px",
             color: "#a98a4d",
-            fontSize: "15px",
-            letterSpacing: "11px",
+            fontSize: "clamp(14px, 2.8vw, 16px)",
+            letterSpacing: "8px",
             textTransform: "uppercase",
             fontFamily: "Cinzel, serif",
             fontWeight: 500,
@@ -194,7 +194,7 @@ export default function Hero() {
         <h1
           style={{
             margin: 0,
-            fontSize: "88px",
+            fontSize: "clamp(52px, 10vw, 88px)",
             fontWeight: 400,
             letterSpacing: "11px",
             textTransform: "uppercase",
@@ -251,10 +251,12 @@ export default function Hero() {
         {/* Subtitle */}
         <p
           style={{
-            maxWidth: "820px",
+            maxWidth: "900px",
+            width: "100%",
+            padding: "0 16px",
             margin: 0,
             color: "#e7e0d0",
-            fontSize: "28px",
+            fontSize: "clamp(22px, 5vw, 32px)",
             lineHeight: 1.85,
             letterSpacing: "1px",
             fontFamily: "'Cormorant Garamond', serif",
@@ -270,8 +272,8 @@ export default function Hero() {
             marginTop: "14px",
             marginBottom: "70px",
             color: "#9d8757",
-            fontSize: "17px",
-            letterSpacing: "6px",
+            fontSize: "clamp(16px, 3.8vw, 20px)",
+            letterSpacing: "3px",
             textTransform: "uppercase",
             fontFamily: "Cinzel, serif",
           }}
@@ -286,7 +288,7 @@ export default function Hero() {
             alignItems: "center",
             justifyContent: "center",
             gap: "14px",
-            padding: "18px 56px",
+            padding: "18px 48px",
             textDecoration: "none",
             color: "#e3c57c",
             border: "1px solid rgba(183,141,60,.9)",
@@ -294,7 +296,7 @@ export default function Hero() {
             backdropFilter: "blur(8px)",
             letterSpacing: "3px",
             textTransform: "uppercase",
-            fontSize: "16px",
+            fontSize: "clamp(15px, 3vw, 17px)",
             fontFamily: "Cinzel, serif",
             boxShadow:
               "0 0 30px rgba(183,141,60,.12), inset 0 0 18px rgba(183,141,60,.08)",
@@ -311,13 +313,12 @@ export default function Hero() {
             →
           </span>
         </Link>
-
-        {/* Scroll Indicator */}
+                {/* Scroll Indicator */}
         <div
           style={{
             marginTop: "85px",
             color: "#8d6b30",
-            fontSize: "14px",
+            fontSize: "clamp(13px, 2.8vw, 15px)",
             letterSpacing: "5px",
             textTransform: "uppercase",
             fontFamily: "Cinzel, serif",
@@ -335,9 +336,9 @@ export default function Hero() {
               "linear-gradient(to bottom,#8d6b30,transparent)",
           }}
         />
-
       </div>
-            {/* Bottom Fade */}
+
+      {/* Bottom Fade */}
       <div
         style={{
           position: "absolute",
