@@ -9,6 +9,7 @@ import { universes } from "../library/data/universes";
 export default function UniversesPage() {
   return (
     <main
+      className="universes-page"
       style={{
         minHeight: "100vh",
         position: "relative",
@@ -32,8 +33,6 @@ export default function UniversesPage() {
           margin: "0 auto",
         }}
       >
-        {/* Header */}
-
         <section
           style={{
             textAlign: "center",
@@ -54,6 +53,7 @@ export default function UniversesPage() {
             style={{
               color: "#d7b56d",
               fontSize: "70px",
+              maxWidth: "100%",
               fontWeight: 400,
               letterSpacing: "6px",
               fontFamily: "Cinzel, serif",
@@ -78,9 +78,8 @@ export default function UniversesPage() {
           </p>
         </section>
 
-        {/* Cards */}
-
         <div
+          className="universes-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit,minmax(360px,1fr))",
@@ -90,6 +89,7 @@ export default function UniversesPage() {
           {universes.map((universe) => (
             <div
               key={universe.id}
+              className="universe-card"
               style={{
                 background: "rgba(17,17,17,.82)",
                 border: "1px solid rgba(200,164,77,.25)",
@@ -99,8 +99,6 @@ export default function UniversesPage() {
                 boxShadow: "0 25px 60px rgba(0,0,0,.5)",
               }}
             >
-              {/* Cover */}
-
               <div
                 style={{
                   position: "relative",
@@ -148,8 +146,6 @@ export default function UniversesPage() {
                   </span>
                 </div>
               </div>
-
-              {/* Content */}
 
               <div
                 style={{
@@ -199,64 +195,28 @@ export default function UniversesPage() {
                   }}
                 >
                   <div>
-                    <div
-                      style={{
-                        color: "#d7b56d",
-                        fontSize: "26px",
-                        fontWeight: "bold",
-                      }}
-                    >
+                    <strong style={{ color: "#d7b56d", fontSize: "26px" }}>
                       {universe.stats.books}
-                    </div>
-
-                    <div
-                      style={{
-                        color: "#888",
-                        fontSize: "14px",
-                      }}
-                    >
+                    </strong>
+                    <div style={{ color: "#888", fontSize: "14px" }}>
                       Books
                     </div>
                   </div>
 
                   <div>
-                    <div
-                      style={{
-                        color: "#d7b56d",
-                        fontSize: "26px",
-                        fontWeight: "bold",
-                      }}
-                    >
+                    <strong style={{ color: "#d7b56d", fontSize: "26px" }}>
                       {universe.stats.kingdoms}
-                    </div>
-
-                    <div
-                      style={{
-                        color: "#888",
-                        fontSize: "14px",
-                      }}
-                    >
+                    </strong>
+                    <div style={{ color: "#888", fontSize: "14px" }}>
                       Kingdoms
                     </div>
                   </div>
 
                   <div>
-                    <div
-                      style={{
-                        color: "#d7b56d",
-                        fontSize: "26px",
-                        fontWeight: "bold",
-                      }}
-                    >
+                    <strong style={{ color: "#d7b56d", fontSize: "26px" }}>
                       {universe.stats.characters}
-                    </div>
-
-                    <div
-                      style={{
-                        color: "#888",
-                        fontSize: "14px",
-                      }}
-                    >
+                    </strong>
+                    <div style={{ color: "#888", fontSize: "14px" }}>
                       Characters
                     </div>
                   </div>

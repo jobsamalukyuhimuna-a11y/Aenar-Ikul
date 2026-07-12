@@ -83,3 +83,41 @@ body::after {
     opacity: 0.35;
   }
 }
+/* =========================
+   Universes Mobile Fix
+========================= */
+
+@media (max-width: 768px) {
+
+  .universes-page {
+    padding: 80px 20px !important;
+    overflow-x: hidden;
+  }
+
+
+  .universes-page h1 {
+    font-size: 44px !important;
+    letter-spacing: 3px !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+
+  .universes-page section {
+    width: 100%;
+    text-align: center !important;
+  }
+
+
+  .universes-page section p {
+    font-size: 18px !important;
+    line-height: 1.8 !important;
+    text-align: center !important;
+  }
+
+
+  .universes-page a {
+    width: 100%;
+  }
+
+}
