@@ -1,8 +1,10 @@
 import Link from "next/link";
+import "./Hero.css";
 
 export default function Hero() {
   return (
     <section
+      className="hero-section"
       style={{
         minHeight: "100vh",
         position: "relative",
@@ -43,6 +45,7 @@ export default function Hero() {
 
       {/* Left Navigation */}
       <div
+        className="desktop-nav desktop-nav-left"
         style={{
           position: "absolute",
           top: "55px",
@@ -85,9 +88,9 @@ export default function Hero() {
           UNIVERSES
         </Link>
       </div>
-
-      {/* Right Navigation */}
+            {/* Right Navigation */}
       <div
+        className="desktop-nav desktop-nav-right"
         style={{
           position: "absolute",
           top: "55px",
@@ -131,8 +134,10 @@ export default function Hero() {
           CHARACTERS
         </Link>
       </div>
-            {/* Content */}
+
+      {/* Content */}
       <div
+        className="hero-content"
         style={{
           position: "relative",
           zIndex: 10,
@@ -146,6 +151,7 @@ export default function Hero() {
       >
         {/* Top Title */}
         <p
+          className="hero-top-title"
           style={{
             margin: 0,
             marginBottom: "145px",
@@ -160,9 +166,9 @@ export default function Hero() {
         >
           THE ROYAL ARCHIVE
         </p>
-
-        {/* Decorative Line */}
+                {/* Decorative Line */}
         <div
+          className="hero-divider"
           style={{
             display: "flex",
             alignItems: "center",
@@ -200,6 +206,7 @@ export default function Hero() {
 
         {/* Main Title */}
         <h1
+          className="hero-title"
           style={{
             margin: 0,
             fontSize: "clamp(52px, 10vw, 88px)",
@@ -220,6 +227,7 @@ export default function Hero() {
 
         {/* Decorative Divider */}
         <div
+          className="hero-divider"
           style={{
             display: "flex",
             alignItems: "center",
@@ -256,9 +264,9 @@ export default function Hero() {
             }}
           />
         </div>
-
-        {/* Subtitle */}
+                {/* Subtitle */}
         <p
+          className="hero-subtitle"
           style={{
             maxWidth: "900px",
             width: "100%",
@@ -277,6 +285,7 @@ export default function Hero() {
         </p>
 
         <p
+          className="hero-tagline"
           style={{
             marginTop: "14px",
             marginBottom: "70px",
@@ -292,6 +301,7 @@ export default function Hero() {
 
         <Link
           href="/library"
+          className="hero-button"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -324,6 +334,7 @@ export default function Hero() {
         </Link>
                 {/* Scroll Indicator */}
         <div
+          className="hero-scroll"
           style={{
             marginTop: "85px",
             color: "#8d6b30",
@@ -337,6 +348,7 @@ export default function Hero() {
         </div>
 
         <div
+          className="hero-scroll-line"
           style={{
             marginTop: "10px",
             width: "1px",
@@ -370,6 +382,6 @@ export default function Hero() {
           boxShadow: "inset 0 0 220px rgba(0,0,0,.65)",
         }}
       />
-    </section>
+          </section>
   );
 }
