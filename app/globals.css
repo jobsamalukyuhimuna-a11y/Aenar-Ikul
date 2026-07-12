@@ -1,25 +1,14 @@
-/* ===========================
-   GLOBAL STYLES
-=========================== */
-
-html,
-body {
-  margin: 0;
-  padding: 10px;
-  background: #050505;
-  overflow-x: hidden;
-}
-
-/* ===========================
-   Royal Golden Frame
-=========================== */
+/* ===== Decorative Frame ===== */
 
 body::before {
   content: "";
   position: fixed;
-  inset: 10px;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
 
-  border: 1px solid rgba(201, 165, 77, 0.45);
+  border: 1px solid rgba(200, 164, 77, 0.45);
 
   box-shadow:
     inset 0 0 20px rgba(200,164,77,.08),
@@ -32,87 +21,37 @@ body::before {
 body::after {
   content: "";
   position: fixed;
-  inset: 22px;
+  top: 28px;
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
 
-  border: 1px solid rgba(201,165,77,.18);
+  border: 1px solid rgba(200,164,77,.12);
 
   pointer-events: none;
   z-index: 9998;
 }
+/* ===== Royal Golden Frame ===== */
 
-/* ===========================
-   Mobile Navigation
-=========================== */
-
-.mobile-nav {
-  display: none;
+body {
+  background: #050505;
+  padding: 10px;
 }
 
-/* ===========================
-   Mobile Layout
-=========================== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 10px;
+  border: 1px solid rgba(201, 165, 77, 0.45);
+  pointer-events: none;
+  z-index: 9999;
+}
 
-@media (max-width: 768px) {
-
-  body {
-    padding: 6px;
-  }
-
-  body::before {
-    inset: 6px;
-  }
-
-  body::after {
-    inset: 14px;
-  }
-
-  .mobile-nav {
-    position: absolute;
-
-    top: 18px;
-    left: 14px;
-    right: 14px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 10px;
-
-    z-index: 999;
-  }
-
-  .mobile-nav a {
-
-    flex: 1;
-
-    text-align: center;
-
-    color: #d6b76a;
-
-    text-decoration: none;
-
-    font-family: "Cinzel", serif;
-
-    font-size: 12px;
-
-    letter-spacing: 1px;
-
-    padding: 12px 6px;
-
-    border-bottom: 1px solid rgba(200,164,77,.35);
-
-    background: rgba(0,0,0,.22);
-
-    backdrop-filter: blur(8px);
-
-    transition: .35s;
-  }
-
-  .mobile-nav a:hover {
-
-    color: #f5d98b;
-
-    border-bottom-color: #c8a44d;
-  }
+body::after {
+  content: "";
+  position: fixed;
+  inset: 22px;
+  border: 1px solid rgba(201, 165, 77, 0.18);
+  pointer-events: none;
+  z-index: 9998;
 }
