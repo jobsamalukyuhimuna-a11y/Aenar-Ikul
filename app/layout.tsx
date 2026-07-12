@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "ANAS | Official Library",
-  description: "Stories, Worlds, Art and Music by Anas.",
+  title: "AENAR IKUL",
+  description: "The Official Archive of Worlds & Stories",
 };
 
 export default function RootLayout({
