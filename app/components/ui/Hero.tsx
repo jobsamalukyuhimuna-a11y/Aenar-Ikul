@@ -41,97 +41,92 @@ export default function Hero() {
         }}
       />
 
-      {/* Left Navigation */}
+      {/* ================= TOP NAVIGATION ================= */}
+
       <div
         style={{
           position: "absolute",
-          top: "55px",
-          left: "60px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "22px",
-          zIndex: 20,
+          top: "28px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "min(92%, 1100px)",
+          zIndex: 30,
         }}
       >
-        <Link
-          href="/"
+        <div
           style={{
-            color: "#e2c67d",
-            fontFamily: "Cinzel, serif",
-            fontSize: "18px",
-            letterSpacing: "5px",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            textShadow: "0 0 14px rgba(212,178,90,.30)",
-            transition: "all .3s ease",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "18px",
+            paddingBottom: "18px",
+            borderBottom: "1px solid rgba(200,164,77,.45)",
           }}
         >
-          HOME
-        </Link>
+          <Link
+            href="/"
+            style={{
+              color: "#e5c777",
+              textDecoration: "none",
+              fontFamily: "Cinzel, serif",
+              fontSize: "clamp(16px,2vw,19px)",
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              padding: "10px 14px",
+            }}
+          >
+            HOME
+          </Link>
 
-        <Link
-          href="/universes"
-          style={{
-            color: "#e2c67d",
-            fontFamily: "Cinzel, serif",
-            fontSize: "18px",
-            letterSpacing: "5px",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            textShadow: "0 0 14px rgba(212,178,90,.30)",
-            transition: "all .3s ease",
-          }}
-        >
-          UNIVERSES
-        </Link>
+          <Link
+            href="/universes"
+            style={{
+              color: "#e5c777",
+              textDecoration: "none",
+              fontFamily: "Cinzel, serif",
+              fontSize: "clamp(16px,2vw,19px)",
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              padding: "10px 14px",
+            }}
+          >
+            UNIVERSES
+          </Link>
+
+          <Link
+            href="/library"
+            style={{
+              color: "#e5c777",
+              textDecoration: "none",
+              fontFamily: "Cinzel, serif",
+              fontSize: "clamp(16px,2vw,19px)",
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              padding: "10px 14px",
+            }}
+          >
+            LIBRARY
+          </Link>
+
+          <Link
+            href="/characters"
+            style={{
+              color: "#e5c777",
+              textDecoration: "none",
+              fontFamily: "Cinzel, serif",
+              fontSize: "clamp(16px,2vw,19px)",
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              padding: "10px 14px",
+            }}
+          >
+            CHARACTERS
+          </Link>
+        </div>
       </div>
+            {/* ================= CONTENT ================= */}
 
-      {/* Right Navigation */}
-      <div
-        style={{
-          position: "absolute",
-          top: "55px",
-          right: "60px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
-          gap: "22px",
-          zIndex: 20,
-        }}
-      >
-        <Link
-          href="/library"
-          style={{
-            color: "#e2c67d",
-            fontFamily: "Cinzel, serif",
-            fontSize: "18px",
-            letterSpacing: "5px",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            textShadow: "0 0 14px rgba(212,178,90,.30)",
-            transition: "all .3s ease",
-          }}
-        >
-          LIBRARY
-        </Link>
-
-        <Link
-          href="/characters"
-          style={{
-            color: "#e2c67d",
-            fontFamily: "Cinzel, serif",
-            fontSize: "18px",
-            letterSpacing: "5px",
-            textTransform: "uppercase",
-            textDecoration: "none",
-            textShadow: "0 0 14px rgba(212,178,90,.30)",
-            transition: "all .3s ease",
-          }}
-        >
-          CHARACTERS
-        </Link>
-      </div>
-            {/* Content */}
       <div
         style={{
           position: "relative",
@@ -145,29 +140,33 @@ export default function Hero() {
         }}
       >
         {/* Top Title */}
+
         <p
           style={{
             margin: 0,
-            marginBottom: "145px",
-            color: "#a98a4d",
-            fontSize: "clamp(14px, 2.8vw, 16px)",
+            marginTop: "70px",
+            marginBottom: "120px",
+            color: "#caa24b",
+            fontSize: "clamp(18px,4vw,24px)",
             letterSpacing: "8px",
             textTransform: "uppercase",
             fontFamily: "Cinzel, serif",
-            fontWeight: 500,
-            textShadow: "0 0 15px rgba(0,0,0,.8)",
+            fontWeight: 600,
+            textShadow:
+              "0 0 20px rgba(0,0,0,.9),0 0 12px rgba(202,162,75,.25)",
           }}
         >
           THE ROYAL ARCHIVE
         </p>
 
         {/* Decorative Line */}
+
         <div
           style={{
             display: "flex",
             alignItems: "center",
             gap: "18px",
-            marginBottom: "28px",
+            marginBottom: "30px",
           }}
         >
           <div
@@ -199,14 +198,15 @@ export default function Hero() {
         </div>
 
         {/* Main Title */}
+
         <h1
           style={{
             margin: 0,
-            fontSize: "clamp(52px, 10vw, 88px)",
+            fontSize: "clamp(52px,10vw,88px)",
             fontWeight: 400,
             letterSpacing: "11px",
             textTransform: "uppercase",
-            fontFamily: "'Cinzel Decorative', 'Cinzel', serif",
+            fontFamily: "'Cinzel Decorative','Cinzel',serif",
             background:
               "linear-gradient(180deg,#fff8d7 0%,#f4d67d 25%,#d9b15a 55%,#8d6122 100%)",
             WebkitBackgroundClip: "text",
@@ -217,8 +217,8 @@ export default function Hero() {
         >
           AENAR IKUL
         </h1>
+                {/* Decorative Divider */}
 
-        {/* Decorative Divider */}
         <div
           style={{
             display: "flex",
@@ -258,6 +258,7 @@ export default function Hero() {
         </div>
 
         {/* Subtitle */}
+
         <p
           style={{
             maxWidth: "900px",
@@ -265,8 +266,8 @@ export default function Hero() {
             padding: "0 16px",
             margin: 0,
             color: "#e7e0d0",
-            fontSize: "clamp(22px, 5vw, 32px)",
-            lineHeight: 1.85,
+            fontSize: "clamp(24px,5vw,34px)",
+            lineHeight: 1.7,
             letterSpacing: "1px",
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 400,
@@ -278,11 +279,11 @@ export default function Hero() {
 
         <p
           style={{
-            marginTop: "14px",
+            marginTop: "18px",
             marginBottom: "70px",
-            color: "#9d8757",
-            fontSize: "clamp(16px, 3.8vw, 20px)",
-            letterSpacing: "3px",
+            color: "#b69b61",
+            fontSize: "clamp(18px,3.5vw,22px)",
+            letterSpacing: "4px",
             textTransform: "uppercase",
             fontFamily: "Cinzel, serif",
           }}
@@ -305,7 +306,7 @@ export default function Hero() {
             backdropFilter: "blur(8px)",
             letterSpacing: "3px",
             textTransform: "uppercase",
-            fontSize: "clamp(15px, 3vw, 17px)",
+            fontSize: "clamp(15px,3vw,17px)",
             fontFamily: "Cinzel, serif",
             boxShadow:
               "0 0 30px rgba(183,141,60,.12), inset 0 0 18px rgba(183,141,60,.08)",
@@ -323,11 +324,12 @@ export default function Hero() {
           </span>
         </Link>
                 {/* Scroll Indicator */}
+
         <div
           style={{
             marginTop: "85px",
             color: "#8d6b30",
-            fontSize: "clamp(13px, 2.8vw, 15px)",
+            fontSize: "clamp(13px,2.8vw,15px)",
             letterSpacing: "5px",
             textTransform: "uppercase",
             fontFamily: "Cinzel, serif",
@@ -345,9 +347,11 @@ export default function Hero() {
               "linear-gradient(to bottom,#8d6b30,transparent)",
           }}
         />
+
       </div>
 
       {/* Bottom Fade */}
+
       <div
         style={{
           position: "absolute",
@@ -362,6 +366,7 @@ export default function Hero() {
       />
 
       {/* Decorative Vignette */}
+
       <div
         style={{
           position: "absolute",
@@ -370,6 +375,6 @@ export default function Hero() {
           boxShadow: "inset 0 0 220px rgba(0,0,0,.65)",
         }}
       />
-    </section>
+          </section>
   );
 }
