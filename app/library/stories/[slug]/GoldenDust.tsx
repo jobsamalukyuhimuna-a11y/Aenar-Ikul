@@ -2,26 +2,33 @@
 
 import { useEffect, useState } from "react";
 
+type Particle = {
+  left: number;
+  top: number;
+  size: number;
+  delay: number;
+  duration: number;
+};
+
 export default function GoldenDust() {
-  const [particles, setParticles] = useState<
-    {
-      left: number;
-      top: number;
-      size: number;
-      delay: number;
-      duration: number;
-    }[]
-  >([]);
+  const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
     setParticles(
-      Array.from({ length: 40 }, () => ({
-        left: Math.random() * 100,
-        top: Math.random() * 100,
-        size: 2 + Math.random() * 5,
-        delay: Math.random() * 6,
-        duration: 6 + Math.random() * 8,
-      }))
+      Array.from({ length: 40 }, () => {
+        // 50% يسار و50% يمين
+        const isLeft = Math.random() < 0.5;
+
+        return {
+          left: isLeft
+            ? Math.random() * 12 // 0% → 12%
+            : 88 + Math.random() * 12, // 88% → 100%
+          top: Math.random() * 100,
+          size: 2 + Math.random() * 5,
+          delay: Math.random() * 6,
+          duration: 6 + Math.random() * 8,
+        };
+      })
     );
   }, []);
 
