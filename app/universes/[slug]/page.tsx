@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { universes } from "../../library/data/universes";
+import { kingdoms } from "../../library/data/kingdoms";
 
 type Props = {
   params: Promise<{
@@ -22,7 +23,7 @@ export default async function UniversePage({ params }: Props) {
       style={{
         minHeight: "100vh",
         background:
-          "radial-gradient(circle at top,#251736 0%,#0b0b0b 45%,#050505 100%)",
+          "radial-gradient(circle at top,#251736 0%, #0b0b0b 45%, #050505 100%)",
         color: "#fff",
         padding: "120px 20px",
       }}
@@ -33,6 +34,8 @@ export default async function UniversePage({ params }: Props) {
           margin: "0 auto",
         }}
       >
+        {/* Header */}
+
         <p
           style={{
             color: "#9d7d3d",
@@ -58,6 +61,8 @@ export default async function UniversePage({ params }: Props) {
           {universe.name}
         </h1>
 
+        {/* Map */}
+
         <Image
           src="/maps/aenar-ikul-map.jpg"
           alt="Map of Aenar Ikul"
@@ -71,6 +76,8 @@ export default async function UniversePage({ params }: Props) {
             boxShadow: "0 20px 60px rgba(0,0,0,.45)",
           }}
         />
+
+        {/* About */}
 
         <section
           style={{
@@ -102,6 +109,90 @@ export default async function UniversePage({ params }: Props) {
           >
             {universe.description}
           </p>
+        </section>
+
+        {/* Kingdoms */}
+
+        <section
+          style={{
+            marginTop: "80px",
+          }}
+        >
+          <h2
+            style={{
+              color: "#d7b56d",
+              fontSize: "42px",
+              textAlign: "center",
+              fontFamily: "Cinzel, serif",
+              fontWeight: 400,
+              marginBottom: "45px",
+            }}
+          >
+            Kingdoms
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))",
+              gap: "30px",
+            }}
+          >
+            {kingdoms
+              .filter((k) => k.universe === universe.slug)
+              .map((kingdom) => (
+                <div
+                  key={kingdom.id}
+                  style={{
+                    background: "rgba(17,17,17,.82)",
+                    border: "1px solid rgba(200,164,77,.25)",
+                    borderRadius: "18px",
+                    padding: "30px",
+                    backdropFilter: "blur(10px)",
+                    boxShadow: "0 20px 40px rgba(0,0,0,.45)",
+                  }}
+                >
+                  <h3
+                    style={{
+                      color: "#d7b56d",
+                      fontSize: "30px",
+                      fontFamily: "Cinzel, serif",
+                      fontWeight: 400,
+                      marginBottom: "20px",
+                    }}
+                  >
+                    {kingdom.name}
+                  </h3>
+
+                  <p
+                    style={{
+                      color: "#bdbdbd",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    👑 <strong>Ruler:</strong> {kingdom.ruler}
+                  </p>
+
+                  <p
+                    style={{
+                      color: "#bdbdbd",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    🏰 <strong>Capital:</strong> {kingdom.capital}
+                  </p>
+
+                  <p
+                    style={{
+                      color: "#cfcfcf",
+                      lineHeight: 1.8,
+                    }}
+                  >
+                    {kingdom.description}
+                  </p>
+                </div>
+              ))}
+          </div>
         </section>
       </div>
     </main>
