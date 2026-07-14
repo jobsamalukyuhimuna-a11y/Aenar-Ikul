@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "../../../../lib/prisma";
 
 export async function POST(req: Request) {
   try {
@@ -8,8 +8,12 @@ export async function POST(req: Request) {
 
     if (!username || !password) {
       return NextResponse.json(
-        { message: "Username and password are required." },
-        { status: 400 }
+        {
+          message: "Username and password are required.",
+        },
+        {
+          status: 400,
+        }
       );
     }
 
@@ -21,17 +25,28 @@ export async function POST(req: Request) {
 
     if (!admin) {
       return NextResponse.json(
-        { message: "Invalid username or password." },
-        { status: 401 }
+        {
+          message: "Invalid username or password.",
+        },
+        {
+          status: 401,
+        }
       );
     }
 
-    const validPassword = await bcrypt.compare(password, admin.password);
+    const validPassword = await bcrypt.compare(
+      password,
+      admin.password
+    );
 
     if (!validPassword) {
       return NextResponse.json(
-        { message: "Invalid username or password." },
-        { status: 401 }
+        {
+          message: "Invalid username or password.",
+        },
+        {
+          status: 401,
+        }
       );
     }
 
@@ -47,8 +62,12 @@ export async function POST(req: Request) {
     console.error(error);
 
     return NextResponse.json(
-      { message: "Internal server error." },
-      { status: 500 }
+      {
+        message: "Internal server error.",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }
