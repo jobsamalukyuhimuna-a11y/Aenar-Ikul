@@ -1,0 +1,65 @@
+@keyframes galaxyPulse {
+  0% {
+    filter: brightness(0.8) saturate(1);
+  }
+
+  50% {
+    filter: brightness(1.25) saturate(1.35);
+  }
+
+  100% {
+    filter: brightness(0.95) saturate(1.1);
+  }
+}
+
+
+@keyframes goldFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-110vh) scale(1.8);
+    opacity: 0;
+  }
+}
+
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+@keyframes goldenGlow {
+  0% {
+    box-shadow:
+      0 0 20px rgba(212,175,55,.25);
+  }
+
+  50% {
+    box-shadow:
+      0 0 60px rgba(212,175,55,.65);
+  }
+
+  100% {
+    box-shadow:
+      0 0 20px rgba(212,175,55,.25);
+  }
+}

@@ -3,6 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import GalaxyBackground from "./GalaxyBackground";
+import GoldenParticles from "./GoldenParticles";
+import LoginCard from "./LoginCard";
+
+import "./animations.css";
+
 export default function AdminLoginPage() {
   const router = useRouter();
 
@@ -35,7 +41,10 @@ export default function AdminLoginPage() {
         return;
       }
 
-      localStorage.setItem("admin", JSON.stringify(data.admin));
+      localStorage.setItem(
+        "admin",
+        JSON.stringify(data.admin)
+      );
 
       router.push("/admin");
     } catch {
@@ -49,79 +58,27 @@ export default function AdminLoginPage() {
     <main
       style={{
         minHeight: "100vh",
+        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background:
-          "radial-gradient(circle at top,#2a1740 0%,#0b0b0b 45%,#050505 100%)",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div
-        style={{
-          width: 500,
-          padding: 50,
-          borderRadius: 20,
-          background: "rgba(20,20,20,.9)",
-          border: "1px solid rgba(212,175,55,.3)",
-        }}
-      >
-        <h1
-          style={{
-            color: "#d4af37",
-            textAlign: "center",
-            marginBottom: 40,
-          }}
-        >
-          Admin Login
-        </h1>
+      <GalaxyBackground />
 
-        <input
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          style={{
-            width: "100%",
-            padding: 15,
-            marginBottom: 20,
-          }}
-        />
+      <GoldenParticles />
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{
-            width: "100%",
-            padding: 15,
-            marginBottom: 20,
-          }}
-        />
-
-        <button
-          onClick={handleLogin}
-          disabled={loading}
-          style={{
-            width: "100%",
-            padding: 16,
-            cursor: "pointer",
-          }}
-        >
-          {loading ? "Loading..." : "ENTER THE LIBRARY"}
-        </button>
-
-        {message && (
-          <p
-            style={{
-              color: "red",
-              marginTop: 20,
-              textAlign: "center",
-            }}
-          >
-            {message}
-          </p>
-        )}
-      </div>
+      <LoginCard
+        username={username}
+        password={password}
+        loading={loading}
+        message={message}
+        setUsername={setUsername}
+        setPassword={setPassword}
+        handleLogin={handleLogin}
+      />
     </main>
   );
 }
