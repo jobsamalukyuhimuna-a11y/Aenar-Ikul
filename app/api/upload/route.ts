@@ -27,26 +27,39 @@ export async function POST(req: Request) {
         ? "music"
         : "images";
 
+
+    const safeName = file.name
+      .replace(/\s+/g, "-")
+      .replace(/[^\w.-]/g, "");
+
+
     const blob = await put(
-      `${folder}/${Date.now()}-${file.name}`,
+      `${folder}/${Date.now()}-${safeName}`,
       file,
       {
         access: "public",
       }
     );
 
+
     return NextResponse.json({
       success: true,
       url: blob.url,
     });
 
+
   } catch (error) {
-    console.error(error);
+
+    console.error("UPLOAD ERROR:", error);
+
 
     return NextResponse.json(
       {
         success: false,
-        message: "Upload failed.",
+        message:
+          error instanceof Error
+            ? error.message
+            : "Upload failed.",
       },
       {
         status: 500,
