@@ -3,14 +3,29 @@ import { put } from "@vercel/blob";
 
 export const runtime = "nodejs";
 
+console.log(
+  "BLOB TOKEN EXISTS:",
+  !!process.env.BLOB_READ_WRITE_TOKEN
+);
+
+
 export async function POST(req: Request) {
   try {
+
     const formData = await req.formData();
 
-    const file = formData.get("file") as File;
-    const type = formData.get("type") as string;
+
+    const file =
+      formData.get("file") as File;
+
+
+    const type =
+      formData.get("type") as string;
+
+
 
     if (!file) {
+
       return NextResponse.json(
         {
           success: false,
@@ -20,7 +35,10 @@ export async function POST(req: Request) {
           status: 400,
         }
       );
+
     }
+
+
 
     const folder =
       type === "music"
@@ -28,29 +46,43 @@ export async function POST(req: Request) {
         : "images";
 
 
-    const safeName = file.name
-      .replace(/\s+/g, "-")
-      .replace(/[^\w.-]/g, "");
+
+    const safeName =
+      file.name
+        .replace(/\s+/g, "-")
+        .replace(/[^\w.-]/g, "");
 
 
-    const blob = await put(
-      `${folder}/${Date.now()}-${safeName}`,
-      file,
+
+    const blob =
+      await put(
+        `${folder}/${Date.now()}-${safeName}`,
+        file,
+        {
+          access: "public",
+          token:
+            process.env.BLOB_READ_WRITE_TOKEN,
+        }
+      );
+
+
+
+    return NextResponse.json(
       {
-        access: "public",
+        success: true,
+        url: blob.url,
       }
     );
 
 
-    return NextResponse.json({
-      success: true,
-      url: blob.url,
-    });
-
 
   } catch (error) {
 
-    console.error("UPLOAD ERROR:", error);
+
+    console.error(
+      "UPLOAD ERROR:",
+      error
+    );
 
 
     return NextResponse.json(
@@ -65,5 +97,6 @@ export async function POST(req: Request) {
         status: 500,
       }
     );
+
   }
 }
