@@ -1,8 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { books } from "./data/books";
+import { prisma } from "@/lib/prisma";
 
-export default function LibraryPage() {
+export default async function LibraryPage() {
+  const stories = await prisma.story.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
   return (
     <main
       style={{
@@ -12,8 +18,6 @@ export default function LibraryPage() {
         padding: "140px 60px",
       }}
     >
-      {/* Header */}
-
       <div
         style={{
           textAlign: "center",
@@ -55,58 +59,6 @@ export default function LibraryPage() {
         </p>
       </div>
 
-      {/* Search */}
-
-      <div
-        style={{
-          maxWidth: "650px",
-          margin: "0 auto 60px",
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Search..."
-          style={{
-            width: "100%",
-            padding: "18px 24px",
-            background: "#111",
-            border: "1px solid rgba(200,164,77,.3)",
-            color: "#fff",
-            fontSize: "18px",
-            outline: "none",
-          }}
-        />
-      </div>
-
-      {/* Categories */}
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "18px",
-          marginBottom: "80px",
-          flexWrap: "wrap",
-        }}
-      >
-        {["All", "Novels", "Stories", "Poetry"].map((item) => (
-          <button
-            key={item}
-            style={{
-              padding: "14px 28px",
-              background: "#151515",
-              color: "#d7b56d",
-              border: "1px solid rgba(200,164,77,.25)",
-              cursor: "pointer",
-              fontSize: "16px",
-            }}
-          >
-            {item}
-          </button>
-        ))}
-      </div>
-
-      {/* Books */}
 
       <div
         style={{
@@ -117,20 +69,18 @@ export default function LibraryPage() {
           margin: "0 auto",
         }}
       >
-        {books.map((book) => (
+        {stories.map((story) => (
           <div
-            key={book.id}
+            key={story.id}
             style={{
               width: "320px",
               background: "#121212",
               border: "1px solid rgba(200,164,77,.18)",
               borderRadius: "12px",
               overflow: "hidden",
-              transition: ".35s",
               boxShadow: "0 10px 30px rgba(0,0,0,.35)",
             }}
           >
-            {/* Cover */}
 
             <div
               style={{
@@ -141,24 +91,26 @@ export default function LibraryPage() {
                 background: "#090909",
               }}
             >
-              <Image
-                src={book.cover}
-                alt={book.title}
-                fill
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "center top",
-                }}
-              />
+              {story.cover && (
+                <Image
+                  src={story.cover}
+                  alt={story.title}
+                  fill
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "center top",
+                  }}
+                />
+              )}
             </div>
 
-            {/* Content */}
 
             <div
               style={{
                 padding: "28px",
               }}
             >
+
               <h2
                 style={{
                   color: "#d7b56d",
@@ -168,19 +120,20 @@ export default function LibraryPage() {
                   fontWeight: 400,
                 }}
               >
-                {book.title}
+                {story.title}
               </h2>
+
 
               <p
                 style={{
                   color: "#888",
                   marginBottom: "20px",
                   fontSize: "16px",
-                  letterSpacing: "1px",
                 }}
               >
-                {book.universe}
+                Story
               </p>
+
 
               <p
                 style={{
@@ -190,11 +143,12 @@ export default function LibraryPage() {
                   fontSize: "16px",
                 }}
               >
-                {book.description}
+                {story.description}
               </p>
 
+
               <Link
-                href={`/library/stories/${book.slug}`}
+                href={`/library/stories/${story.slug}`}
                 style={{
                   display: "block",
                   width: "100%",
@@ -207,15 +161,30 @@ export default function LibraryPage() {
                   fontSize: "15px",
                   letterSpacing: "2px",
                   textTransform: "uppercase",
-                  transition: ".3s",
                 }}
               >
                 Read Story →
               </Link>
+
             </div>
+
           </div>
         ))}
       </div>
+
+
+      {stories.length === 0 && (
+        <p
+          style={{
+            textAlign: "center",
+            color: "#888",
+            fontSize: "20px",
+          }}
+        >
+          No stories available yet.
+        </p>
+      )}
+
     </main>
   );
 }
