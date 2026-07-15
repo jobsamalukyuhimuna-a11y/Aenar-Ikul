@@ -4,6 +4,9 @@ import { createClient } from "@supabase/supabase-js";
 export const runtime = "nodejs";
 
 
+console.log("USING SUPABASE UPLOAD ROUTE");
+
+
 export async function POST(req: Request) {
   try {
 
@@ -49,11 +52,11 @@ export async function POST(req: Request) {
     if (!file) {
       return NextResponse.json(
         {
-          success:false,
-          message:"No file uploaded",
+          success: false,
+          message: "No file uploaded",
         },
         {
-          status:400,
+          status: 400,
         }
       );
     }
@@ -88,25 +91,27 @@ export async function POST(req: Request) {
           filePath,
           buffer,
           {
-            contentType:file.type,
-            upsert:false,
+            contentType: file.type,
+            upsert: false,
           }
         );
 
 
     if (error) {
+
       console.error(
         "SUPABASE ERROR:",
         error
       );
 
+
       return NextResponse.json(
         {
-          success:false,
-          message:error.message,
+          success: false,
+          message: error.message,
         },
         {
-          status:500,
+          status: 500,
         }
       );
     }
@@ -122,8 +127,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       {
-        success:true,
-        url:publicUrl,
+        success: true,
+        url: publicUrl,
       }
     );
 
@@ -138,15 +143,16 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       {
-        success:false,
+        success: false,
         message:
           error instanceof Error
-          ? error.message
-          : "Upload failed",
+            ? error.message
+            : "Upload failed",
       },
       {
-        status:500,
+        status: 500,
       }
     );
+
   }
 }
