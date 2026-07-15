@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { put } from "@vercel/blob";
 
 export const runtime = "nodejs";
 
@@ -10,7 +9,6 @@ export async function POST(req: Request) {
 
     const file = formData.get("file") as File;
     const type = formData.get("type") as string;
-
 
     if (!file) {
       return NextResponse.json(
@@ -24,59 +22,25 @@ export async function POST(req: Request) {
       );
     }
 
-
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
-
     const folder =
       type === "music"
         ? "music"
         : "images";
 
-
-    const uploadDir = path.join(
-      process.cwd(),
-      "public",
-      "uploads",
-      folder
+    const blob = await put(
+      `${folder}/${Date.now()}-${file.name}`,
+      file,
+      {
+        access: "public",
+      }
     );
-
-
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, {
-        recursive: true,
-      });
-    }
-
-
-    const fileName =
-      Date.now() + "-" + file.name;
-
-
-    const filePath = path.join(
-      uploadDir,
-      fileName
-    );
-
-
-    fs.writeFileSync(
-      filePath,
-      buffer
-    );
-
 
     return NextResponse.json({
       success: true,
-      url:
-        type === "music"
-          ? `/uploads/music/${fileName}`
-          : `/uploads/images/${fileName}`,
+      url: blob.url,
     });
 
-
   } catch (error) {
-
     console.error(error);
 
     return NextResponse.json(
