@@ -18,28 +18,100 @@ export default function NewStoryPage() {
     file: File,
     type: "image" | "music"
   ) {
-    const formData = new FormData();
 
-    formData.append("file", file);
-    formData.append("type", type);
-
-
-    const response = await fetch("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
-
-
-    const data = await response.json();
-
-
-    if (data.success) {
-      return data.url;
+    if (!file) {
+      throw new Error("No file selected");
     }
 
 
-    throw new Error("Upload failed");
+    const maxImageSize =
+      10 * 1024 * 1024;
+
+
+    const maxMusicSize =
+      50 * 1024 * 1024;
+
+
+
+    if (
+      type === "image" &&
+      file.size > maxImageSize
+    ) {
+      throw new Error(
+        "Image is too large. Maximum size is 10MB"
+      );
+    }
+
+
+
+    if (
+      type === "music" &&
+      file.size > maxMusicSize
+    ) {
+      throw new Error(
+        "Music file is too large. Maximum size is 50MB"
+      );
+    }
+
+
+
+    const formData =
+      new FormData();
+
+
+
+    formData.append(
+      "file",
+      file,
+      file.name
+    );
+
+
+
+    formData.append(
+      "type",
+      type
+    );
+
+
+
+    const response =
+      await fetch(
+        "/api/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+
+
+    if (!response.ok) {
+      throw new Error(
+        "Server upload error"
+      );
+    }
+
+
+
+    const data =
+      await response.json();
+
+
+
+    if (!data.success) {
+      throw new Error(
+        data.message ||
+        "Upload failed"
+      );
+    }
+
+
+
+    return data.url;
   }
+
+
 
 
 
@@ -47,9 +119,12 @@ export default function NewStoryPage() {
     e: React.ChangeEvent<HTMLInputElement>
   ) {
 
-    const file = e.target.files?.[0];
+    const file =
+      e.target.files?.[0];
+
 
     if (!file) return;
+
 
 
     try {
@@ -57,23 +132,40 @@ export default function NewStoryPage() {
       setUploadingImage(true);
 
 
-      const url = await uploadFile(file, "image");
+      const url =
+        await uploadFile(
+          file,
+          "image"
+        );
 
 
-      console.log("COVER:", url);
+      console.log(
+        "IMAGE URL:",
+        url
+      );
 
 
       setCover(url);
 
 
+
     } catch (error) {
 
-      console.error(error);
 
-      alert("Image upload failed");
+      console.error(
+        error
+      );
+
+
+      alert(
+        error instanceof Error
+          ? error.message
+          : "Image upload failed"
+      );
 
 
     } finally {
+
 
       setUploadingImage(false);
 
@@ -83,59 +175,80 @@ export default function NewStoryPage() {
 
 
 
+
   async function handleMusicUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
 
-    const file = e.target.files?.[0];
+    const file =
+      e.target.files?.[0];
+
 
     if (!file) return;
 
 
+
     try {
+
 
       setUploadingMusic(true);
 
 
-      const url = await uploadFile(file, "music");
+
+      const url =
+        await uploadFile(
+          file,
+          "music"
+        );
 
 
-      console.log("MUSIC:", url);
+
+      console.log(
+        "MUSIC URL:",
+        url
+      );
+
 
 
       setMusic(url);
 
 
+
     } catch (error) {
 
-      console.error(error);
 
-      alert("Music upload failed");
+      console.error(
+        error
+      );
+
+
+      alert(
+        error instanceof Error
+          ? error.message
+          : "Music upload failed"
+      );
 
 
     } finally {
+
 
       setUploadingMusic(false);
 
     }
   }
+    async function saveStory() {
 
-
-
-
-
-  async function saveStory() {
-
-
-    console.log("SAVING STORY:", {
-      title,
-      slug,
-      description,
-      cover,
-      music,
-      content,
-    });
-
+    console.log(
+      "SAVING STORY:",
+      {
+        title,
+        slug,
+        description,
+        cover,
+        music,
+        content,
+      }
+    );
 
 
     if (
@@ -157,32 +270,33 @@ export default function NewStoryPage() {
 
     try {
 
+      const response =
+        await fetch(
+          "/api/admin/stories",
+          {
+            method: "POST",
 
-      const response = await fetch(
-        "/api/admin/stories",
-        {
-          method: "POST",
+            headers: {
+              "Content-Type":
+                "application/json",
+            },
 
-          headers: {
-            "Content-Type": "application/json",
-          },
+            body: JSON.stringify({
+              title,
+              slug,
+              description,
+              cover,
+              music,
+              content,
+            }),
 
-
-          body: JSON.stringify({
-            title,
-            slug,
-            description,
-            cover,
-            music,
-            content,
-          }),
-
-        }
-      );
+          }
+        );
 
 
 
-      const data = await response.json();
+      const data =
+        await response.json();
 
 
 
@@ -192,8 +306,9 @@ export default function NewStoryPage() {
       );
 
 
-
-      alert(data.message);
+      alert(
+        data.message
+      );
 
 
 
@@ -222,19 +337,31 @@ export default function NewStoryPage() {
 
     <main
       style={{
-        minHeight: "100vh",
-        background: "#090909",
-        color: "white",
-        padding: 60,
+        minHeight:
+          "100vh",
+
+        background:
+          "#090909",
+
+        color:
+          "white",
+
+        padding:
+          60,
       }}
     >
 
 
       <h1
         style={{
-          color: "#d4af37",
-          fontSize: 46,
-          marginBottom: 40,
+          color:
+            "#d4af37",
+
+          fontSize:
+            46,
+
+          marginBottom:
+            40,
         }}
       >
         Create New Story
@@ -242,21 +369,33 @@ export default function NewStoryPage() {
 
 
 
+
       <input
         placeholder="Title"
         value={title}
-        onChange={(e)=>setTitle(e.target.value)}
+        onChange={(e)=>
+          setTitle(
+            e.target.value
+          )
+        }
         style={input}
       />
+
 
 
 
       <input
         placeholder="Slug"
         value={slug}
-        onChange={(e)=>setSlug(e.target.value)}
+        onChange={(e)=>
+          setSlug(
+            e.target.value
+          )
+        }
         style={input}
       />
+
+
 
 
 
@@ -268,8 +407,19 @@ export default function NewStoryPage() {
 
       <input
         type="file"
-        accept="image/*"
-        onChange={handleImageUpload}
+
+        accept="
+          image/jpeg,
+          image/png,
+          image/webp
+        "
+
+        capture="environment"
+
+        onChange={
+          handleImageUpload
+        }
+
         style={input}
       />
 
@@ -283,10 +433,16 @@ export default function NewStoryPage() {
 
 
 
+
       {cover && (
-        <p style={{marginBottom:20}}>
+        <p
+          style={{
+            marginBottom:
+              20,
+          }}
+        >
           Selected:
-          <br/>
+          <br />
           {cover}
         </p>
       )}
@@ -302,12 +458,23 @@ export default function NewStoryPage() {
 
 
 
+
       <input
         type="file"
-        accept="audio/*"
-        onChange={handleMusicUpload}
+
+        accept="
+          audio/mpeg,
+          audio/mp3,
+          audio/*
+        "
+
+        onChange={
+          handleMusicUpload
+        }
+
         style={input}
       />
+
 
 
 
@@ -319,10 +486,16 @@ export default function NewStoryPage() {
 
 
 
+
       {music && (
-        <p style={{marginBottom:20}}>
+        <p
+          style={{
+            marginBottom:
+              20,
+          }}
+        >
           Selected:
-          <br/>
+          <br />
           {music}
         </p>
       )}
@@ -334,13 +507,23 @@ export default function NewStoryPage() {
 
       <textarea
         placeholder="Description"
+
         value={description}
-        onChange={(e)=>setDescription(e.target.value)}
+
+        onChange={(e)=>
+          setDescription(
+            e.target.value
+          )
+        }
+
         style={{
           ...input,
-          height:120,
+          height:
+            120,
         }}
       />
+
+
 
 
 
@@ -348,13 +531,22 @@ export default function NewStoryPage() {
 
       <textarea
         placeholder="Story Content"
+
         value={content}
-        onChange={(e)=>setContent(e.target.value)}
+
+        onChange={(e)=>
+          setContent(
+            e.target.value
+          )
+        }
+
         style={{
           ...input,
-          height:350,
+          height:
+            350,
         }}
       />
+
 
 
 
@@ -363,14 +555,28 @@ export default function NewStoryPage() {
 
       <button
         onClick={saveStory}
+
         style={{
-          padding:"18px 35px",
-          background:"#d4af37",
-          color:"#111",
-          border:"none",
-          borderRadius:10,
-          cursor:"pointer",
-          fontWeight:"bold",
+          padding:
+            "18px 35px",
+
+          background:
+            "#d4af37",
+
+          color:
+            "#111",
+
+          border:
+            "none",
+
+          borderRadius:
+            10,
+
+          cursor:
+            "pointer",
+
+          fontWeight:
+            "bold",
         }}
       >
         Save Story
@@ -380,31 +586,54 @@ export default function NewStoryPage() {
     </main>
 
   );
+
 }
+
 
 
 
 
 const label: React.CSSProperties = {
 
-  display:"block",
-  marginBottom:8,
-  color:"#d4af37",
+  display:
+    "block",
+
+  marginBottom:
+    8,
+
+  color:
+    "#d4af37",
 
 };
 
 
 
 
+
 const input: React.CSSProperties = {
 
-  width:"100%",
-  marginBottom:20,
-  padding:15,
-  borderRadius:10,
-  border:"1px solid #555",
-  background:"#151515",
-  color:"white",
-  fontSize:16,
+  width:
+    "100%",
+
+  marginBottom:
+    20,
+
+  padding:
+    15,
+
+  borderRadius:
+    10,
+
+  border:
+    "1px solid #555",
+
+  background:
+    "#151515",
+
+  color:
+    "white",
+
+  fontSize:
+    16,
 
 };
