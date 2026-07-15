@@ -4,39 +4,59 @@ import { createClient } from "@supabase/supabase-js";
 export const runtime = "nodejs";
 
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
-
-
 export async function POST(req: Request) {
-
   try {
 
-    const formData = await req.formData();
+    const supabaseUrl =
+      process.env.SUPABASE_URL ||
+      process.env.NEXT_PUBLIC_SUPABASE_URL;
+
+    const supabaseKey =
+      process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 
-    const file = formData.get("file") as File;
-    const type = formData.get("type") as string;
-
-
-
-    if (!file) {
-
+    if (!supabaseUrl || !supabaseKey) {
       return NextResponse.json(
         {
           success: false,
-          message: "No file uploaded",
+          message: "Supabase environment variables missing",
         },
         {
-          status: 400,
+          status: 500,
         }
       );
-
     }
 
+
+    const supabase = createClient(
+      supabaseUrl,
+      supabaseKey
+    );
+
+
+    const formData =
+      await req.formData();
+
+
+    const file =
+      formData.get("file") as File;
+
+
+    const type =
+      formData.get("type") as string;
+
+
+    if (!file) {
+      return NextResponse.json(
+        {
+          success:false,
+          message:"No file uploaded",
+        },
+        {
+          status:400,
+        }
+      );
+    }
 
 
     const bucket =
@@ -45,27 +65,20 @@ export async function POST(req: Request) {
         : "images";
 
 
-
-    const safeName =
+    const fileName =
       file.name
         .replace(/\s+/g, "-")
         .replace(/[^\w.-]/g, "");
 
 
-
     const filePath =
-      `${Date.now()}-${safeName}`;
-
-
-
-    const arrayBuffer =
-      await file.arrayBuffer();
-
+      `${Date.now()}-${fileName}`;
 
 
     const buffer =
-      Buffer.from(arrayBuffer);
-
+      Buffer.from(
+        await file.arrayBuffer()
+      );
 
 
     const { error } =
@@ -75,20 +88,17 @@ export async function POST(req: Request) {
           filePath,
           buffer,
           {
-            contentType: file.type,
-            upsert: false,
+            contentType:file.type,
+            upsert:false,
           }
         );
 
 
-
     if (error) {
-
       console.error(
-        "SUPABASE UPLOAD ERROR:",
+        "SUPABASE ERROR:",
         error
       );
-
 
       return NextResponse.json(
         {
@@ -99,29 +109,26 @@ export async function POST(req: Request) {
           status:500,
         }
       );
-
     }
 
 
-
-    const { data } =
+    const publicUrl =
       supabase.storage
         .from(bucket)
-        .getPublicUrl(filePath);
-
+        .getPublicUrl(filePath)
+        .data
+        .publicUrl;
 
 
     return NextResponse.json(
       {
         success:true,
-        url:data.publicUrl,
+        url:publicUrl,
       }
     );
 
 
-
   } catch(error) {
-
 
     console.error(
       "UPLOAD ERROR:",
@@ -134,14 +141,12 @@ export async function POST(req: Request) {
         success:false,
         message:
           error instanceof Error
-            ? error.message
-            : "Upload failed",
+          ? error.message
+          : "Upload failed",
       },
       {
         status:500,
       }
     );
-
   }
-
 }
