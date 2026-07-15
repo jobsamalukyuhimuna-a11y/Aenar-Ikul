@@ -5,6 +5,26 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
+    console.log("CREATE STORY DATA:", body);
+
+    if (
+      !body.title ||
+      !body.slug ||
+      !body.description ||
+      !body.content ||
+      !body.cover
+    ) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Missing required fields.",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
     const story = await prisma.story.create({
       data: {
         title: body.title,
@@ -21,13 +41,15 @@ export async function POST(req: Request) {
       message: "Story created successfully.",
       story,
     });
+
   } catch (error) {
-    console.error(error);
+    console.error("CREATE STORY ERROR:", error);
 
     return NextResponse.json(
       {
         success: false,
         message: "Failed to create story.",
+        error: String(error),
       },
       {
         status: 500,

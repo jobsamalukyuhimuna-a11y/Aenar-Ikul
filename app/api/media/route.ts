@@ -28,7 +28,8 @@ export async function GET() {
     return NextResponse.json(
       {
         success: false,
-        message: "Failed to load media.",
+        images: [],
+        music: [],
       },
       {
         status: 500,

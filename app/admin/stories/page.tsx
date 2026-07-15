@@ -1,6 +1,14 @@
 import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+import DeleteButton from "./DeleteButton";
 
-export default function AdminStoriesPage() {
+export default async function AdminStoriesPage() {
+  const stories = await prisma.story.findMany({
+    orderBy: {
+      id: "desc",
+    },
+  });
+
   return (
     <main
       style={{
@@ -17,6 +25,7 @@ export default function AdminStoriesPage() {
           margin: "0 auto",
         }}
       >
+
         <div
           style={{
             display: "flex",
@@ -25,6 +34,7 @@ export default function AdminStoriesPage() {
             marginBottom: "50px",
           }}
         >
+
           <div>
             <p
               style={{
@@ -48,6 +58,7 @@ export default function AdminStoriesPage() {
             </h1>
           </div>
 
+
           <Link
             href="/admin/stories/new"
             style={{
@@ -61,7 +72,10 @@ export default function AdminStoriesPage() {
           >
             + New Story
           </Link>
+
         </div>
+
+
 
         <div
           style={{
@@ -71,79 +85,110 @@ export default function AdminStoriesPage() {
             overflow: "hidden",
           }}
         >
+
           <table
             style={{
               width: "100%",
               borderCollapse: "collapse",
             }}
           >
+
             <thead>
               <tr
                 style={{
                   background: "rgba(215,181,109,.08)",
                 }}
               >
-                <th style={cell}>Title</th>
-                <th style={cell}>Slug</th>
-                <th style={cell}>Music</th>
-                <th style={cell}>Created</th>
-                <th style={cell}>Actions</th>
+
+                <th style={cell}>
+                  Title
+                </th>
+
+                <th style={cell}>
+                  Slug
+                </th>
+
+                <th style={cell}>
+                  Music
+                </th>
+
+                <th style={cell}>
+                  Actions
+                </th>
+
               </tr>
             </thead>
 
+
+
             <tbody>
-              <tr>
-                <td style={cell}>The King Without a Throne</td>
-                <td style={cell}>the-king-without-a-throne</td>
-                <td style={cell}>ithan-theme.mp3</td>
-                <td style={cell}>Today</td>
 
-                <td style={cell}>
-                  <Link
-                    href="/admin/stories/1"
-                    style={{
-                      display: "inline-block",
-                      padding: "10px 18px",
-                      borderRadius: "8px",
-                      background: "#d7b56d",
-                      color: "#111",
-                      textDecoration: "none",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Edit
-                  </Link>
+              {stories.map((story) => (
 
-                  <button
-                    style={{
-                      ...button,
-                      background: "#8b2020",
-                      marginLeft: 12,
-                    }}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+                <tr key={story.id}>
+
+                  <td style={cell}>
+                    {story.title}
+                  </td>
+
+
+                  <td style={cell}>
+                    {story.slug}
+                  </td>
+
+
+                  <td style={cell}>
+                    {story.music || "No Music"}
+                  </td>
+
+
+
+                  <td style={cell}>
+
+
+                    <Link
+                      href={`/admin/stories/${story.id}`}
+                      style={{
+                        display: "inline-block",
+                        padding: "10px 18px",
+                        borderRadius: "8px",
+                        background: "#d7b56d",
+                        color: "#111",
+                        textDecoration: "none",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Edit
+                    </Link>
+
+
+                    <DeleteButton id={story.id} />
+
+
+                  </td>
+
+                </tr>
+
+              ))}
+
+
             </tbody>
+
           </table>
+
         </div>
+
+
       </div>
+
     </main>
   );
 }
+
+
 
 const cell: React.CSSProperties = {
   padding: "24px",
   borderBottom: "1px solid rgba(255,255,255,.06)",
   textAlign: "left",
-};
-
-const button: React.CSSProperties = {
-  padding: "10px 18px",
-  border: "none",
-  borderRadius: "8px",
-  background: "#d7b56d",
-  cursor: "pointer",
-  fontWeight: "bold",
 };
