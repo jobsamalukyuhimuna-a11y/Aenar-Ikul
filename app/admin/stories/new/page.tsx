@@ -59,13 +59,11 @@ export default function NewStoryPage() {
       new FormData();
 
 
-
     formData.append(
       "file",
       file,
       file.name
     );
-
 
 
     formData.append(
@@ -87,7 +85,13 @@ export default function NewStoryPage() {
 
 
     if (!response.ok) {
+
+      const errorData =
+        await response.json();
+
+
       throw new Error(
+        errorData.message ||
         "Server upload error"
       );
     }
@@ -100,17 +104,19 @@ export default function NewStoryPage() {
 
 
     if (!data.success) {
+
       throw new Error(
         data.message ||
         "Upload failed"
       );
+
     }
 
 
 
     return data.url;
-  }
 
+  }
 
 
 
@@ -132,6 +138,7 @@ export default function NewStoryPage() {
       setUploadingImage(true);
 
 
+
       const url =
         await uploadFile(
           file,
@@ -139,10 +146,12 @@ export default function NewStoryPage() {
         );
 
 
+
       console.log(
         "IMAGE URL:",
         url
       );
+
 
 
       setCover(url);
@@ -166,17 +175,12 @@ export default function NewStoryPage() {
 
     } finally {
 
-
       setUploadingImage(false);
 
     }
+
   }
-
-
-
-
-
-  async function handleMusicUpload(
+    async function handleMusicUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
 
@@ -189,7 +193,6 @@ export default function NewStoryPage() {
 
 
     try {
-
 
       setUploadingMusic(true);
 
@@ -231,12 +234,17 @@ export default function NewStoryPage() {
 
     } finally {
 
-
       setUploadingMusic(false);
 
     }
+
   }
-    async function saveStory() {
+
+
+
+
+
+  async function saveStory() {
 
     console.log(
       "SAVING STORY:",
@@ -249,6 +257,7 @@ export default function NewStoryPage() {
         content,
       }
     );
+
 
 
     if (
@@ -264,6 +273,7 @@ export default function NewStoryPage() {
       );
 
       return;
+
     }
 
 
@@ -306,6 +316,7 @@ export default function NewStoryPage() {
       );
 
 
+
       alert(
         data.message
       );
@@ -313,7 +324,6 @@ export default function NewStoryPage() {
 
 
     } catch (error) {
-
 
       console.error(
         "SAVE ERROR:",
@@ -351,7 +361,6 @@ export default function NewStoryPage() {
       }}
     >
 
-
       <h1
         style={{
           color:
@@ -369,18 +378,14 @@ export default function NewStoryPage() {
 
 
 
-
       <input
         placeholder="Title"
         value={title}
         onChange={(e)=>
-          setTitle(
-            e.target.value
-          )
+          setTitle(e.target.value)
         }
         style={input}
       />
-
 
 
 
@@ -388,14 +393,10 @@ export default function NewStoryPage() {
         placeholder="Slug"
         value={slug}
         onChange={(e)=>
-          setSlug(
-            e.target.value
-          )
+          setSlug(e.target.value)
         }
         style={input}
       />
-
-
 
 
 
@@ -404,22 +405,10 @@ export default function NewStoryPage() {
       </label>
 
 
-
       <input
         type="file"
-
-        accept="
-          image/jpeg,
-          image/png,
-          image/webp
-        "
-
-        capture="environment"
-
-        onChange={
-          handleImageUpload
-        }
-
+        accept="image/jpeg,image/png,image/webp"
+        onChange={handleImageUpload}
         style={input}
       />
 
@@ -433,21 +422,13 @@ export default function NewStoryPage() {
 
 
 
-
       {cover && (
-        <p
-          style={{
-            marginBottom:
-              20,
-          }}
-        >
+        <p style={{marginBottom:20}}>
           Selected:
-          <br />
+          <br/>
           {cover}
         </p>
       )}
-
-
 
 
 
@@ -457,24 +438,12 @@ export default function NewStoryPage() {
       </label>
 
 
-
-
       <input
         type="file"
-
-        accept="
-          audio/mpeg,
-          audio/mp3,
-          audio/*
-        "
-
-        onChange={
-          handleMusicUpload
-        }
-
+        accept="audio/*"
+        onChange={handleMusicUpload}
         style={input}
       />
-
 
 
 
@@ -486,76 +455,46 @@ export default function NewStoryPage() {
 
 
 
-
       {music && (
-        <p
-          style={{
-            marginBottom:
-              20,
-          }}
-        >
+        <p style={{marginBottom:20}}>
           Selected:
-          <br />
+          <br/>
           {music}
         </p>
       )}
 
 
 
-
-
-
       <textarea
         placeholder="Description"
-
         value={description}
-
         onChange={(e)=>
-          setDescription(
-            e.target.value
-          )
+          setDescription(e.target.value)
         }
-
         style={{
           ...input,
-          height:
-            120,
+          height:120,
         }}
       />
-
-
-
-
 
 
 
       <textarea
         placeholder="Story Content"
-
         value={content}
-
         onChange={(e)=>
-          setContent(
-            e.target.value
-          )
+          setContent(e.target.value)
         }
-
         style={{
           ...input,
-          height:
-            350,
+          height:350,
         }}
       />
 
 
 
-
-
-
-
       <button
         onClick={saveStory}
-
         style={{
           padding:
             "18px 35px",
