@@ -3,9 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 
 export const runtime = "nodejs";
 
-
 console.log("USING SUPABASE UPLOAD ROUTE");
-
 
 export async function POST(req: Request) {
   try {
@@ -15,7 +13,7 @@ export async function POST(req: Request) {
       process.env.NEXT_PUBLIC_SUPABASE_URL;
 
     const supabaseKey =
-      process.env.SUPABASE_SERVICE_ROLE_KEY;
+      process.env.SUPABASE_SECRET_KEY;
 
 
     if (!supabaseUrl || !supabaseKey) {
@@ -37,8 +35,7 @@ export async function POST(req: Request) {
     );
 
 
-    const formData =
-      await req.formData();
+    const formData = await req.formData();
 
 
     const file =
@@ -98,12 +95,10 @@ export async function POST(req: Request) {
 
 
     if (error) {
-
       console.error(
         "SUPABASE ERROR:",
         error
       );
-
 
       return NextResponse.json(
         {
