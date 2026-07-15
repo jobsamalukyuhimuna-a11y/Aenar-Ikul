@@ -36,37 +36,37 @@ export default function LoginCard({
           "1px solid rgba(212,175,55,.75)",
 
         boxShadow:
-          "0 0 70px rgba(212,175,55,.45), inset 0 0 40px rgba(212,175,55,.12)",
+          "0 0 80px rgba(212,175,55,.55), inset 0 0 40px rgba(212,175,55,.15)",
 
         backdropFilter:
           "blur(12px)",
       }}
     >
 
-      {/* Golden Meteor Decoration */}
+      {/* Golden Galaxy Symbol */}
       <div
         style={{
           textAlign: "center",
           marginBottom: 25,
           color: "#d4af37",
-          textShadow:
-            "0 0 30px rgba(212,175,55,1)",
         }}
       >
 
         <div
           style={{
-            fontSize: 14,
-            letterSpacing: 8,
+            width: 120,
+            height: 2,
+            margin: "0 auto 15px",
+            background:
+              "linear-gradient(90deg, transparent,#d4af37,transparent)",
           }}
-        >
-          ✦　✧　☄　✧　✦
-        </div>
+        />
 
         <div
           style={{
-            fontSize: 38,
-            marginTop: 5,
+            fontSize: 32,
+            textShadow:
+              "0 0 30px #d4af37",
           }}
         >
           ✦
@@ -74,25 +74,33 @@ export default function LoginCard({
 
         <div
           style={{
-            width: "70%",
-            height: 1,
-            margin:
-              "12px auto",
-
-            background:
-              "linear-gradient(90deg, transparent, #d4af37, transparent)",
+            width: 80,
+            height: 80,
+            borderRadius: "50%",
+            margin: "10px auto",
+            border:
+              "1px solid rgba(212,175,55,.5)",
+            boxShadow:
+              "0 0 35px rgba(212,175,55,.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#ffe28a",
+            fontSize: 28,
           }}
-        />
+        >
+          ☄
+        </div>
 
         <div
           style={{
-            fontSize: 12,
-            letterSpacing: 6,
-            opacity: 0.8,
+            width: 120,
+            height: 2,
+            margin: "15px auto 0",
+            background:
+              "linear-gradient(90deg, transparent,#d4af37,transparent)",
           }}
-        >
-          ☄　✦　☄
-        </div>
+        />
 
       </div>
 
@@ -107,15 +115,13 @@ export default function LoginCard({
         <h1
           style={{
             color: "#f1d98a",
-            fontSize: 27,
+            fontSize: 28,
             fontFamily:
               "Cinzel, serif",
             letterSpacing: 2,
-
             marginBottom: 18,
-
             textShadow:
-              "0 0 25px rgba(212,175,55,.8)",
+              "0 0 25px rgba(212,175,55,.9)",
           }}
         >
           To Anas...
@@ -135,7 +141,7 @@ export default function LoginCard({
           was proof that you never gave up.
           <br /><br />
 
-          The world may not see your battles,
+          The world may not see the battles you overcame,
           but I saw your determination.
           <br /><br />
 
@@ -145,42 +151,30 @@ export default function LoginCard({
 
         <div
           style={{
-            width: "60%",
+            margin: "22px auto",
+            width: "65%",
             height: 1,
-
-            margin:
-              "22px auto",
-
             background:
-              "linear-gradient(90deg, transparent, #d4af37, transparent)",
+              "linear-gradient(90deg,transparent,#d4af37,transparent)",
           }}
         />
 
 
         <p
           style={{
-            color:
-              "#ffe28a",
-
-            fontSize:
-              16,
-
-            lineHeight:
-              1.7,
-
+            color:"#ffe28a",
+            fontSize:16,
+            lineHeight:1.8,
             fontFamily:
               "Cinzel, serif",
-
             textShadow:
-              "0 0 20px rgba(212,175,55,.7)",
+              "0 0 20px rgba(212,175,55,.8)",
           }}
         >
           I believe in you.
           <br />
-
           I trust you.
           <br />
-
           I will always stand beside you.
         </p>
 
@@ -190,30 +184,17 @@ export default function LoginCard({
       <input
         placeholder="Username"
         value={username}
-        onChange={(e) =>
-          setUsername(e.target.value)
-        }
+        onChange={(e)=>setUsername(e.target.value)}
         style={{
-          width: "100%",
-          padding: 16,
-          marginBottom: 18,
-
-          borderRadius: 14,
-
-          background:
-            "rgba(0,0,0,.35)",
-
-          border:
-            "1px solid rgba(212,175,55,.5)",
-
-          color:
-            "white",
-
-          fontSize:
-            16,
-
-          outline:
-            "none",
+          width:"100%",
+          padding:16,
+          marginBottom:18,
+          borderRadius:14,
+          background:"rgba(0,0,0,.35)",
+          border:"1px solid rgba(212,175,55,.5)",
+          color:"white",
+          fontSize:16,
+          outline:"none",
         }}
       />
 
@@ -222,30 +203,17 @@ export default function LoginCard({
         type="password"
         placeholder="Password"
         value={password}
-        onChange={(e) =>
-          setPassword(e.target.value)
-        }
+        onChange={(e)=>setPassword(e.target.value)}
         style={{
-          width: "100%",
-          padding: 16,
-          marginBottom: 22,
-
-          borderRadius: 14,
-
-          background:
-            "rgba(0,0,0,.35)",
-
-          border:
-            "1px solid rgba(212,175,55,.5)",
-
-          color:
-            "white",
-
-          fontSize:
-            16,
-
-          outline:
-            "none",
+          width:"100%",
+          padding:16,
+          marginBottom:22,
+          borderRadius:14,
+          background:"rgba(0,0,0,.35)",
+          border:"1px solid rgba(212,175,55,.5)",
+          color:"white",
+          fontSize:16,
+          outline:"none",
         }}
       />
 
@@ -254,34 +222,19 @@ export default function LoginCard({
         onClick={handleLogin}
         disabled={loading}
         style={{
-          width: "100%",
-          padding: 16,
-
-          borderRadius: 14,
-
-          border:
-            "1px solid #ffe28a",
-
+          width:"100%",
+          padding:16,
+          borderRadius:14,
+          border:"1px solid #ffe28a",
           background:
             "linear-gradient(90deg,#9c7418,#f1c94b,#9c7418)",
-
-          color:
-            "#050505",
-
-          fontSize:
-            17,
-
-          fontWeight:
-            "bold",
-
-          cursor:
-            "pointer",
-
-          letterSpacing:
-            2,
-
+          color:"#050505",
+          fontSize:17,
+          fontWeight:"bold",
+          cursor:"pointer",
+          letterSpacing:2,
           boxShadow:
-            "0 0 35px rgba(212,175,55,.7)",
+            "0 0 40px rgba(212,175,55,.8)",
         }}
       >
         {loading
@@ -293,9 +246,9 @@ export default function LoginCard({
       {message && (
         <p
           style={{
-            marginTop: 20,
-            textAlign: "center",
-            color: "#ff8b8b",
+            marginTop:20,
+            textAlign:"center",
+            color:"#ff8b8b",
           }}
         >
           {message}
