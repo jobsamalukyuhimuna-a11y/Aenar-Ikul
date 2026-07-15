@@ -60,7 +60,7 @@ export default function LoginCard({
             letterSpacing: 8,
           }}
         >
-          ✦　　 ☄　　 ✦
+          ✦　✧　☄　✧　✦
         </div>
 
         <div
@@ -69,7 +69,7 @@ export default function LoginCard({
             marginTop: 5,
           }}
         >
-          ✧
+          ✦
         </div>
 
         <div
@@ -78,6 +78,7 @@ export default function LoginCard({
             height: 1,
             margin:
               "12px auto",
+
             background:
               "linear-gradient(90deg, transparent, #d4af37, transparent)",
           }}
@@ -90,7 +91,7 @@ export default function LoginCard({
             opacity: 0.8,
           }}
         >
-          ☄ ✦ ☄
+          ☄　✦　☄
         </div>
 
       </div>
@@ -110,6 +111,7 @@ export default function LoginCard({
             fontFamily:
               "Cinzel, serif",
             letterSpacing: 2,
+
             marginBottom: 18,
 
             textShadow:
@@ -145,6 +147,7 @@ export default function LoginCard({
           style={{
             width: "60%",
             height: 1,
+
             margin:
               "22px auto",
 
@@ -174,8 +177,10 @@ export default function LoginCard({
         >
           I believe in you.
           <br />
+
           I trust you.
           <br />
+
           I will always stand beside you.
         </p>
 
