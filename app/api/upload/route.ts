@@ -22,31 +22,32 @@ export async function POST(req: Request) {
       );
     }
 
-    const folder =
-      type === "music"
-        ? "music"
-        : "images";
+
+    const folder = type === "music" ? "music" : "images";
+
 
     const safeName = file.name
       .replace(/\s+/g, "-")
       .replace(/[^\w.-]/g, "");
+
 
     const blob = await put(
       `${folder}/${Date.now()}-${safeName}`,
       file,
       {
         access: "public",
-        token: process.env.BLOB_READ_WRITE_TOKEN,
-        storeId: process.env.BLOB_STORE_ID,
       }
     );
+
 
     return NextResponse.json({
       success: true,
       url: blob.url,
     });
 
+
   } catch (error) {
+
     console.error("UPLOAD ERROR:", error);
 
     return NextResponse.json(
@@ -55,7 +56,7 @@ export async function POST(req: Request) {
         message:
           error instanceof Error
             ? error.message
-            : "Upload failed.",
+            : "Upload failed",
       },
       {
         status: 500,
