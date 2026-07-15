@@ -3,29 +3,14 @@ import { put } from "@vercel/blob";
 
 export const runtime = "nodejs";
 
-console.log(
-  "BLOB TOKEN EXISTS:",
-  !!process.env.BLOB_READ_WRITE_TOKEN
-);
-
-
 export async function POST(req: Request) {
   try {
-
     const formData = await req.formData();
 
-
-    const file =
-      formData.get("file") as File;
-
-
-    const type =
-      formData.get("type") as string;
-
-
+    const file = formData.get("file") as File;
+    const type = formData.get("type") as string;
 
     if (!file) {
-
       return NextResponse.json(
         {
           success: false,
@@ -35,55 +20,34 @@ export async function POST(req: Request) {
           status: 400,
         }
       );
-
     }
-
-
 
     const folder =
       type === "music"
         ? "music"
         : "images";
 
+    const safeName = file.name
+      .replace(/\s+/g, "-")
+      .replace(/[^\w.-]/g, "");
 
-
-    const safeName =
-      file.name
-        .replace(/\s+/g, "-")
-        .replace(/[^\w.-]/g, "");
-
-
-
-    const blob =
-      await put(
-        `${folder}/${Date.now()}-${safeName}`,
-        file,
-        {
-          access: "public",
-          token:
-            process.env.BLOB_READ_WRITE_TOKEN,
-        }
-      );
-
-
-
-    return NextResponse.json(
+    const blob = await put(
+      `${folder}/${Date.now()}-${safeName}`,
+      file,
       {
-        success: true,
-        url: blob.url,
+        access: "public",
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+        storeId: process.env.BLOB_STORE_ID,
       }
     );
 
-
+    return NextResponse.json({
+      success: true,
+      url: blob.url,
+    });
 
   } catch (error) {
-
-
-    console.error(
-      "UPLOAD ERROR:",
-      error
-    );
-
+    console.error("UPLOAD ERROR:", error);
 
     return NextResponse.json(
       {
@@ -97,6 +61,5 @@ export async function POST(req: Request) {
         status: 500,
       }
     );
-
   }
 }
