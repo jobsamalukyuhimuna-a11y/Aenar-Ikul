@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import CharacterSideEffects from "../../components/CharacterSideEffects";
-import { characters } from "../../library/data/characters";
+import { prisma } from "@/lib/prisma";
 
 type Props = {
   params: Promise<{
@@ -9,10 +9,24 @@ type Props = {
   }>;
 };
 
-export default async function CharacterPage({ params }: Props) {
+export default async function CharacterPage({
+  params,
+}: Props) {
   const { slug } = await params;
 
-  const character = characters.find((c) => c.slug === slug);
+  const character = await prisma.character.findUnique({
+    where: {
+      slug,
+    },
+    include: {
+      images: {
+        orderBy: {
+          sortOrder: "asc",
+        },
+      },
+      musics: true,
+    },
+  });
 
   if (!character) {
     notFound();
@@ -26,8 +40,8 @@ export default async function CharacterPage({ params }: Props) {
           "radial-gradient(circle at top,#251736 0%,#0b0b0b 45%,#050505 100%)",
         color: "#fff",
         padding: "70px 20px 120px",
-        position: "relative",
         overflow: "hidden",
+        position: "relative",
       }}
     >
       <CharacterSideEffects />
@@ -40,154 +54,151 @@ export default async function CharacterPage({ params }: Props) {
           zIndex: 2,
         }}
       >
+
         <style>{`
-          @keyframes royalGlow{
-            0%{
-              transform:translate(-50%,-50%) scale(1);
-              opacity:.25;
+          @keyframes royalGlow {
+            0% {
+              transform: translate(-50%,-50%) scale(1);
+              opacity: .25;
             }
 
-            50%{
-              transform:translate(-50%,-50%) scale(1.15);
-              opacity:.45;
+            50% {
+              transform: translate(-50%,-50%) scale(1.15);
+              opacity: .45;
             }
 
-            100%{
-              transform:translate(-50%,-50%) scale(1);
-              opacity:.25;
+            100% {
+              transform: translate(-50%,-50%) scale(1);
+              opacity: .25;
             }
           }
         `}</style>
 
-        {/* Golden Aura */}
 
         <div
           style={{
-            position: "absolute",
-            top: "110px",
-            left: "50%",
-            width: "450px",
-            height: "450px",
-            borderRadius: "50%",
+            position:"absolute",
+            top:"120px",
+            left:"50%",
+            width:"450px",
+            height:"450px",
+            borderRadius:"50%",
             background:
-              "radial-gradient(circle, rgba(215,181,109,.18), rgba(215,181,109,0))",
-            filter: "blur(70px)",
-            transform: "translate(-50%,-50%)",
-            animation: "royalGlow 8s ease-in-out infinite",
-            pointerEvents: "none",
-            zIndex: 0,
+              "radial-gradient(circle,rgba(215,181,109,.18),transparent 70%)",
+            filter:"blur(70px)",
+            transform:"translate(-50%,-50%)",
+            animation:"royalGlow 8s infinite ease-in-out",
           }}
         />
 
-        {/* Header */}
 
         <p
           style={{
-            position: "relative",
-            zIndex: 2,
-            textAlign: "center",
-            color: "#9d7d3d",
-            letterSpacing: "8px",
-            fontSize: "14px",
+            textAlign:"center",
+            color:"#9d7d3d",
+            letterSpacing:"8px",
+            fontSize:"14px",
           }}
         >
           CHARACTER PROFILE
         </p>
 
+
         <h1
           style={{
-            position: "relative",
-            zIndex: 2,
-            textAlign: "center",
-            color: "#d7b56d",
-            fontSize: "68px",
-            fontFamily: "Cinzel, serif",
-            fontWeight: 400,
-            marginTop: "18px",
-            marginBottom: "18px",
-            textShadow: "0 0 30px rgba(215,181,109,.35)",
+            textAlign:"center",
+            color:"#d7b56d",
+            fontSize:"68px",
+            fontFamily:"Cinzel,serif",
+            fontWeight:400,
+            marginTop:"20px",
+            textShadow:
+              "0 0 30px rgba(215,181,109,.35)",
           }}
         >
-          {character.name}
+          {character.name || "Unknown"}
         </h1>
+
 
         <div
           style={{
-            position: "relative",
-            zIndex: 2,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "25px",
-            marginBottom: "60px",
+            display:"flex",
+            justifyContent:"center",
+            alignItems:"center",
+            gap:"25px",
+            margin:"50px 0",
           }}
         >
           <div
             style={{
-              width: "220px",
-              height: "1px",
+              width:"220px",
+              height:"1px",
               background:
-                "linear-gradient(to right, transparent, rgba(215,181,109,.75))",
+              "linear-gradient(to right,transparent,#d7b56d)",
             }}
           />
 
           <div
             style={{
-              fontSize: "34px",
-              color: "#d7b56d",
-              textShadow: "0 0 15px rgba(215,181,109,.45)",
+              fontSize:"34px",
             }}
           >
             👑
           </div>
 
+
           <div
             style={{
-              width: "220px",
-              height: "1px",
+              width:"220px",
+              height:"1px",
               background:
-                "linear-gradient(to left, transparent, rgba(215,181,109,.75))",
+              "linear-gradient(to left,transparent,#d7b56d)",
             }}
           />
+
         </div>
-
-        {/* Character Section */}
-
         <section
           style={{
-            display: "grid",
-            gridTemplateColumns: "240px 1fr 240px",
-            gap: "40px",
-            alignItems: "center",
-            position: "relative",
-            zIndex: 2,
+            display:"grid",
+            gridTemplateColumns:
+              "240px 1fr 240px",
+            gap:"40px",
+            alignItems:"center",
+            position:"relative",
           }}
         >
-          {/* Left Panel */}
+
+          {/* LEFT DETAILS */}
 
           <div
             style={{
-              border: "1px solid rgba(200,164,77,.25)",
-              borderRadius: "18px",
-              padding: "30px",
-              background: "rgba(17,17,17,.75)",
-              backdropFilter: "blur(12px)",
+              border:
+                "1px solid rgba(200,164,77,.25)",
+              borderRadius:"18px",
+              padding:"30px",
+              background:
+                "rgba(17,17,17,.75)",
+              backdropFilter:
+                "blur(12px)",
             }}
           >
+
             <h3
               style={{
-                color: "#d7b56d",
-                marginBottom: "20px",
-                fontFamily: "Cinzel, serif",
+                color:"#d7b56d",
+                fontFamily:
+                  "Cinzel,serif",
+                marginBottom:"25px",
               }}
             >
               DETAILS
             </h3>
 
+
             <p>
               <strong>🏰 Kingdom</strong>
               <br />
-              {character.kingdom}
+              {character.kingdom || "Unknown"}
             </p>
 
             <br />
@@ -195,7 +206,7 @@ export default async function CharacterPage({ params }: Props) {
             <p>
               <strong>🧬 Race</strong>
               <br />
-              {character.race}
+              {character.race || "Unknown"}
             </p>
 
             <br />
@@ -203,7 +214,7 @@ export default async function CharacterPage({ params }: Props) {
             <p>
               <strong>❤️ Status</strong>
               <br />
-              {character.status}
+              {character.status || "Unknown"}
             </p>
 
             <br />
@@ -211,212 +222,392 @@ export default async function CharacterPage({ params }: Props) {
             <p>
               <strong>🌍 Universe</strong>
               <br />
-              {character.universe}
+              {character.universe || "Unknown"}
             </p>
+
+
           </div>
 
-          {/* Image */}
+
+
+          {/* MAIN IMAGE */}
+
+
           <div
-  style={{
-    position: "relative",
-    height: "720px",
-    borderRadius: "22px",
-    overflow: "hidden",
-    border: "1px solid rgba(200,164,77,.35)",
-    background:
-      "radial-gradient(circle at top,#2b1a40 0%,#111111 55%,#050505 100%)",
-    boxShadow:
-      "0 0 60px rgba(215,181,109,.10), inset 0 0 50px rgba(255,255,255,.03)",
-  }}
->
-  {/* Golden Light */}
+            style={{
+              position:"relative",
+              height:"720px",
+              borderRadius:"22px",
+              overflow:"hidden",
+              border:
+                "1px solid rgba(200,164,77,.35)",
+              background:
+                "radial-gradient(circle,#2b1a40,#050505)",
+              boxShadow:
+                "0 0 60px rgba(215,181,109,.15)",
+            }}
+          >
 
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      background:
-        "radial-gradient(circle at center, rgba(215,181,109,.12), transparent 70%)",
-      zIndex: 1,
-      pointerEvents: "none",
-    }}
-  />
+            <div
+              style={{
+                position:"absolute",
+                inset:0,
+                background:
+                "radial-gradient(circle,rgba(215,181,109,.15),transparent)",
+                zIndex:1,
+              }}
+            />
 
-  <Image
-    src={character.image}
-    alt={character.name}
-    fill
-    style={{
-      objectFit: "contain",
-      objectPosition: "center",
-      zIndex: 2,
-    }}
-  />
-</div>
 
-{/* Right Panel */}
+            {character.image && (
+              <Image
+                src={character.image}
+                alt={
+                  character.name || "Character"
+                }
+                fill
+                style={{
+                  objectFit:"contain",
+                  zIndex:2,
+                }}
+              />
+            )}
 
-<div
-  style={{
-    border: "1px solid rgba(200,164,77,.25)",
-    borderRadius: "18px",
-    padding: "30px",
-    background: "rgba(17,17,17,.75)",
-    backdropFilter: "blur(12px)",
-    textAlign: "center",
-  }}
->
-  <div
-    style={{
-      fontSize: "72px",
-      marginBottom: "20px",
-      textShadow: "0 0 20px rgba(215,181,109,.4)",
-    }}
-  >
-    👑
-  </div>
+          </div>
 
-  <h3
-    style={{
-      color: "#d7b56d",
-      fontFamily: "Cinzel, serif",
-      fontSize: "28px",
-      fontWeight: 400,
-      marginBottom: "18px",
-    }}
-  >
-    {character.title}
-  </h3>
 
-  <div
-    style={{
-      width: "80px",
-      height: "1px",
-      background: "rgba(215,181,109,.45)",
-      margin: "0 auto 20px",
-    }}
-  />
 
-  <p
-    style={{
-      color: "#bdbdbd",
-      fontStyle: "italic",
-      lineHeight: 1.9,
-      marginBottom: "25px",
-    }}
-  >
-    “{character.quote}”
-  </p>
 
-  <div
-    style={{
-      padding: "14px",
-      border: "1px solid rgba(200,164,77,.2)",
-      borderRadius: "12px",
-      color: "#9d7d3d",
-      letterSpacing: "3px",
-      fontSize: "13px",
-    }}
-  >
-    FIRST OF HIS NAME
-  </div>
-</div>
-</section>
+          {/* RIGHT PANEL */}
 
-{/* Biography */}
-<section
-  style={{
-    marginTop: "70px",
-    background: "rgba(17,17,17,.75)",
-    border: "1px solid rgba(200,164,77,.25)",
-    borderRadius: "20px",
-    padding: "45px",
-    backdropFilter: "blur(12px)",
-    boxShadow: "0 20px 60px rgba(0,0,0,.35)",
-    position: "relative",
-    overflow: "hidden",
-  }}
->
-  {/* Decorative Top Line */}
 
-  <div
-    style={{
-      position: "absolute",
-      top: 0,
-      left: "50%",
-      transform: "translateX(-50%)",
-      width: "220px",
-      height: "2px",
-      background:
-        "linear-gradient(to right, transparent, rgba(215,181,109,.8), transparent)",
-    }}
-  />
+          <div
+            style={{
+              border:
+                "1px solid rgba(200,164,77,.25)",
+              borderRadius:"18px",
+              padding:"30px",
+              background:
+                "rgba(17,17,17,.75)",
+              backdropFilter:
+                "blur(12px)",
+              textAlign:"center",
+            }}
+          >
 
-  <h2
-    style={{
-      color: "#d7b56d",
-      fontSize: "38px",
-      marginBottom: "25px",
-      fontFamily: "Cinzel, serif",
-      fontWeight: 400,
-      textAlign: "center",
-    }}
-  >
-    Biography
-  </h2>
+            <div
+              style={{
+                fontSize:"70px",
+                marginBottom:"20px",
+              }}
+            >
+              👑
+            </div>
 
-  <p
-    style={{
-      color: "#cfcfcf",
-      lineHeight: 2.1,
-      fontSize: "18px",
-      textAlign: "justify",
-    }}
-  >
-    {character.description}
-  </p>
-</section>
 
-{/* Royal Footer */}
+            <h3
+              style={{
+                color:"#d7b56d",
+                fontFamily:
+                  "Cinzel,serif",
+                fontSize:"28px",
+                fontWeight:400,
+              }}
+            >
+              {character.title || "Unknown Title"}
+            </h3>
 
-<div
-  style={{
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "20px",
-    marginTop: "80px",
-    marginBottom: "30px",
-  }}
->
-  <div
-    style={{
-      width: "160px",
-      height: "1px",
-      background:
-        "linear-gradient(to right, transparent, rgba(215,181,109,.6))",
-    }}
-  />
 
-  <div
-    style={{
-      fontSize: "28px",
-      color: "#d7b56d",
-      textShadow: "0 0 15px rgba(215,181,109,.5)",
-    }}
-  >
-    ✦
-  </div>
+            <div
+              style={{
+                width:"80px",
+                height:"1px",
+                background:
+                  "rgba(215,181,109,.5)",
+                margin:"20px auto",
+              }}
+            />
 
-  <div
-    style={{
-      width: "160px",
-      height: "1px",
-      background:
-        "linear-gradient(to left, transparent, rgba(215,181,109,.6))",
-    }}
-  />
-</div>
+
+            {character.quote && (
+              <p
+                style={{
+                  color:"#ccc",
+                  fontStyle:"italic",
+                  lineHeight:1.9,
+                }}
+              >
+                "{character.quote}"
+              </p>
+            )}
+
+
+            <div
+              style={{
+                marginTop:"30px",
+                padding:"14px",
+                border:
+                "1px solid rgba(200,164,77,.25)",
+                borderRadius:"12px",
+                color:"#9d7d3d",
+                letterSpacing:"3px",
+                fontSize:"13px",
+              }}
+            >
+              FIRST OF HIS NAME
+            </div>
+
+
+          </div>
+
+
+        </section>
+                {/* Biography */}
+
+        <section
+          style={{
+            marginTop: "70px",
+            background: "rgba(17,17,17,.75)",
+            border: "1px solid rgba(200,164,77,.25)",
+            borderRadius: "20px",
+            padding: "45px",
+            backdropFilter: "blur(12px)",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "220px",
+              height: "2px",
+              background:
+                "linear-gradient(to right, transparent, rgba(215,181,109,.8), transparent)",
+            }}
+          />
+
+          <h2
+            style={{
+              color: "#d7b56d",
+              fontSize: "38px",
+              fontFamily: "Cinzel, serif",
+              fontWeight: 400,
+              textAlign: "center",
+              marginBottom: "30px",
+            }}
+          >
+            Biography
+          </h2>
+
+          <p
+            style={{
+              color: "#d0d0d0",
+              fontSize: "18px",
+              lineHeight: 2.1,
+              textAlign: "justify",
+              whiteSpace: "pre-wrap",
+            }}
+          >
+            {character.description || "No biography available."}
+          </p>
+        </section>
+
+        {/* Gallery */}
+
+        {character.images.length > 0 && (
+          <section
+            style={{
+              marginTop: "70px",
+              background: "rgba(17,17,17,.75)",
+              border: "1px solid rgba(200,164,77,.25)",
+              borderRadius: "20px",
+              padding: "45px",
+            }}
+          >
+            <h2
+              style={{
+                color: "#d7b56d",
+                fontSize: "38px",
+                fontFamily: "Cinzel, serif",
+                fontWeight: 400,
+                textAlign: "center",
+                marginBottom: "40px",
+              }}
+            >
+              Gallery
+            </h2>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns:
+                  "repeat(auto-fit,minmax(250px,1fr))",
+                gap: "25px",
+              }}
+            >
+              {character.images.map((item) => (
+                <div
+                  key={item.id}
+                  style={{
+                    position: "relative",
+                    height: "300px",
+                    borderRadius: "18px",
+                    overflow: "hidden",
+                    border:
+                      "1px solid rgba(215,181,109,.25)",
+                  }}
+                >
+                  <Image
+                    src={item.image}
+                    alt={character.name || ""}
+                    fill
+                    style={{
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Main Music */}
+
+        {character.music && (
+          <section
+            style={{
+              marginTop: "70px",
+              background: "rgba(17,17,17,.75)",
+              border: "1px solid rgba(200,164,77,.25)",
+              borderRadius: "20px",
+              padding: "45px",
+              textAlign: "center",
+            }}
+          >
+            <h2
+              style={{
+                color: "#d7b56d",
+                fontSize: "38px",
+                fontFamily: "Cinzel, serif",
+                fontWeight: 400,
+                marginBottom: "30px",
+              }}
+            >
+              Character Theme
+            </h2>
+
+            <audio
+              controls
+              src={character.music}
+              style={{
+                width: "80%",
+              }}
+            />
+          </section>
+        )}
+                {/* Additional Music */}
+
+        {character.musics.length > 0 && (
+          <section
+            style={{
+              marginTop: "70px",
+              background: "rgba(17,17,17,.75)",
+              border: "1px solid rgba(200,164,77,.25)",
+              borderRadius: "20px",
+              padding: "45px",
+            }}
+          >
+            <h2
+              style={{
+                color: "#d7b56d",
+                fontSize: "38px",
+                fontFamily: "Cinzel, serif",
+                fontWeight: 400,
+                textAlign: "center",
+                marginBottom: "35px",
+              }}
+            >
+              Additional Music
+            </h2>
+
+            {character.musics.map((music) => (
+              <div
+                key={music.id}
+                style={{
+                  marginBottom: "30px",
+                  padding: "20px",
+                  border: "1px solid rgba(215,181,109,.2)",
+                  borderRadius: "14px",
+                  background: "rgba(255,255,255,.03)",
+                }}
+              >
+                {music.name && (
+                  <h3
+                    style={{
+                      color: "#d7b56d",
+                      marginBottom: "15px",
+                      fontWeight: 400,
+                    }}
+                  >
+                    {music.name}
+                  </h3>
+                )}
+
+                <audio
+                  controls
+                  src={music.file}
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              </div>
+            ))}
+          </section>
+        )}
+
+        {/* Footer */}
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "20px",
+            marginTop: "80px",
+            marginBottom: "30px",
+          }}
+        >
+          <div
+            style={{
+              width: "160px",
+              height: "1px",
+              background:
+                "linear-gradient(to right, transparent, rgba(215,181,109,.6))",
+            }}
+          />
+
+          <div
+            style={{
+              fontSize: "28px",
+              color: "#d7b56d",
+            }}
+          >
+            ✦
+          </div>
+
+          <div
+            style={{
+              width: "160px",
+              height: "1px",
+              background:
+                "linear-gradient(to left, transparent, rgba(215,181,109,.6))",
+            }}
+          />
+        </div>
+
       </div>
     </main>
   );
