@@ -9,6 +9,15 @@ export default async function CharacterGrid() {
     },
   });
 
+  console.log(
+    "CHARACTERS FROM DATABASE:",
+    characters.map((character) => ({
+      id: character.id,
+      name: character.name,
+      slug: character.slug,
+    }))
+  );
+
   return (
     <section
       style={{
