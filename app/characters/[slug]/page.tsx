@@ -21,6 +21,10 @@ export default async function CharacterPage({
 }: Props) {
   const { slug } = await params;
 
+  console.log("================================");
+  console.log("URL SLUG:", slug);
+  console.log("================================");
+
   const character = await prisma.character.findUnique({
     where: {
       slug,
