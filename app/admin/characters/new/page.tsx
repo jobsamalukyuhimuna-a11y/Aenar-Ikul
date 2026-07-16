@@ -18,16 +18,10 @@ export default function NewCharacterPage() {
   const [quote, setQuote] = useState("");
   const [description, setDescription] = useState("");
 
-  // Main image
   const [image, setImage] = useState("");
-
-  // Main music
   const [music, setMusic] = useState("");
 
-  // Gallery
   const [images, setImages] = useState<string[]>([]);
-
-  // Music list
   const [musics, setMusics] = useState<CharacterMusic[]>([]);
 
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -108,7 +102,7 @@ export default function NewCharacterPage() {
   ) {
     const files = e.target.files;
 
-    if (!files || files.length === 0) return;
+    if (!files?.length) return;
 
     try {
       setUploadingImage(true);
@@ -137,7 +131,7 @@ export default function NewCharacterPage() {
   ) {
     const files = e.target.files;
 
-    if (!files || files.length === 0) return;
+    if (!files?.length) return;
 
     try {
       setUploadingMusic(true);
@@ -211,7 +205,8 @@ export default function NewCharacterPage() {
       alert("Failed to save character.");
     }
   }
-    return (
+
+  return (
     <main
       style={{
         minHeight: "100vh",
@@ -229,8 +224,7 @@ export default function NewCharacterPage() {
       >
         Create New Character
       </h1>
-
-      <input
+            <input
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
@@ -286,6 +280,16 @@ export default function NewCharacterPage() {
         style={input}
       />
 
+      <textarea
+        placeholder="Biography"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        style={{
+          ...input,
+          height: 250,
+        }}
+      />
+
       <label style={label}>
         Main Character Image
       </label>
@@ -302,7 +306,12 @@ export default function NewCharacterPage() {
       )}
 
       {image && (
-        <p style={{ marginBottom: 20 }}>
+        <p
+          style={{
+            marginBottom: 20,
+            wordBreak: "break-all",
+          }}
+        >
           {image}
         </p>
       )}
@@ -333,16 +342,13 @@ export default function NewCharacterPage() {
 
           <button
             type="button"
-            onClick={() =>
-              removeGalleryImage(index)
-            }
+            onClick={() => removeGalleryImage(index)}
           >
             Remove
           </button>
         </div>
       ))}
-
-      <label style={label}>
+            <label style={label}>
         Main Music
       </label>
 
@@ -358,11 +364,17 @@ export default function NewCharacterPage() {
       )}
 
       {music && (
-        <p style={{ marginBottom: 20 }}>
+        <p
+          style={{
+            marginBottom: 20,
+            wordBreak: "break-all",
+          }}
+        >
           {music}
         </p>
       )}
-            <label style={label}>
+
+      <label style={label}>
         Additional Music
       </label>
 
@@ -395,18 +407,6 @@ export default function NewCharacterPage() {
         </div>
       ))}
 
-      <textarea
-        placeholder="Biography"
-        value={description}
-        onChange={(e) =>
-          setDescription(e.target.value)
-        }
-        style={{
-          ...input,
-          height: 250,
-        }}
-      />
-
       <button
         onClick={saveCharacter}
         style={{
@@ -426,6 +426,7 @@ export default function NewCharacterPage() {
     </main>
   );
 }
+
 const label: React.CSSProperties = {
   display: "block",
   marginTop: 30,

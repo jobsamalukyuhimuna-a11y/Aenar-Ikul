@@ -25,22 +25,23 @@ export default async function AdminStoriesPage() {
           margin: "0 auto",
         }}
       >
-
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             marginBottom: "50px",
+            flexWrap: "wrap",
+            gap: "20px",
           }}
         >
-
           <div>
             <p
               style={{
                 color: "#9d7d3d",
                 letterSpacing: "6px",
                 marginBottom: "10px",
+                fontSize: "14px",
               }}
             >
               ADMIN PANEL
@@ -52,12 +53,29 @@ export default async function AdminStoriesPage() {
                 color: "#d7b56d",
                 fontFamily: "Cinzel, serif",
                 fontWeight: 400,
+                marginBottom: "12px",
               }}
             >
               Story Management
             </h1>
-          </div>
 
+            <p
+              style={{
+                color: "#9d9d9d",
+                fontSize: "16px",
+              }}
+            >
+              Total Stories:{" "}
+              <span
+                style={{
+                  color: "#d7b56d",
+                  fontWeight: "bold",
+                }}
+              >
+                {stories.length}
+              </span>
+            </p>
+          </div>
 
           <Link
             href="/admin/stories/new"
@@ -68,127 +86,163 @@ export default async function AdminStoriesPage() {
               background: "#d7b56d",
               color: "#111",
               fontWeight: "bold",
+              boxShadow: "0 0 25px rgba(215,181,109,.25)",
             }}
           >
             + New Story
           </Link>
-
         </div>
-
-
 
         <div
           style={{
-            background: "rgba(20,20,20,.9)",
+            background: "rgba(20,20,20,.92)",
             border: "1px solid rgba(215,181,109,.25)",
             borderRadius: "22px",
             overflow: "hidden",
+            backdropFilter: "blur(10px)",
           }}
         >
-
           <table
             style={{
               width: "100%",
               borderCollapse: "collapse",
             }}
           >
-
             <thead>
               <tr
                 style={{
                   background: "rgba(215,181,109,.08)",
                 }}
               >
-
-                <th style={cell}>
-                  Title
-                </th>
-
-                <th style={cell}>
-                  Slug
-                </th>
-
-                <th style={cell}>
-                  Music
-                </th>
-
-                <th style={cell}>
-                  Actions
-                </th>
-
+                <th style={cell}>Title</th>
+                <th style={cell}>Slug</th>
+                <th style={cell}>Music</th>
+                <th style={cell}>Actions</th>
               </tr>
             </thead>
 
-
-
             <tbody>
-
-              {stories.map((story) => (
-
-                <tr key={story.id}>
-
+                            {stories.map((story) => (
+                <tr
+                  key={story.id}
+                  style={{
+                    transition: "0.25s",
+                  }}
+                >
                   <td style={cell}>
-                    {story.title}
+                    <div>
+                      <div
+                        style={{
+                          color: "#fff",
+                          fontSize: "18px",
+                          fontWeight: 600,
+                          marginBottom: "6px",
+                        }}
+                      >
+                        {story.title}
+                      </div>
+
+                      <div
+                        style={{
+                          color: "#8d8d8d",
+                          fontSize: "13px",
+                        }}
+                      >
+                        ID #{story.id}
+                      </div>
+                    </div>
                   </td>
 
-
                   <td style={cell}>
-                    {story.slug}
-                  </td>
-
-
-                  <td style={cell}>
-                    {story.music || "No Music"}
-                  </td>
-
-
-
-                  <td style={cell}>
-
-
-                    <Link
-                      href={`/admin/stories/${story.id}`}
+                    <code
                       style={{
-                        display: "inline-block",
-                        padding: "10px 18px",
+                        color: "#d7b56d",
+                        background: "rgba(215,181,109,.08)",
+                        padding: "8px 12px",
                         borderRadius: "8px",
-                        background: "#d7b56d",
-                        color: "#111",
-                        textDecoration: "none",
-                        fontWeight: "bold",
+                        fontSize: "14px",
                       }}
                     >
-                      Edit
-                    </Link>
-
-
-                    <DeleteButton id={story.id} />
-
-
+                      {story.slug}
+                    </code>
                   </td>
 
-                </tr>
+                  <td style={cell}>
+                    {story.music ? (
+                      <span
+                        style={{
+                          color: "#79d279",
+                          fontWeight: 600,
+                        }}
+                      >
+                        🎵 Available
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          color: "#888",
+                        }}
+                      >
+                        No Music
+                      </span>
+                    )}
+                  </td>
 
+                  <td style={cell}>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "12px",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Link
+                        href={`/admin/stories/${story.id}`}
+                        style={{
+                          display: "inline-block",
+                          padding: "10px 20px",
+                          borderRadius: "10px",
+                          background: "#d7b56d",
+                          color: "#111",
+                          textDecoration: "none",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Edit
+                      </Link>
+
+                      <DeleteButton id={story.id} />
+                    </div>
+                  </td>
+                </tr>
               ))}
 
-
-            </tbody>
-
+              {stories.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={4}
+                    style={{
+                      padding: "60px",
+                      textAlign: "center",
+                      color: "#888",
+                      fontSize: "18px",
+                    }}
+                  >
+                    No stories found.
+                  </td>
+                </tr>
+              )}
+                          </tbody>
           </table>
-
         </div>
-
-
       </div>
-
     </main>
   );
 }
-
-
 
 const cell: React.CSSProperties = {
   padding: "24px",
   borderBottom: "1px solid rgba(255,255,255,.06)",
   textAlign: "left",
+  verticalAlign: "middle",
 };

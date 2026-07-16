@@ -10,54 +10,45 @@ export default function NewStoryPage() {
   const [music, setMusic] = useState("");
   const [content, setContent] = useState("");
 
-  const [uploadingImage, setUploadingImage] = useState(false);
-  const [uploadingMusic, setUploadingMusic] = useState(false);
+  const [uploadingImage, setUploadingImage] =
+    useState(false);
 
+  const [uploadingMusic, setUploadingMusic] =
+    useState(false);
 
   async function uploadFile(
     file: File,
     type: "image" | "music"
   ) {
-
     if (!file) {
       throw new Error("No file selected");
     }
 
-
     const maxImageSize =
       10 * 1024 * 1024;
 
-
     const maxMusicSize =
       50 * 1024 * 1024;
-
-
 
     if (
       type === "image" &&
       file.size > maxImageSize
     ) {
       throw new Error(
-        "Image is too large. Maximum size is 10MB"
+        "Image is too large. Maximum size is 10MB."
       );
     }
-
-
 
     if (
       type === "music" &&
       file.size > maxMusicSize
     ) {
       throw new Error(
-        "Music file is too large. Maximum size is 50MB"
+        "Music file is too large. Maximum size is 50MB."
       );
     }
 
-
-
-    const formData =
-      new FormData();
-
+    const formData = new FormData();
 
     formData.append(
       "file",
@@ -65,378 +56,211 @@ export default function NewStoryPage() {
       file.name
     );
 
-
     formData.append(
       "type",
       type
     );
 
-
-
-    const response =
-      await fetch(
-        "/api/upload",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-
-
-    if (!response.ok) {
-
-      const errorData =
-        await response.json();
-
-
-      throw new Error(
-        errorData.message ||
-        "Server upload error"
-      );
-    }
-
-
+    const response = await fetch(
+      "/api/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     const data =
       await response.json();
 
-
-
-    if (!data.success) {
-
+    if (!response.ok || !data.success) {
       throw new Error(
         data.message ||
-        "Upload failed"
+          "Upload failed."
       );
-
     }
-
-
 
     return data.url;
-
   }
-
-
-
-
-  async function handleImageUpload(
+    async function handleImageUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
-
-    const file =
-      e.target.files?.[0];
-
+    const file = e.target.files?.[0];
 
     if (!file) return;
 
-
-
     try {
-
       setUploadingImage(true);
 
-
-
-      const url =
-        await uploadFile(
-          file,
-          "image"
-        );
-
-
-
-      console.log(
-        "IMAGE URL:",
-        url
+      const url = await uploadFile(
+        file,
+        "image"
       );
-
-
 
       setCover(url);
-
-
-
     } catch (error) {
-
-
-      console.error(
-        error
-      );
-
-
       alert(
         error instanceof Error
           ? error.message
-          : "Image upload failed"
+          : "Image upload failed."
       );
-
-
     } finally {
-
       setUploadingImage(false);
-
     }
-
   }
-    async function handleMusicUpload(
+
+  async function handleMusicUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
-
-    const file =
-      e.target.files?.[0];
-
+    const file = e.target.files?.[0];
 
     if (!file) return;
 
-
-
     try {
-
       setUploadingMusic(true);
 
-
-
-      const url =
-        await uploadFile(
-          file,
-          "music"
-        );
-
-
-
-      console.log(
-        "MUSIC URL:",
-        url
+      const url = await uploadFile(
+        file,
+        "music"
       );
-
-
 
       setMusic(url);
-
-
-
     } catch (error) {
-
-
-      console.error(
-        error
-      );
-
-
       alert(
         error instanceof Error
           ? error.message
-          : "Music upload failed"
+          : "Music upload failed."
       );
-
-
     } finally {
-
       setUploadingMusic(false);
-
     }
-
   }
 
-
-
-
-
   async function saveStory() {
-
-    console.log(
-      "SAVING STORY:",
-      {
-        title,
-        slug,
-        description,
-        cover,
-        music,
-        content,
-      }
-    );
-
-
-
     if (
       !title ||
       !slug ||
       !description ||
-      !content ||
-      !cover
+      !cover ||
+      !content
     ) {
-
       alert(
-        "Please fill all required fields and upload cover image."
+        "Please fill all required fields."
       );
-
       return;
-
     }
 
-
-
     try {
-
-      const response =
-        await fetch(
-          "/api/admin/stories",
-          {
-            method: "POST",
-
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
-
-            body: JSON.stringify({
-              title,
-              slug,
-              description,
-              cover,
-              music,
-              content,
-            }),
-
-          }
-        );
-
-
+      const response = await fetch(
+        "/api/admin/stories",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            slug,
+            description,
+            cover,
+            music,
+            content,
+          }),
+        }
+      );
 
       const data =
         await response.json();
 
+      alert(data.message);
 
-
-      console.log(
-        "SERVER RESPONSE:",
-        data
-      );
-
-
-
+      if (data.success) {
+        setTitle("");
+        setSlug("");
+        setDescription("");
+        setCover("");
+        setMusic("");
+        setContent("");
+      }
+    } catch {
       alert(
-        data.message
+        "Failed to save story."
       );
-
-
-
-    } catch (error) {
-
-      console.error(
-        "SAVE ERROR:",
-        error
-      );
-
-
-      alert(
-        "Failed to save story"
-      );
-
     }
-
   }
 
-
-
-
-
   return (
-
     <main
       style={{
-        minHeight:
-          "100vh",
-
-        background:
-          "#090909",
-
-        color:
-          "white",
-
-        padding:
-          60,
+        minHeight: "100vh",
+        background: "#090909",
+        color: "#ffffff",
+        padding: "60px",
       }}
     >
-
       <h1
         style={{
-          color:
-            "#d4af37",
-
-          fontSize:
-            46,
-
-          marginBottom:
-            40,
+          color: "#d7b56d",
+          fontSize: 46,
+          marginBottom: 40,
         }}
       >
         Create New Story
       </h1>
-
-
-
-      <input
+            <input
         placeholder="Title"
         value={title}
-        onChange={(e)=>
+        onChange={(e) =>
           setTitle(e.target.value)
         }
         style={input}
       />
 
-
-
       <input
         placeholder="Slug"
         value={slug}
-        onChange={(e)=>
+        onChange={(e) =>
           setSlug(e.target.value)
         }
         style={input}
       />
 
-
-
       <label style={label}>
         Cover Image
       </label>
 
-
       <input
         type="file"
-        accept="image/jpeg,image/png,image/webp"
+        accept="image/*"
         onChange={handleImageUpload}
         style={input}
       />
 
-
-
       {uploadingImage && (
-        <p>
+        <p
+          style={{
+            marginBottom: 20,
+          }}
+        >
           Uploading image...
         </p>
       )}
 
-
-
       {cover && (
-        <p style={{marginBottom:20}}>
-          Selected:
-          <br/>
+        <p
+          style={{
+            marginBottom: 25,
+            color: "#8dd48d",
+            wordBreak: "break-all",
+          }}
+        >
           {cover}
         </p>
       )}
 
-
-
-
       <label style={label}>
         Music File
       </label>
-
 
       <input
         type="file"
@@ -445,134 +269,89 @@ export default function NewStoryPage() {
         style={input}
       />
 
-
-
       {uploadingMusic && (
-        <p>
+        <p
+          style={{
+            marginBottom: 20,
+          }}
+        >
           Uploading music...
         </p>
       )}
 
-
-
       {music && (
-        <p style={{marginBottom:20}}>
-          Selected:
-          <br/>
+        <p
+          style={{
+            marginBottom: 25,
+            color: "#8dd48d",
+            wordBreak: "break-all",
+          }}
+        >
           {music}
         </p>
       )}
 
-
-
       <textarea
         placeholder="Description"
         value={description}
-        onChange={(e)=>
+        onChange={(e) =>
           setDescription(e.target.value)
         }
         style={{
           ...input,
-          height:120,
+          height: 120,
+          resize: "vertical",
         }}
       />
-
-
 
       <textarea
         placeholder="Story Content"
         value={content}
-        onChange={(e)=>
+        onChange={(e) =>
           setContent(e.target.value)
         }
         style={{
           ...input,
-          height:350,
+          height: 350,
+          resize: "vertical",
         }}
       />
-
-
-
-      <button
+            <button
+        type="button"
         onClick={saveStory}
         style={{
-          padding:
-            "18px 35px",
-
-          background:
-            "#d4af37",
-
-          color:
-            "#111",
-
-          border:
-            "none",
-
-          borderRadius:
-            10,
-
-          cursor:
-            "pointer",
-
-          fontWeight:
-            "bold",
+          padding: "18px 35px",
+          background: "#d7b56d",
+          color: "#111",
+          border: "none",
+          borderRadius: 10,
+          cursor: "pointer",
+          fontWeight: "bold",
+          fontSize: 16,
         }}
       >
         Save Story
       </button>
-
-
     </main>
-
   );
-
 }
 
-
-
-
-
 const label: React.CSSProperties = {
-
-  display:
-    "block",
-
-  marginBottom:
-    8,
-
-  color:
-    "#d4af37",
-
+  display: "block",
+  marginTop: 25,
+  marginBottom: 8,
+  color: "#d7b56d",
+  fontWeight: "bold",
+  fontSize: 16,
 };
 
-
-
-
-
 const input: React.CSSProperties = {
-
-  width:
-    "100%",
-
-  marginBottom:
-    20,
-
-  padding:
-    15,
-
-  borderRadius:
-    10,
-
-  border:
-    "1px solid #555",
-
-  background:
-    "#151515",
-
-  color:
-    "white",
-
-  fontSize:
-    16,
-
+  width: "100%",
+  marginBottom: 20,
+  padding: 15,
+  borderRadius: 10,
+  border: "1px solid #555",
+  background: "#151515",
+  color: "#ffffff",
+  fontSize: 16,
 };
