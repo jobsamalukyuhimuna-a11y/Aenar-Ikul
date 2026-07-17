@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import CharacterGrid from "./CharacterGrid";
 import CharactersHero from "./CharactersHero";
 import LeftQuotes from "./LeftQuotes";

@@ -26,64 +26,85 @@ model Story {
 }
 
 model Character {
-  id          Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  name        String?
-  slug        String?  @unique
-  title       String?
+  name String?
+
+  slug String @unique
+
+  title String?
+
   description String?
 
-  image       String?
+  image String?
 
-  kingdom     String?
-  race        String?
-  status      String?
-  universe    String?
-  quote       String?
+  kingdom String?
 
-  music       String?
+  race String?
 
-  images      CharacterImage[]
-  musics      CharacterMusic[]
+  status String?
 
-  createdAt   DateTime @default(now())
+  universe String?
+
+  quote String?
+
+  music String?
+
+  profileStyle String @default("royal")
+
+  images CharacterImage[]
+
+  musics CharacterMusic[]
+
+  createdAt DateTime @default(now())
 }
 
 model CharacterImage {
-  id          Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  image       String
-  sortOrder   Int      @default(0)
+  image String
+
+  sortOrder Int @default(0)
 
   characterId Int
-  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime @default(now())
+  character Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
 }
 
 model CharacterMusic {
-  id          Int      @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
-  name        String?
-  file        String
+  name String?
+
+  file String
 
   characterId Int
-  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime @default(now())
+  character Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
 }
 
 model Music {
-  id        Int      @id @default(autoincrement())
-  name      String
-  file      String
+  id Int @id @default(autoincrement())
+
+  name String
+
+  file String
+
   createdAt DateTime @default(now())
 }
 
 model Media {
-  id        Int      @id @default(autoincrement())
-  name      String
-  path      String
-  type      String
+  id Int @id @default(autoincrement())
+
+  name String
+
+  path String
+
+  type String
+
   createdAt DateTime @default(now())
 }

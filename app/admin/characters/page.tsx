@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
@@ -107,7 +109,7 @@ export default async function AdminCharactersPage() {
             </thead>
 
             <tbody>
-                            {characters.map((character) => (
+              {characters.map((character) => (
                 <tr key={character.id}>
                   <td style={cell}>
                     {character.image ? (
@@ -118,7 +120,8 @@ export default async function AdminCharactersPage() {
                           height: "70px",
                           borderRadius: "12px",
                           overflow: "hidden",
-                          border: "1px solid rgba(215,181,109,.25)",
+                          border:
+                            "1px solid rgba(215,181,109,.25)",
                         }}
                       >
                         <Image
@@ -131,7 +134,9 @@ export default async function AdminCharactersPage() {
                         />
                       </div>
                     ) : (
-                      <span style={{ color: "#777" }}>No Image</span>
+                      <span style={{ color: "#777" }}>
+                        No Image
+                      </span>
                     )}
                   </td>
 
@@ -202,7 +207,7 @@ export default async function AdminCharactersPage() {
             </tbody>
           </table>
         </div>
-              </div>
+      </div>
     </main>
   );
 }

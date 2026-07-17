@@ -51,8 +51,8 @@ export default function CharacterBiography({
       <p
         style={{
           color: "#d0d0d0",
-          fontSize: "18px",
-          lineHeight: 2.1,
+          fontSize: "24px",
+          lineHeight: 2.2,
           textAlign: "center",
           whiteSpace: "pre-wrap",
           maxWidth: "1000px",

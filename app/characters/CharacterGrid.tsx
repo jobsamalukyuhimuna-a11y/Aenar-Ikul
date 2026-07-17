@@ -9,15 +9,6 @@ export default async function CharacterGrid() {
     },
   });
 
-  console.log(
-    "CHARACTERS FROM DATABASE:",
-    characters.map((character) => ({
-      id: character.id,
-      name: character.name,
-      slug: character.slug,
-    }))
-  );
-
   return (
     <section
       style={{
@@ -39,16 +30,39 @@ export default async function CharacterGrid() {
             <CharacterCard
               character={{
                 id: character.id,
+
                 slug: character.slug ?? "",
-                name: character.name ?? "",
-                title: character.title ?? "",
-                image: character.image ?? "",
-                description: character.description ?? "",
-                quote: character.quote ?? "",
-                kingdom: character.kingdom ?? "",
-                universe: character.universe ?? "Unknown",
-                race: character.race ?? "",
-                status: character.status ?? "Unknown",
+
+                name:
+                  character.name ?? "Unknown",
+
+                title:
+                  character.title ?? "",
+
+                image:
+                  character.image ??
+                  "/images/default-character.png",
+
+                description:
+                  character.description ?? "",
+
+                quote:
+                  character.quote ?? "",
+
+                kingdom:
+                  character.kingdom ?? "",
+
+                universe:
+                  character.universe ?? "Unknown",
+
+                race:
+                  character.race ?? "",
+
+                status:
+                  character.status ?? "Unknown",
+
+                profileStyle:
+                  "royal",
               }}
             />
           </FadeIn>

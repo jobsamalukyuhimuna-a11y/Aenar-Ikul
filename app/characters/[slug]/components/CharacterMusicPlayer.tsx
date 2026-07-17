@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 type Props = {
   src: string;
+  name?: string;
 };
 
 function formatTime(time: number) {
@@ -15,7 +16,10 @@ function formatTime(time: number) {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 
-export default function CharacterMusicPlayer({ src }: Props) {
+export default function CharacterMusicPlayer({
+  src,
+  name = "Character Theme",
+}: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const [playing, setPlaying] = useState(false);
@@ -27,94 +31,149 @@ export default function CharacterMusicPlayer({ src }: Props) {
 
     if (!audio) return;
 
-    const loaded = () => setDuration(audio.duration);
-    const update = () => setCurrent(audio.currentTime);
-    const ended = () => setPlaying(false);
+    const loaded = () => {
+      setDuration(audio.duration || 0);
+    };
 
-    audio.addEventListener("loadedmetadata", loaded);
-    audio.addEventListener("timeupdate", update);
-    audio.addEventListener("ended", ended);
+    const update = () => {
+      setCurrent(audio.currentTime);
+    };
+
+    const ended = () => {
+      setPlaying(false);
+    };
+
+    audio.addEventListener(
+      "loadedmetadata",
+      loaded
+    );
+
+    audio.addEventListener(
+      "timeupdate",
+      update
+    );
+
+    audio.addEventListener(
+      "ended",
+      ended
+    );
 
     return () => {
-      audio.removeEventListener("loadedmetadata", loaded);
-      audio.removeEventListener("timeupdate", update);
-      audio.removeEventListener("ended", ended);
+      audio.removeEventListener(
+        "loadedmetadata",
+        loaded
+      );
+
+      audio.removeEventListener(
+        "timeupdate",
+        update
+      );
+
+      audio.removeEventListener(
+        "ended",
+        ended
+      );
     };
   }, []);
 
-  const toggle = async () => {
+  async function toggle() {
     const audio = audioRef.current;
 
     if (!audio) return;
 
-    if (playing) {
-      audio.pause();
+    try {
+      if (playing) {
+        audio.pause();
+        setPlaying(false);
+      } else {
+        await audio.play();
+        setPlaying(true);
+      }
+    } catch {
       setPlaying(false);
-    } else {
-      await audio.play();
-      setPlaying(true);
     }
-  };
+  }
 
   return (
-    <section
+    <div
       style={{
-        maxWidth: 900,
-        margin: "0 auto 60px",
-        borderRadius: 24,
-        overflow: "hidden",
-        border: "1px solid rgba(215,181,109,.35)",
+        width: "100%",
+        borderRadius: "28px",
+        padding: "35px",
         background:
-          "linear-gradient(180deg,#2d1b09 0%,#171717 100%)",
+          "radial-gradient(circle at top,#3a2810,#111 60%)",
+        border:
+          "1px solid rgba(215,181,109,.35)",
         boxShadow:
-          "0 0 40px rgba(215,181,109,.15)",
+          "0 30px 80px rgba(0,0,0,.7),0 0 40px rgba(215,181,109,.15)",
       }}
     >
-      <audio ref={audioRef} src={src} preload="metadata" />
+      <audio
+        ref={audioRef}
+        src={src}
+        preload="metadata"
+      />
 
       <div
         style={{
-          padding: 35,
           textAlign: "center",
         }}
       >
         <div
           style={{
-            fontFamily: "Cinzel, serif",
-            color: "#d7b56d",
-            fontSize: 30,
-            marginBottom: 8,
+            fontSize: "42px",
+            marginBottom: "15px",
           }}
         >
-          ♫ Character Theme ♫
+          🎼
         </div>
 
-        <div
+        <h2
           style={{
-            color: "#b89a57",
-            marginBottom: 30,
-            letterSpacing: 2,
+            color: "#f0d28d",
+            fontFamily:
+              "Cinzel, serif",
+            fontSize: "32px",
+            fontWeight: 400,
+            marginBottom: "8px",
           }}
         >
-          Royal Soundtrack
-        </div>
+          {name}
+        </h2>
+
+        <p
+          style={{
+            color: "#a98a4b",
+            letterSpacing: "5px",
+            fontSize: "12px",
+            marginBottom: "35px",
+          }}
+        >
+          CHARACTER THEME
+        </p>
+
 
         <button
           onClick={toggle}
           style={{
-            width: 82,
-            height: 82,
+            width: "90px",
+            height: "90px",
             borderRadius: "50%",
-            border: "2px solid #d7b56d",
+            border:
+              "2px solid #d7b56d",
             background:
-              "linear-gradient(#f3d58d,#b88935)",
+              "linear-gradient(145deg,#f2d58b,#8b6828)",
+            color: "#111",
             cursor: "pointer",
-            fontSize: 28,
-            marginBottom: 30,
+            fontSize: "30px",
+            boxShadow:
+              "0 0 35px rgba(215,181,109,.45)",
+            marginBottom: "35px",
           }}
         >
-          {playing ? "❚❚" : "▶"}
+          {playing ? "Ⅱ" : "▶"}
         </button>
+
 
         <input
           type="range"
@@ -122,31 +181,44 @@ export default function CharacterMusicPlayer({ src }: Props) {
           max={duration || 0}
           value={current}
           onChange={(e) => {
-            const audio = audioRef.current;
+            const audio =
+              audioRef.current;
 
             if (!audio) return;
 
-            audio.currentTime = Number(e.target.value);
-            setCurrent(Number(e.target.value));
+            const value =
+              Number(e.target.value);
+
+            audio.currentTime = value;
+            setCurrent(value);
           }}
           style={{
             width: "100%",
+            cursor: "pointer",
+            accentColor: "#d7b56d",
           }}
         />
+
 
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
-            marginTop: 12,
+            justifyContent:
+              "space-between",
+            marginTop: "15px",
             color: "#d7b56d",
-            fontSize: 14,
+            fontSize: "14px",
           }}
         >
-          <span>{formatTime(current)}</span>
-          <span>{formatTime(duration)}</span>
+          <span>
+            {formatTime(current)}
+          </span>
+
+          <span>
+            {formatTime(duration)}
+          </span>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
