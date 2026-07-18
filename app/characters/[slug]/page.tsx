@@ -3,11 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 import CharacterSideEffects from "../../components/CharacterSideEffects";
 
-import CharacterHeader from "./components/CharacterHeader";
 import CharacterProfile from "./components/CharacterProfile";
-import CharacterBiography from "./components/CharacterBiography";
-import CharacterGallery from "./components/CharacterGallery";
-import CharacterFooter from "./components/CharacterFooter";
 
 
 type Props = {
@@ -30,22 +26,22 @@ export default async function CharacterPage({
   const character =
     await prisma.character.findUnique({
 
-      where: {
+      where:{
         slug,
       },
 
-      include: {
+      include:{
 
-        images: {
-          orderBy: {
-            sortOrder: "asc",
+        images:{
+          orderBy:{
+            sortOrder:"asc",
           },
         },
 
 
-        musics: {
-          orderBy: {
-            createdAt: "asc",
+        musics:{
+          orderBy:{
+            createdAt:"asc",
           },
         },
 
@@ -55,7 +51,7 @@ export default async function CharacterPage({
 
 
 
-  if (!character) {
+  if(!character){
     notFound();
   }
 
@@ -65,18 +61,16 @@ export default async function CharacterPage({
 
     <main
       style={{
-        minHeight: "100vh",
+        minHeight:"100vh",
 
         background:
-          "radial-gradient(circle at top,#251736 0%,#0b0b0b 45%,#050505 100%)",
+        "#050505",
 
-        color: "#ffffff",
+        color:"#fff",
 
-        padding: "70px 20px 120px",
+        overflow:"hidden",
 
-        overflow: "hidden",
-
-        position: "relative",
+        position:"relative",
       }}
     >
 
@@ -84,69 +78,45 @@ export default async function CharacterPage({
       <CharacterSideEffects />
 
 
-
       <div
         style={{
-          maxWidth: "1300px",
-
-          margin: "0 auto",
-
-          position: "relative",
-
-          zIndex: 2,
+          position:"relative",
+          zIndex:2,
         }}
       >
 
 
-
-        <CharacterHeader
-          character={character}
-        />
-
-
-
         <CharacterProfile
+
           character={{
-            id: character.id,
 
-            slug: character.slug,
+            id:character.id,
 
-            image: character.image,
+            slug:character.slug,
 
-            name: character.name,
+            image:character.image,
 
-            title: character.title,
+            name:character.name,
 
-            kingdom: character.kingdom,
+            title:character.title,
 
-            race: character.race,
+            kingdom:character.kingdom,
 
-            status: character.status,
+            race:character.race,
 
-            universe: character.universe,
+            status:character.status,
 
-            quote: character.quote,
+            universe:character.universe,
 
-            music: character.music,
+            quote:character.quote,
+
+            description:character.description,
+
+            music:character.music,
+
           }}
+
         />
-
-
-
-        <CharacterBiography
-          character={character}
-        />
-
-
-
-        <CharacterGallery
-          character={character}
-        />
-
-
-
-        <CharacterFooter />
-
 
 
       </div>

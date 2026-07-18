@@ -23,129 +23,184 @@ type Props = {
 export default function CharacterCard({
   character,
 }: Props) {
+
   return (
-    <div
+    <article
       style={{
-        position: "relative",
-        overflow: "hidden",
-        borderRadius: "24px",
-        background: "rgba(15,15,15,.92)",
+        position:"relative",
+        overflow:"hidden",
+        borderRadius:"24px",
+        background:"rgba(10,10,10,.96)",
         border:
-          "1px solid rgba(215,181,109,.25)",
-        backdropFilter: "blur(10px)",
+        "1px solid rgba(215,181,109,.35)",
         boxShadow:
-          "0 25px 60px rgba(0,0,0,.55), 0 0 40px rgba(215,181,109,.08)",
+        "0 25px 70px rgba(0,0,0,.75)",
       }}
     >
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "radial-gradient(circle at top, rgba(215,181,109,.10), transparent 70%)",
-        }}
-      />
+
 
       <div
         style={{
-          position: "relative",
-          height: "520px",
-          overflow: "hidden",
+          position:"absolute",
+          inset:0,
           background:
-            "radial-gradient(circle at top,#2d1d45 0%,#111 55%,#050505 100%)",
+          "radial-gradient(circle at top,rgba(139,92,246,.18),transparent 65%)",
+          pointerEvents:"none",
+        }}
+      />
+
+
+
+
+      {/* CHARACTER IMAGE */}
+
+      <div
+        style={{
+          position:"relative",
+          height:"520px",
+          overflow:"hidden",
+          display:"flex",
+          alignItems:"center",
+          justifyContent:"center",
+          background:
+          "radial-gradient(circle at center,#26163d 0%,#080808 70%)",
         }}
       >
+
+
         <Image
           src={
             character.image ||
             "/images/default-character.png"
           }
+
           alt={character.name}
+
           fill
+
+          sizes="(max-width:768px) 100vw, 360px"
+
           style={{
-            objectFit: "contain",
-            padding: "20px",
+
+            objectFit:"contain",
+
+            objectPosition:"center center",
+
+            padding:"0",
+
+            transform:"scale(.88)",
+
+            filter:
+            "drop-shadow(0 0 35px rgba(215,181,109,.35))",
+
           }}
+
         />
+
+
       </div>
 
 
+
+
+
+      {/* INFO */}
+
       <div
         style={{
-          padding: "30px",
+          position:"relative",
+          zIndex:2,
+          padding:"30px",
+          textAlign:"center",
         }}
       >
+
+
+
+        <div
+          style={{
+            width:"120px",
+            height:"2px",
+            margin:"0 auto 20px",
+
+            background:
+            "linear-gradient(to right,transparent,#d7b56d,transparent)",
+          }}
+        />
+
+
+
         <h2
           style={{
-            color: "#f2dfb4",
-            fontFamily: "Cinzel, serif",
-            fontSize: "36px",
-            textAlign: "center",
-            marginBottom: "10px",
+            color:"#f2dfb4",
+
+            fontFamily:"Cinzel, serif",
+
+            fontSize:"34px",
+
+            fontWeight:400,
+
+            letterSpacing:"2px",
+
+            marginBottom:"14px",
           }}
         >
           {character.name}
         </h2>
 
 
+
+
         <p
           style={{
-            color: "#a98a4b",
-            textAlign: "center",
-            letterSpacing: "4px",
+            color:"#d7b56d",
+
+            letterSpacing:"4px",
+
+            fontSize:"13px",
+
+            marginBottom:"30px",
           }}
         >
-          ✦ {(character.title ?? "").toUpperCase()} ✦
+          ✦ {(character.title ?? "UNKNOWN").toUpperCase()} ✦
         </p>
 
 
-        {character.quote && (
-          <blockquote
-            style={{
-              color: "#d7b56d",
-              textAlign: "center",
-              fontStyle: "italic",
-              marginTop: "20px",
-            }}
-          >
-            ❝ {character.quote} ❞
-          </blockquote>
-        )}
 
-
-        {character.description && (
-          <p
-            style={{
-              color: "#ccc",
-              textAlign: "center",
-              lineHeight: 1.8,
-              marginTop: "20px",
-            }}
-          >
-            {character.description}
-          </p>
-        )}
 
 
         <Link
           href={`/characters/${character.slug}`}
+
           style={{
-            display: "block",
-            textAlign: "center",
-            marginTop: "30px",
-            padding: "16px",
-            borderRadius: "14px",
+            display:"block",
+
+            padding:"15px",
+
+            borderRadius:"14px",
+
             background:
-              "linear-gradient(90deg,#5b4216,#d7b56d,#5b4216)",
-            color: "#111",
-            textDecoration: "none",
-            fontWeight: 700,
-            letterSpacing: "3px",
+            "linear-gradient(90deg,#5b4216,#d7b56d,#5b4216)",
+
+            color:"#111",
+
+            textDecoration:"none",
+
+            fontWeight:700,
+
+            letterSpacing:"3px",
+
+            fontFamily:"Cinzel, serif",
           }}
         >
           ✦ VIEW PROFILE ✦
         </Link>
+
+
+
       </div>
-    </div>
+
+
+    </article>
   );
 }
