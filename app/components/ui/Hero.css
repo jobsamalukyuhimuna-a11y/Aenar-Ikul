@@ -6,255 +6,124 @@
   display: none;
 }
 
-
 /* ===========================
    Mobile (الهاتف)
 =========================== */
 
 @media (max-width: 768px) {
 
-
   /* ===========================
      Navigation
   =========================== */
 
   .mobile-nav {
-
     position: absolute;
-
-    top: 24px;
-
-    left: 14px;
-
-    right: 14px;
-
+    top: 18px;
+    left: 10px;
+    right: 10px;
 
     display: flex;
-
     justify-content: space-between;
-
-    align-items: center;
-
-
-    gap: 8px;
-
+    align-items: stretch;
+    gap: 10px;
 
     z-index: 100;
-
   }
-
-
 
   .mobile-nav a {
-
     flex: 1;
 
-    text-align: center;
-
-
-    color: #e2c67d;
-
-    text-decoration: none;
-
-
-    font-family: "Cinzel", serif;
-
-
-    font-size: 16px;
-
-    font-weight: 600;
-
-
-    letter-spacing: 2px;
-
-
-    padding: 16px 4px;
-
-
-    min-height: 48px;
-
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
+    min-height: 58px;
 
-    border-bottom: 1px solid rgba(201,165,77,.35);
+    color: #e2c67d;
+    text-decoration: none;
+    font-family: "Cinzel", serif;
 
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
 
-    transition: .3s ease;
+    padding: 18px 6px;
 
+    border-bottom: 2px solid rgba(201,165,77,.45);
+
+    transition: .25s ease;
   }
-
-
 
   .mobile-nav a:active {
-
-    transform: scale(.95);
-
+    transform: scale(.96);
   }
-
-
-
 
   /* ===========================
-     Hero Section
+     Hero
   =========================== */
 
-
   .hero-section {
-
     min-height: 100svh !important;
-
-
     background-position: center top !important;
-
-
     background-attachment: scroll !important;
-
   }
-
-
-
 
   .desktop-nav {
-
     display: none !important;
-
   }
-
-
-
 
   .hero-content {
-
     width: 100% !important;
-
-
-    padding:
-
-    100px 22px 40px !important;
-
+    padding: 150px 24px 45px !important;
   }
-
-
-
 
   .hero-top-title {
+    margin-bottom: 40px !important;
 
-    margin-bottom: 55px !important;
-
-
-    font-size: 13px !important;
-
-
-    letter-spacing: 5px !important;
-
+    font-size: 16px !important;
+    letter-spacing: 6px !important;
   }
-
-
-
 
   .hero-divider {
-
     display: none !important;
-
   }
-
-
-
 
   .hero-title {
-
-
-    font-size:
-
-    clamp(50px, 15vw, 72px) !important;
-
-
-    letter-spacing: 5px !important;
-
-
-    line-height: 1.15 !important;
-
-
+    font-size: clamp(62px, 18vw, 88px) !important;
+    letter-spacing: 4px !important;
+    line-height: 1.08 !important;
     text-align: center !important;
-
   }
-
-
-
-
 
   .hero-subtitle {
-
-
-    font-size: 24px !important;
-
-
-    line-height: 1.6 !important;
-
-
-    padding: 0 !important;
-
+    font-size: 30px !important;
+    line-height: 1.45 !important;
+    padding: 0 10px !important;
   }
-
-
-
-
 
   .hero-tagline {
+    font-size: 18px !important;
+    letter-spacing: 2px !important;
 
-
-    font-size: 15px !important;
-
-
-    letter-spacing: 2.5px !important;
-
-
-    margin-top: 18px !important;
-
-
-    margin-bottom: 45px !important;
-
+    margin-top: 22px !important;
+    margin-bottom: 50px !important;
   }
 
-
-
-
-
   .hero-button {
-
-
     width: 100% !important;
-
-
-    max-width: 340px !important;
-
+    max-width: 360px !important;
 
     justify-content: center !important;
 
+    font-size: 18px !important;
 
-    padding: 18px 24px !important;
-
+    padding: 20px 30px !important;
 
     margin: 0 auto !important;
-
   }
-
-
-
-
 
   .hero-scroll,
-
   .hero-scroll-line {
-
     display: none !important;
-
   }
-
-
 }
