@@ -36,7 +36,10 @@ export async function GET(
 
     return NextResponse.json({
       success: true,
-      character,
+      character: {
+        ...character,
+        profileStyle: character.profileStyle,
+      },
     });
   } catch (error) {
     console.error(error);
@@ -94,14 +97,14 @@ export async function PUT(
         universe: body.universe || null,
         quote: body.quote || null,
 
+        profileStyle: body.profileStyle ?? "royal",
+
         images: {
           create:
-            body.images?.map(
-              (image: string, index: number) => ({
-                image,
-                sortOrder: index,
-              })
-            ) || [],
+            body.images?.map((image: string, index: number) => ({
+              image,
+              sortOrder: index,
+            })) || [],
         },
 
         musics: {

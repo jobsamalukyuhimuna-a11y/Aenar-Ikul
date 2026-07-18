@@ -35,6 +35,10 @@ export default function EditCharacterPage({
   const [quote, setQuote] = useState("");
   const [description, setDescription] = useState("");
 
+  // NEW
+  const [profileStyle, setProfileStyle] =
+    useState("royal");
+
   // Main image
   const [image, setImage] = useState("");
 
@@ -45,7 +49,8 @@ export default function EditCharacterPage({
   const [images, setImages] = useState<string[]>([]);
 
   // Music list
-  const [musics, setMusics] = useState<CharacterMusic[]>([]);
+  const [musics, setMusics] =
+    useState<CharacterMusic[]>([]);
 
   const [uploadingImage, setUploadingImage] =
     useState(false);
@@ -78,6 +83,11 @@ export default function EditCharacterPage({
         setQuote(c.quote || "");
         setDescription(c.description || "");
 
+        // NEW
+        setProfileStyle(
+          c.profileStyle || "royal"
+        );
+
         setImage(c.image || "");
         setMusic(c.music || "");
 
@@ -95,7 +105,8 @@ export default function EditCharacterPage({
 
     loadCharacter();
   }, [params]);
-    async function uploadFile(
+
+  async function uploadFile(
     file: File,
     type: "image" | "music"
   ) {
@@ -117,8 +128,7 @@ export default function EditCharacterPage({
 
     return data.url as string;
   }
-
-  async function handleImageUpload(
+    async function handleImageUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
     const file = e.target.files?.[0];
@@ -258,6 +268,9 @@ export default function EditCharacterPage({
           universe,
           quote,
           description,
+
+          profileStyle,
+
           image,
           music,
           images,
@@ -270,7 +283,8 @@ export default function EditCharacterPage({
 
     alert(data.message);
   }
-    if (loading) {
+
+  if (loading) {
     return (
       <main
         style={{
@@ -305,8 +319,7 @@ export default function EditCharacterPage({
       >
         Edit Character
       </h1>
-
-      <input
+            <input
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
@@ -361,6 +374,26 @@ export default function EditCharacterPage({
         onChange={(e) => setQuote(e.target.value)}
         style={input}
       />
+
+      <label style={label}>
+        Character Theme
+      </label>
+
+      <select
+        value={profileStyle}
+        onChange={(e) =>
+          setProfileStyle(e.target.value)
+        }
+        style={input}
+      >
+        <option value="royal">
+          Royal
+        </option>
+
+        <option value="dark">
+          Dark
+        </option>
+      </select>
 
       <label style={label}>
         Main Character Image
@@ -437,7 +470,8 @@ export default function EditCharacterPage({
         <p style={{ marginBottom: 20 }}>
           {music}
         </p>
-      )}      <label style={label}>
+      )}
+            <label style={label}>
         Additional Music
       </label>
 
@@ -463,12 +497,15 @@ export default function EditCharacterPage({
 
           <button
             type="button"
-            onClick={() => removeMusic(index)}
+            onClick={() =>
+              removeMusic(index)
+            }
           >
             Remove
           </button>
         </div>
       ))}
+
 
       <textarea
         placeholder="Biography"
@@ -481,6 +518,7 @@ export default function EditCharacterPage({
           height: 250,
         }}
       />
+
 
       <button
         onClick={saveCharacter}
@@ -498,9 +536,11 @@ export default function EditCharacterPage({
       >
         Save Changes
       </button>
+
     </main>
   );
 }
+
 
 const label: React.CSSProperties = {
   display: "block",
@@ -510,6 +550,7 @@ const label: React.CSSProperties = {
   fontSize: 18,
   fontWeight: "bold",
 };
+
 
 const input: React.CSSProperties = {
   width: "100%",
