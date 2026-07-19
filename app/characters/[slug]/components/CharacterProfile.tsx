@@ -3,6 +3,7 @@ import RoyalProfile from "../themes/RoyalTheme";
 import WarriorProfile from "../themes/WarriorTheme";
 import DemonProfile from "../themes/DemonTheme";
 import AncientProfile from "../themes/AncientTheme";
+import CelestialProfile from "../themes/CelestialTheme";
 
 
 export type Character = {
@@ -56,10 +57,21 @@ export default function CharacterProfile({
   switch (theme) {
 
 
+
     case "royal":
 
       return (
         <RoyalProfile
+          character={character}
+        />
+      );
+
+
+
+    case "celestial":
+
+      return (
+        <CelestialProfile
           character={character}
         />
       );

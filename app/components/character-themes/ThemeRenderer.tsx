@@ -11,18 +11,19 @@ export default function ThemeRenderer({
   profileStyle,
 }: Props) {
 
-  console.log("================================");
-  console.log("PROFILE STYLE =", profileStyle);
-  console.log("================================");
+  switch(profileStyle){
 
-  switch (profileStyle) {
     case "dark":
       return <DarkSideEffects />;
+
 
     case "royal":
       return <RoyalSideEffects />;
 
+
     default:
       return <RoyalSideEffects />;
+
   }
+
 }
