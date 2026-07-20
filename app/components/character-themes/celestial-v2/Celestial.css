@@ -1,0 +1,362 @@
+:root{
+
+    --sky:#ffffff;
+    --gold:#f6dc9d;
+    --blue:#dff4ff;
+
+}
+
+body{
+
+    background:#ffffff;
+
+}
+
+.celestial-scene{
+
+    min-height:100vh;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #ffffff,
+            #eef8ff,
+            #dceeff
+        );
+
+}
+
+.celestial-background{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            rgba(255,255,255,.95),
+            rgba(255,255,255,.4),
+            transparent 70%
+        );
+
+}
+
+.celestial-light-top{
+
+    position:absolute;
+
+    top:-350px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:1200px;
+
+    height:900px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(255,255,255,1),
+            rgba(255,245,220,.65),
+            transparent 72%
+        );
+
+    filter:blur(60px);
+
+}
+
+.celestial-container{
+
+    position:relative;
+
+    z-index:2;
+
+    width:min(1200px,92%);
+
+    margin:auto;
+
+    padding-top:120px;
+
+    padding-bottom:120px;
+
+}
+
+.celestial-hero{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    margin-bottom:90px;
+
+}
+
+.hero-halo{
+
+    width:320px;
+
+    height:320px;
+
+    border-radius:50%;
+
+    position:absolute;
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.95),
+            rgba(255,245,210,.35),
+            transparent 72%
+        );
+
+    filter:blur(20px);
+
+}
+
+.hero-image{
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:white;
+
+    border:3px solid #f6dc9d;
+
+    box-shadow:
+
+        0 0 60px rgba(255,245,210,.6);
+
+    z-index:2;
+
+}
+
+.hero-name{
+
+    margin-top:35px;
+
+    font-size:52px;
+
+    color:#8b6d24;
+
+}
+
+.hero-title{
+
+    margin-top:12px;
+
+    font-size:22px;
+
+    color:#7b8ba5;
+
+}
+
+.celestial-layout{
+
+    display:grid;
+
+    gap:35px;
+
+}
+
+.celestial-card{
+
+    background:
+
+        rgba(255,255,255,.55);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(246,220,157,.65);
+
+    border-radius:30px;
+
+    padding:40px;
+
+    box-shadow:
+
+        0 20px 60px rgba(190,210,255,.25);
+
+}
+/* ==========================================================
+   CELESTIAL SKY
+========================================================== */
+
+.sky-gradient{
+
+    position:absolute;
+    inset:0;
+
+    background:
+        radial-gradient(circle at top,
+            #ffffff 0%,
+            #f5fbff 18%,
+            #e5f3ff 40%,
+            #d4ecff 65%,
+            #c1e4ff 100%);
+
+}
+
+.sky-light{
+
+    position:absolute;
+    inset:0;
+
+    background:
+
+        radial-gradient(circle at top,
+            rgba(255,255,255,.95),
+            rgba(255,255,255,.45),
+            transparent 65%);
+
+}
+
+.sun-core{
+
+    position:absolute;
+
+    left:50%;
+    top:-160px;
+
+    transform:translateX(-50%);
+
+    width:520px;
+    height:520px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(circle,
+            rgba(255,255,255,1),
+            rgba(255,247,220,.92),
+            transparent 72%);
+
+    filter:blur(12px);
+
+}
+
+.sun-glow{
+
+    position:absolute;
+
+    left:50%;
+    top:-320px;
+
+    transform:translateX(-50%);
+
+    width:900px;
+    height:900px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(circle,
+            rgba(255,255,255,.9),
+            rgba(255,245,210,.55),
+            transparent 72%);
+
+    filter:blur(80px);
+
+}
+
+.light-beam{
+
+    position:absolute;
+
+    top:-20%;
+
+    width:260px;
+    height:150%;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.55),
+            rgba(255,255,255,.12),
+            transparent
+        );
+
+    filter:blur(25px);
+
+    animation:beamMove 12s ease-in-out infinite;
+
+}
+
+.beam-left{
+
+    left:12%;
+
+    transform:rotate(-18deg);
+
+}
+
+.beam-center{
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+}
+
+.beam-right{
+
+    right:12%;
+
+    transform:rotate(18deg);
+
+}
+
+.sky-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    box-shadow:
+        inset 0 0 220px rgba(255,255,255,.25);
+
+}
+
+@keyframes beamMove{
+
+    0%{
+        opacity:.25;
+    }
+
+    50%{
+        opacity:.85;
+    }
+
+    100%{
+        opacity:.25;
+    }
+
+}
