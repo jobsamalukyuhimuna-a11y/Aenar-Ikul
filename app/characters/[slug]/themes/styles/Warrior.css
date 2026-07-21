@@ -1,0 +1,1110 @@
+/* ==========================================================
+   WARRIOR WORLD
+========================================================== */
+
+.warrior-world{
+
+    position:relative;
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        180deg,
+        #3b1208 0%,
+        #5f1f0d 18%,
+        #8b3514 35%,
+        #432014 58%,
+        #1b1514 78%,
+        #090909 100%
+    );
+
+}
+
+.warrior-page{
+
+    position:relative;
+
+    z-index:20;
+
+    max-width:1600px;
+
+    margin:auto;
+
+    padding:
+    110px
+    70px
+    120px;
+
+}
+
+/* ==========================================================
+   SKY
+========================================================== */
+
+.warrior-sky{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(
+
+        circle at 50% 12%,
+
+        rgba(255,210,120,.45),
+
+        rgba(255,120,40,.18) 28%,
+
+        transparent 60%
+
+    );
+
+}
+
+/* ==========================================================
+   SUN
+========================================================== */
+
+.warrior-sun{
+
+    position:absolute;
+
+    left:50%;
+
+    top:60px;
+
+    transform:translateX(-50%);
+
+    width:420px;
+
+    height:420px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+
+        circle,
+
+        #ffe9ae,
+
+        #ffb04b,
+
+        #b73d16
+
+    );
+
+    box-shadow:
+
+    0 0 120px rgba(255,140,40,.6),
+
+    0 0 260px rgba(255,80,0,.35);
+
+}
+
+/* ==========================================================
+   CLOUDS
+========================================================== */
+
+.warrior-cloud{
+
+    position:absolute;
+
+    border-radius:999px;
+
+    background:rgba(60,20,10,.45);
+
+    filter:blur(35px);
+
+    animation:warriorCloud 30s ease-in-out infinite alternate;
+
+}
+
+.warrior-cloud::before,
+.warrior-cloud::after{
+
+    content:"";
+
+    position:absolute;
+
+    border-radius:50%;
+
+    background:inherit;
+
+}
+
+.warrior-cloud::before{
+
+    width:50%;
+
+    height:120%;
+
+    left:12%;
+
+    top:-20%;
+
+}
+
+.warrior-cloud::after{
+
+    width:40%;
+
+    height:100%;
+
+    right:15%;
+
+    top:-15%;
+
+}
+
+.cloud-1{
+
+    width:500px;
+
+    height:140px;
+
+    left:4%;
+
+    top:170px;
+
+}
+
+.cloud-2{
+
+    width:430px;
+
+    height:120px;
+
+    right:6%;
+
+    top:280px;
+
+}
+
+.cloud-3{
+
+    width:620px;
+
+    height:150px;
+
+    left:20%;
+
+    top:390px;
+
+}
+
+@keyframes warriorCloud{
+
+    from{
+
+        transform:translateX(-30px);
+
+    }
+
+    to{
+
+        transform:translateX(30px);
+
+    }
+
+}
+
+/* ==========================================================
+   SMOKE
+========================================================== */
+
+.warrior-smoke{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    height:220px;
+
+    background:
+
+    linear-gradient(
+        180deg,
+        rgba(0,0,0,.28),
+        transparent
+    );
+
+    filter:blur(50px);
+
+}
+
+.smoke-1{
+
+    bottom:300px;
+
+}
+
+.smoke-2{
+
+    bottom:120px;
+
+}
+
+/* ==========================================================
+   LIGHT
+========================================================== */
+
+.warrior-light{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+    linear-gradient(
+        180deg,
+        rgba(255,170,70,.08),
+        transparent 45%,
+        rgba(0,0,0,.18)
+    );
+
+}
+/* ==========================================================
+   BATTLEFIELD
+========================================================== */
+
+.battle-horizon{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:220px;
+
+    height:5px;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,170,80,.9),
+        transparent
+    );
+
+}
+
+.battle-mountains{
+
+    position:absolute;
+
+    bottom:220px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #36251f,
+        #141414
+    );
+
+    clip-path:polygon(
+        0% 100%,
+        18% 62%,
+        36% 82%,
+        55% 40%,
+        76% 74%,
+        100% 100%
+    );
+
+}
+
+.mountains-left{
+
+    left:-5%;
+
+    width:620px;
+
+    height:340px;
+
+}
+
+.mountains-center{
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:900px;
+
+    height:430px;
+
+}
+
+.mountains-right{
+
+    right:-5%;
+
+    width:640px;
+
+    height:350px;
+
+}
+
+/* ==========================================================
+   CASTLE
+========================================================== */
+
+.battle-castle{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:225px;
+
+    transform:translateX(-50%);
+
+    width:300px;
+
+    height:250px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #5a514d,
+        #1b1b1b
+    );
+
+    clip-path:polygon(
+        0% 100%,
+        0% 48%,
+        10% 48%,
+        10% 22%,
+        22% 22%,
+        22% 48%,
+        40% 48%,
+        40% 10%,
+        60% 10%,
+        60% 48%,
+        78% 48%,
+        78% 22%,
+        90% 22%,
+        90% 48%,
+        100% 48%,
+        100% 100%
+    );
+
+    box-shadow:
+    0 0 40px rgba(255,120,30,.18);
+
+}
+
+/* ==========================================================
+   GROUND
+========================================================== */
+
+.battle-ground{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:240px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #34231d,
+        #141414,
+        #090909
+    );
+
+}
+
+/* ==========================================================
+   SWORDS
+========================================================== */
+
+.battle-sword{
+
+    position:absolute;
+
+    bottom:160px;
+
+    width:6px;
+
+    height:120px;
+
+    background:#d5d5d5;
+
+    border-radius:999px;
+
+    box-shadow:
+    0 0 10px rgba(255,255,255,.25);
+
+}
+
+.battle-sword::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-14px;
+
+    bottom:12px;
+
+    width:34px;
+
+    height:6px;
+
+    background:#8b6a39;
+
+    border-radius:999px;
+
+}
+
+.sword-1{
+
+    left:14%;
+
+    transform:rotate(-12deg);
+
+}
+
+.sword-2{
+
+    left:31%;
+
+    transform:rotate(8deg);
+
+}
+
+.sword-3{
+
+    left:52%;
+
+}
+
+.sword-4{
+
+    left:72%;
+
+    transform:rotate(-10deg);
+
+}
+
+.sword-5{
+
+    left:88%;
+
+    transform:rotate(14deg);
+
+}
+
+/* ==========================================================
+   FIRE
+========================================================== */
+
+.battle-fire{
+
+    position:absolute;
+
+    bottom:170px;
+
+    width:70px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        #fff2a6,
+        #ff9f32,
+        rgba(255,70,0,0)
+    );
+
+    filter:blur(10px);
+
+    animation:fireMove 2.5s ease-in-out infinite;
+
+}
+
+.fire-1{
+
+    left:24%;
+
+}
+
+.fire-2{
+
+    left:58%;
+
+    animation-delay:.8s;
+
+}
+
+.fire-3{
+
+    left:82%;
+
+    animation-delay:1.4s;
+
+}
+
+@keyframes fireMove{
+
+    0%,100%{
+
+        transform:translateY(0) scale(1);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px) scale(1.08);
+
+    }
+
+}
+/* ==========================================================
+   HERO
+========================================================== */
+
+.warrior-hero{
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:460px 1fr;
+
+    gap:90px;
+
+    align-items:center;
+
+    margin-top:140px;
+
+    z-index:30;
+
+}
+
+.warrior-left{
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.warrior-frame{
+
+    position:relative;
+
+    width:410px;
+
+    height:610px;
+
+    padding:12px;
+
+    border-radius:24px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #6f6f6f,
+        #2d2d2d,
+        #8c6432
+    );
+
+    box-shadow:
+    0 25px 70px rgba(0,0,0,.65),
+    0 0 45px rgba(255,150,40,.25);
+
+    overflow:hidden;
+
+}
+
+.warrior-frame::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:8px;
+
+    border:2px solid rgba(255,180,90,.35);
+
+    border-radius:18px;
+
+    pointer-events:none;
+
+}
+
+.warrior-image{
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+}
+
+.warrior-right{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.warrior-type{
+
+    color:#ffbf67;
+
+    text-transform:uppercase;
+
+    letter-spacing:6px;
+
+    font-size:14px;
+
+}
+
+.warrior-name{
+
+    margin:0;
+
+    font-size:82px;
+
+    line-height:1;
+
+    font-family:"Cinzel",serif;
+
+    color:#fff5dc;
+
+    text-shadow:
+    0 0 18px rgba(255,180,70,.25);
+
+}
+
+.warrior-title{
+
+    margin:0;
+
+    font-family:"Cinzel",serif;
+
+    font-size:34px;
+
+    font-weight:500;
+
+    color:#ffc978;
+
+}
+
+.warrior-quote{
+
+    margin:16px 0;
+
+    font-size:22px;
+
+    line-height:1.9;
+
+    color:#f4dcc0;
+
+    font-style:italic;
+
+}
+
+.warrior-music{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin:8px 0 18px;
+
+}
+
+.warrior-music-button{
+
+    width:78px;
+
+    height:78px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:30px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #d7a14b,
+        #7d4518
+    );
+
+    box-shadow:
+    0 0 30px rgba(255,150,40,.45);
+
+}
+
+.warrior-music h3{
+
+    margin:0;
+
+    font-size:24px;
+
+    color:white;
+
+}
+
+.warrior-music span{
+
+    color:#ffcb8b;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    font-size:13px;
+
+}
+
+.warrior-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.warrior-card{
+
+    padding:22px;
+
+    border-radius:20px;
+
+    background:rgba(20,20,20,.45);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,170,80,.25);
+
+}
+
+.warrior-card small{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#ffb35a;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+}
+
+.warrior-card strong{
+
+    color:white;
+
+    font-size:20px;
+
+}
+/* ==========================================================
+   BIOGRAPHY
+========================================================== */
+
+.warrior-biography{
+
+    margin-top:110px;
+
+}
+
+.warrior-section-title{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:24px;
+
+    margin-bottom:45px;
+
+}
+
+.warrior-section-title h2{
+
+    margin:0;
+
+    font-family:"Cinzel",serif;
+
+    font-size:46px;
+
+    color:#fff2d0;
+
+}
+
+.warrior-line{
+
+    width:180px;
+
+    height:2px;
+
+    border-radius:999px;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        #d8a14f,
+        transparent
+    );
+
+}
+
+.warrior-biography-card{
+
+    max-width:1100px;
+
+    margin:auto;
+
+    padding:55px;
+
+    border-radius:30px;
+
+    background:rgba(20,20,20,.42);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,170,70,.22);
+
+    box-shadow:
+    0 25px 70px rgba(0,0,0,.45);
+
+}
+
+.warrior-biography-card p{
+
+    margin:0;
+
+    text-align:center;
+
+    line-height:2.1;
+
+    font-size:22px;
+
+    color:#f5e3c8;
+
+}
+
+/* ==========================================================
+   PARTICLES
+========================================================== */
+
+.ember{
+
+    position:absolute;
+
+    bottom:-20px;
+
+    width:4px;
+
+    height:4px;
+
+    border-radius:50%;
+
+    background:#ffb54c;
+
+    box-shadow:0 0 10px #ff8c00;
+
+    animation:emberFloat linear infinite;
+
+}
+
+@keyframes emberFloat{
+
+    from{
+
+        transform:translateY(0) scale(1);
+
+        opacity:0;
+
+    }
+
+    20%{
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:translateY(-120vh) scale(.4);
+
+        opacity:0;
+
+    }
+
+}
+
+.ash{
+
+    position:absolute;
+
+    top:-30px;
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:rgba(180,180,180,.6);
+
+    animation:ashFall linear infinite;
+
+}
+
+@keyframes ashFall{
+
+    from{
+
+        transform:translateY(-40px);
+
+    }
+
+    to{
+
+        transform:translateY(120vh);
+
+    }
+
+}
+
+.spark{
+
+    position:absolute;
+
+    width:2px;
+
+    height:2px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:0 0 8px white;
+
+    animation:sparkBlink 2.5s infinite;
+
+}
+
+@keyframes sparkBlink{
+
+    0%,100%{
+
+        opacity:.2;
+
+    }
+
+    50%{
+
+        opacity:1;
+
+    }
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:1100px){
+
+.warrior-hero{
+
+grid-template-columns:1fr;
+
+gap:50px;
+
+text-align:center;
+
+}
+
+.warrior-left{
+
+justify-content:center;
+
+}
+
+.warrior-right{
+
+align-items:center;
+
+}
+
+.warrior-grid{
+
+grid-template-columns:1fr;
+
+width:100%;
+
+}
+
+.warrior-frame{
+
+width:320px;
+
+height:470px;
+
+}
+
+.warrior-name{
+
+font-size:58px;
+
+}
+
+.warrior-page{
+
+padding:70px 24px;
+
+}
+
+.warrior-line{
+
+width:80px;
+
+}
+
+}
