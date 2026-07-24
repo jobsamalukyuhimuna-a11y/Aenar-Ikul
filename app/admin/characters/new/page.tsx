@@ -2,15 +2,12 @@
 
 import { useState } from "react";
 
-
 type CharacterMusic = {
   name: string;
   file: string;
 };
 
-
 export default function NewCharacterPage() {
-
 
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
@@ -24,74 +21,54 @@ export default function NewCharacterPage() {
   const [quote, setQuote] = useState("");
   const [description, setDescription] = useState("");
 
-
   // Character Theme
   const [profileStyle, setProfileStyle] =
     useState("royal");
 
-
   const [image, setImage] = useState("");
-
   const [music, setMusic] = useState("");
-
 
   const [images, setImages] =
     useState<string[]>([]);
 
-
   const [musics, setMusics] =
     useState<CharacterMusic[]>([]);
-
-
 
   const [uploadingImage, setUploadingImage] =
     useState(false);
 
-
   const [uploadingMusic, setUploadingMusic] =
     useState(false);
-
-
-
 
   async function uploadFile(
     file: File,
     type: "image" | "music"
   ) {
 
-
     const formData = new FormData();
-
 
     formData.append(
       "file",
       file
     );
 
-
     formData.append(
       "type",
       type
     );
 
-
-
     const response = await fetch(
       "/api/upload",
       {
-        method:"POST",
-        body:formData,
+        method: "POST",
+        body: formData,
       }
     );
-
-
 
     const data =
       await response.json();
 
-
-
-    if(!data.success){
+    if (!data.success) {
 
       throw new Error(
         data.message
@@ -99,34 +76,23 @@ export default function NewCharacterPage() {
 
     }
 
-
-
     return data.url as string;
 
   }
 
-
-
-
-
   async function handleImageUpload(
-    e:React.ChangeEvent<HTMLInputElement>
-  ){
-
+    e: React.ChangeEvent<HTMLInputElement>
+  ) {
 
     const file =
       e.target.files?.[0];
 
-
-    if(!file)
+    if (!file)
       return;
 
-
-
-    try{
+    try {
 
       setUploadingImage(true);
-
 
       const url =
         await uploadFile(
@@ -134,50 +100,36 @@ export default function NewCharacterPage() {
           "image"
         );
 
-
       setImage(url);
 
-
-    }catch(error){
-
+    } catch (error) {
 
       alert(
         error instanceof Error
-        ? error.message
-        : "Upload failed"
+          ? error.message
+          : "Upload failed"
       );
 
-
-    }finally{
+    } finally {
 
       setUploadingImage(false);
 
     }
 
   }
-
-
-
-
-
-  async function handleMusicUpload(
-    e:React.ChangeEvent<HTMLInputElement>
-  ){
-
+    async function handleMusicUpload(
+    e: React.ChangeEvent<HTMLInputElement>
+  ) {
 
     const file =
       e.target.files?.[0];
 
-
-    if(!file)
+    if (!file)
       return;
 
-
-
-    try{
+    try {
 
       setUploadingMusic(true);
-
 
       const url =
         await uploadFile(
@@ -185,52 +137,43 @@ export default function NewCharacterPage() {
           "music"
         );
 
-
       setMusic(url);
 
-
-    }catch(error){
-
+    } catch (error) {
 
       alert(
         error instanceof Error
-        ? error.message
-        : "Upload failed"
+          ? error.message
+          : "Upload failed"
       );
 
-
-    }finally{
+    } finally {
 
       setUploadingMusic(false);
 
     }
 
   }
-    async function handleGalleryUpload(
-    e:React.ChangeEvent<HTMLInputElement>
-  ){
+
+  async function handleGalleryUpload(
+    e: React.ChangeEvent<HTMLInputElement>
+  ) {
 
     const files =
       e.target.files;
 
-
-    if(!files?.length)
+    if (!files?.length)
       return;
 
-
-
-    try{
+    try {
 
       setUploadingImage(true);
 
+      const uploaded: string[] = [];
 
-      const uploaded:string[] = [];
-
-
-
-      for(
+      for (
         const file of Array.from(files)
-      ){
+      ) {
 
         const url =
           await uploadFile(
@@ -238,31 +181,24 @@ export default function NewCharacterPage() {
             "image"
           );
 
-
         uploaded.push(url);
 
       }
 
-
-
-      setImages(prev=>[
+      setImages(prev => [
         ...prev,
         ...uploaded
       ]);
 
-
-
-    }catch(error){
-
+    } catch (error) {
 
       alert(
         error instanceof Error
-        ? error.message
-        : "Upload failed"
+          ? error.message
+          : "Upload failed"
       );
 
-
-    }finally{
+    } finally {
 
       setUploadingImage(false);
 
@@ -270,37 +206,25 @@ export default function NewCharacterPage() {
 
   }
 
-
-
-
-
   async function handleMusicListUpload(
-    e:React.ChangeEvent<HTMLInputElement>
-  ){
-
+    e: React.ChangeEvent<HTMLInputElement>
+  ) {
 
     const files =
       e.target.files;
 
-
-    if(!files?.length)
+    if (!files?.length)
       return;
 
-
-
-    try{
+    try {
 
       setUploadingMusic(true);
 
+      const uploaded: CharacterMusic[] = [];
 
-      const uploaded:CharacterMusic[] = [];
-
-
-
-      for(
+      for (
         const file of Array.from(files)
-      ){
-
+      ) {
 
         const url =
           await uploadFile(
@@ -308,110 +232,83 @@ export default function NewCharacterPage() {
             "music"
           );
 
-
-
         uploaded.push({
 
-          name:file.name,
+          name: file.name,
 
-          file:url,
+          file: url,
 
         });
 
-
       }
 
-
-
-      setMusics(prev=>[
+      setMusics(prev => [
         ...prev,
         ...uploaded
       ]);
 
-
-
-    }catch(error){
-
+    } catch (error) {
 
       alert(
         error instanceof Error
-        ? error.message
-        : "Upload failed"
+          ? error.message
+          : "Upload failed"
       );
 
-
-    }finally{
+    } finally {
 
       setUploadingMusic(false);
 
     }
 
   }
+    function removeGalleryImage(
+    index: number
+  ) {
 
-
-
-
-
-  function removeGalleryImage(
-    index:number
-  ){
-
-    setImages(prev=>
+    setImages(prev =>
       prev.filter(
-        (_,i)=>i!==index
+        (_, i) => i !== index
       )
     );
 
   }
-
-
-
-
 
   function removeMusic(
-    index:number
-  ){
+    index: number
+  ) {
 
-    setMusics(prev=>
+    setMusics(prev =>
       prev.filter(
-        (_,i)=>i!==index
+        (_, i) => i !== index
       )
     );
 
   }
 
+  async function saveCharacter() {
 
-
-
-
-
-  async function saveCharacter(){
-
-
-    try{
-
+    try {
 
       const response =
         await fetch(
           "/api/admin/characters",
           {
 
-            method:"POST",
+            method: "POST",
 
-            headers:{
+            headers: {
               "Content-Type":
-              "application/json",
+                "application/json",
             },
 
-
-            body:JSON.stringify({
+            body: JSON.stringify({
 
               name,
 
               slug,
 
               title,
-
 
               kingdom,
 
@@ -421,19 +318,15 @@ export default function NewCharacterPage() {
 
               universe,
 
-
               quote,
 
               description,
 
-
               profileStyle,
-
 
               image,
 
               music,
-
 
               images,
 
@@ -444,19 +337,14 @@ export default function NewCharacterPage() {
           }
         );
 
-
-
       const data =
         await response.json();
-
-
 
       alert(
         data.message
       );
 
-
-    }catch{
+    } catch {
 
       alert(
         "Failed to save character."
@@ -465,170 +353,152 @@ export default function NewCharacterPage() {
     }
 
   }
-    if (false) {
+
+  if (false) {
     return null;
   }
-
 
   return (
     <main
       style={{
-        minHeight:"100vh",
+        minHeight: "100vh",
         background:
-        "radial-gradient(circle at top,#24143b,#050505)",
-        color:"#fff",
-        padding:60,
+          "radial-gradient(circle at top,#24143b,#050505)",
+        color: "#fff",
+        padding: 60,
       }}
     >
 
       <div
         style={{
-          maxWidth:1000,
-          margin:"0 auto",
+          maxWidth: 1000,
+          margin: "0 auto",
         }}
       >
 
+        <h1
+          style={{
+            color: "#d4af37",
+            fontSize: 46,
+            marginBottom: 40,
+            fontFamily: "Cinzel, serif",
+          }}
+        >
+          Create New Character
+        </h1>
 
-      <h1
-        style={{
-          color:"#d4af37",
-          fontSize:46,
-          marginBottom:40,
-          fontFamily:"Cinzel, serif",
-        }}
-      >
-        Create New Character
-      </h1>
+        <input
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={input}
+        />
 
+        <input
+          placeholder="Slug"
+          value={slug}
+          onChange={(e) => setSlug(e.target.value)}
+          style={input}
+        />
 
+        <input
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          style={input}
+        />
 
-      <input
-        placeholder="Name"
-        value={name}
-        onChange={(e)=>setName(e.target.value)}
-        style={input}
-      />
+        <input
+          placeholder="Kingdom"
+          value={kingdom}
+          onChange={(e) => setKingdom(e.target.value)}
+          style={input}
+        />
 
+        <input
+          placeholder="Race"
+          value={race}
+          onChange={(e) => setRace(e.target.value)}
+          style={input}
+        />
 
-      <input
-        placeholder="Slug"
-        value={slug}
-        onChange={(e)=>setSlug(e.target.value)}
-        style={input}
-      />
+        <input
+          placeholder="Status"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+          style={input}
+        />
 
+        <input
+          placeholder="Universe"
+          value={universe}
+          onChange={(e) => setUniverse(e.target.value)}
+          style={input}
+        />
 
-      <input
-        placeholder="Title"
-        value={title}
-        onChange={(e)=>setTitle(e.target.value)}
-        style={input}
-      />
+        <input
+          placeholder="Quote"
+          value={quote}
+          onChange={(e) => setQuote(e.target.value)}
+          style={input}
+        />
 
+        <label style={label}>
+          Internal Character Theme
+        </label>
 
-      <input
-        placeholder="Kingdom"
-        value={kingdom}
-        onChange={(e)=>setKingdom(e.target.value)}
-        style={input}
-      />
+        <select
+          value={profileStyle}
+          onChange={(e) =>
+            setProfileStyle(e.target.value)
+          }
+          style={input}
+        >
 
+          <option value="royal">
+            👑 Royal
+          </option>
 
-      <input
-        placeholder="Race"
-        value={race}
-        onChange={(e)=>setRace(e.target.value)}
-        style={input}
-      />
+          <option value="dark">
+            🖤 Dark
+          </option>
 
+          <option value="warrior">
+            ⚔ Warrior
+          </option>
 
-      <input
-        placeholder="Status"
-        value={status}
-        onChange={(e)=>setStatus(e.target.value)}
-        style={input}
-      />
+          <option value="demon">
+            🔥 Demon
+          </option>
 
+          <option value="ancient">
+            📜 Ancient
+          </option>
 
-      <input
-        placeholder="Universe"
-        value={universe}
-        onChange={(e)=>setUniverse(e.target.value)}
-        style={input}
-      />
+          <option value="celestial">
+            ✨ Celestial
+          </option>
 
+          <option value="corrupted">
+            ☠ Corrupted
+          </option>
 
-      <input
-        placeholder="Quote"
-        value={quote}
-        onChange={(e)=>setQuote(e.target.value)}
-        style={input}
-      />
-
-
-
-      <label style={label}>
-        Internal Character Theme
-      </label>
-
-
-      <select
-        value={profileStyle}
-        onChange={(e)=>
-          setProfileStyle(e.target.value)
-        }
-        style={input}
-      >
-
-        <option value="royal">
-          👑 Royal
-        </option>
-
-        <option value="dark">
-          🖤 Dark
-        </option>
-
-        <option value="warrior">
-          ⚔ Warrior
-        </option>
-
-        <option value="demon">
-          🔥 Demon
-        </option>
-
-        <option value="ancient">
-          📜 Ancient
-        </option>
-
-        <option value="celestial">
-          ✨ Celestial
-        </option>
-
-      </select>
-
-
-
-
-      <textarea
+        </select>
+              <textarea
         placeholder="Biography"
         value={description}
-        onChange={(e)=>
+        onChange={(e) =>
           setDescription(e.target.value)
         }
         style={{
           ...input,
-          height:250,
+          height: 250,
         }}
       />
-
-
-
-
 
       <label style={label}>
         Main Character Image
       </label>
-
 
       <input
         type="file"
@@ -637,14 +507,11 @@ export default function NewCharacterPage() {
         style={input}
       />
 
-
       {uploadingImage &&
         <p>
           Uploading image...
         </p>
       }
-
-
 
       {image &&
         <p>
@@ -652,13 +519,9 @@ export default function NewCharacterPage() {
         </p>
       }
 
-
-
-
       <label style={label}>
         Gallery Images
       </label>
-
 
       <input
         type="file"
@@ -668,17 +531,15 @@ export default function NewCharacterPage() {
         style={input}
       />
 
-
-
       {
-        images.map((img,index)=>(
+        images.map((img, index) => (
 
           <div
             key={index}
             style={{
-              display:"flex",
-              justifyContent:"space-between",
-              marginBottom:10,
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: 10,
             }}
           >
 
@@ -686,10 +547,9 @@ export default function NewCharacterPage() {
               {img}
             </span>
 
-
             <button
               type="button"
-              onClick={()=>
+              onClick={() =>
                 removeGalleryImage(index)
               }
             >
@@ -701,13 +561,9 @@ export default function NewCharacterPage() {
         ))
       }
 
-
-
-
       <label style={label}>
         Main Music
       </label>
-
 
       <input
         type="file"
@@ -716,14 +572,11 @@ export default function NewCharacterPage() {
         style={input}
       />
 
-
       {uploadingMusic &&
         <p>
           Uploading music...
         </p>
       }
-
-
 
       {music &&
         <p>
@@ -731,14 +584,9 @@ export default function NewCharacterPage() {
         </p>
       }
 
-
-
-
-
       <label style={label}>
         Additional Music
       </label>
-
 
       <input
         type="file"
@@ -748,17 +596,15 @@ export default function NewCharacterPage() {
         style={input}
       />
 
-
-
       {
-        musics.map((item,index)=>(
+        musics.map((item, index) => (
 
           <div
             key={index}
             style={{
-              display:"flex",
-              justifyContent:"space-between",
-              marginBottom:10,
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: 10,
             }}
           >
 
@@ -766,10 +612,9 @@ export default function NewCharacterPage() {
               {item.name}
             </span>
 
-
             <button
               type="button"
-              onClick={()=>
+              onClick={() =>
                 removeMusic(index)
               }
             >
@@ -781,27 +626,23 @@ export default function NewCharacterPage() {
         ))
       }
 
-
-
-
       <button
         onClick={saveCharacter}
         style={{
-          width:"100%",
-          padding:18,
-          marginTop:30,
-          background:"#d4af37",
-          color:"#111",
-          border:"none",
-          borderRadius:12,
-          cursor:"pointer",
-          fontSize:18,
-          fontWeight:"bold",
+          width: "100%",
+          padding: 18,
+          marginTop: 30,
+          background: "#d4af37",
+          color: "#111",
+          border: "none",
+          borderRadius: 12,
+          cursor: "pointer",
+          fontSize: 18,
+          fontWeight: "bold",
         }}
       >
         Save Character
       </button>
-
 
       </div>
 
@@ -810,46 +651,42 @@ export default function NewCharacterPage() {
 
 }
 
+const label: React.CSSProperties = {
 
+  display: "block",
 
-const label:React.CSSProperties = {
+  marginTop: 30,
 
-  display:"block",
+  marginBottom: 8,
 
-  marginTop:30,
+  color: "#d4af37",
 
-  marginBottom:8,
+  fontSize: 18,
 
-  color:"#d4af37",
-
-  fontSize:18,
-
-  fontWeight:"bold",
+  fontWeight: "bold",
 
 };
 
+const input: React.CSSProperties = {
 
+  width: "100%",
 
-const input:React.CSSProperties = {
+  padding: 15,
 
-  width:"100%",
+  marginBottom: 20,
 
-  padding:15,
+  borderRadius: 10,
 
-  marginBottom:20,
+  border: "1px solid #555",
 
-  borderRadius:10,
+  background: "#151515",
 
-  border:"1px solid #555",
+  color: "#fff",
 
-  background:"#151515",
+  fontSize: 16,
 
-  color:"#fff",
+  outline: "none",
 
-  fontSize:16,
-
-  outline:"none",
-
-  boxSizing:"border-box",
+  boxSizing: "border-box",
 
 };
