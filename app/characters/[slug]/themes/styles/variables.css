@@ -1,0 +1,22 @@
+:root{
+
+  --anc-bg-1:#05070b;
+  --anc-bg-2:#0c1218;
+  --anc-bg-3:#18222d;
+  --anc-bg-4:#243746;
+
+  --anc-primary:#9fc6d8;
+  --anc-primary-light:#d6eef7;
+
+  --anc-marble:#edf2f6;
+  --anc-stone:#8f9aa5;
+
+  --anc-text:#edf5f9;
+  --anc-muted:#b9c8d2;
+
+  --anc-panel:rgba(10,14,18,.74);
+  --anc-border:rgba(159,198,216,.18);
+
+  --anc-shadow:rgba(0,0,0,.45);
+
+}

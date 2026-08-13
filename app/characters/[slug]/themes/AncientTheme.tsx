@@ -1,116 +1,62 @@
+"use client";
+
+import "./styles/Ancient.css";
+
 import type { Character } from "../components/CharacterProfile";
 
+import AncientSky from "./components/AncientSky";
+import AncientCity from "./components/AncientCity";
+import AncientParticles from "./components/AncientParticles";
+import AncientPortal from "./components/AncientPortal";
+import AncientEffects from "./components/AncientEffects";
+import AncientHero from "./components/AncientHero";
+import AncientMusic from "./components/AncientMusic";
+import AncientBiography from "./components/AncientBiography";
+import AncientGallery from "./components/AncientGallery";
 
 type Props = {
-  character: Character;
+  character: Character & {
+    images?: {
+      id: number;
+      image: string;
+    }[];
+  };
 };
 
-
-export default function AncientTheme({
-  character,
-}: Props) {
-
+export default function AncientTheme({ character }: Props) {
   return (
-    <main
-      style={{
-        minHeight:"100vh",
-        padding:"60px 30px",
-        background:
-          "radial-gradient(circle at top,#302515,#080808 70%)",
-        color:"#eee4c8",
-      }}
-    >
+    <main className="ancient-world">
 
-      <div
-        style={{
-          maxWidth:"1200px",
-          margin:"0 auto",
-          padding:"50px",
-          borderRadius:"30px",
-          background:"rgba(20,15,8,.85)",
-          border:
-            "1px solid rgba(180,150,80,.35)",
-          boxShadow:
-            "0 30px 80px rgba(0,0,0,.85)",
-        }}
-      >
+      <AncientSky />
 
-        <h1
-          style={{
-            textAlign:"center",
-            fontFamily:"Cinzel,serif",
-            fontSize:"52px",
-            color:"#e6c77a",
-            letterSpacing:"4px",
-          }}
-        >
-          {character.name || "Unknown"}
-        </h1>
+      <AncientCity />
 
+      <AncientPortal />
 
-        <p
-          style={{
-            textAlign:"center",
-            marginTop:"15px",
-            color:"#b89b55",
-            letterSpacing:"4px",
-          }}
-        >
-          ✦ {character.title || "Ancient Character"} ✦
-        </p>
+      <AncientParticles />
 
+      <AncientEffects />
 
-        {character.quote && (
-          <blockquote
-            style={{
-              marginTop:"40px",
-              padding:"25px",
-              borderLeft:
-                "3px solid #d7b56d",
-              fontFamily:"Georgia,serif",
-              fontSize:"22px",
-              fontStyle:"italic",
-              color:"#e6d3a0",
-            }}
-          >
-            ❝ {character.quote} ❞
-          </blockquote>
-        )}
+      <div className="ancient-overlay" />
 
+      <section className="ancient-page">
 
-        <div
-          style={{
-            marginTop:"40px",
-          }}
-        >
+        <AncientHero character={character} />
 
-          <h2
-            style={{
-              fontFamily:"Cinzel,serif",
-              color:"#d7b56d",
-              fontSize:"30px",
-            }}
-          >
-            Ancient Biography
-          </h2>
+        <AncientMusic
+          music={character.music}
+          characterName={character.name}
+        />
 
+        <AncientBiography
+          description={character.description}
+        />
 
-          <p
-            style={{
-              marginTop:"20px",
-              fontFamily:"Georgia,serif",
-              fontSize:"20px",
-              lineHeight:2,
-            }}
-          >
-            {character.description ||
-              "No ancient records available."}
-          </p>
+        <AncientGallery
+          images={character.images ?? []}
+        />
 
-        </div>
-
-
-      </div>
+      </section>
 
     </main>
   );

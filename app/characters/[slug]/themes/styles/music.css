@@ -1,0 +1,114 @@
+/* ==========================================================
+   MUSIC SECTION
+========================================================== */
+
+.ancient-music{
+
+  max-width:1200px;
+
+  margin:120px auto;
+
+}
+
+.ancient-music-header{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:24px;
+
+  margin-bottom:45px;
+
+}
+
+.music-line{
+
+  width:180px;
+
+  height:2px;
+
+  background:linear-gradient(
+    to right,
+    transparent,
+    rgba(220,245,255,.9),
+    transparent
+  );
+
+}
+
+.ancient-music-header h2{
+
+  font-size:34px;
+
+  letter-spacing:6px;
+
+  text-transform:uppercase;
+
+  color:#edf8ff;
+
+  text-shadow:
+    0 0 20px rgba(200,235,255,.25);
+
+}
+
+.ancient-music-card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:55px;
+
+  border-radius:36px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20,28,36,.95),
+      rgba(10,14,20,.92)
+    );
+
+  border:1px solid rgba(185,220,240,.18);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.45),
+    inset 0 0 50px rgba(220,245,255,.03);
+
+}
+
+.ancient-music-glow{
+
+  position:absolute;
+
+  inset:-120px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(220,245,255,.10),
+      transparent 70%
+    );
+
+  filter:blur(70px);
+
+}
+
+.ancient-music-pattern{
+
+  position:absolute;
+
+  inset:0;
+
+  opacity:.05;
+
+  background:
+    repeating-radial-gradient(
+      circle,
+      transparent 0 55px,
+      rgba(220,245,255,.18) 56px 58px
+    );
+
+}

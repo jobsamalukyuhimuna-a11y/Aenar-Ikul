@@ -1,0 +1,803 @@
+/* ==========================================================
+   HERO LAYOUT
+========================================================== */
+
+.ancient-layout {
+  display: grid;
+
+  grid-template-columns:
+    320px
+    minmax(650px, 1fr)
+    320px;
+
+  gap: 70px;
+
+  align-items: start;
+
+  min-height: auto;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+
+.ancient-center {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  text-align: center;
+
+  margin: 0;
+
+  padding: 0;
+}
+
+
+/* ==========================================================
+   CHARACTER NAME
+========================================================== */
+
+.ancient-name {
+  margin: 0;
+
+  padding: 0;
+
+  font-size: 72px;
+
+  font-weight: 900;
+
+  line-height: 1.05;
+
+  letter-spacing: 5px;
+
+  text-transform: uppercase;
+
+  color: #edf7ff;
+
+  text-shadow:
+    0 0 20px rgba(200, 235, 255, 0.35),
+    0 0 60px rgba(140, 190, 220, 0.15);
+}
+
+
+/* ==========================================================
+   CHARACTER TITLE
+========================================================== */
+
+.ancient-title {
+  margin: 8px 0 20px;
+
+  padding: 0;
+
+  font-size: 22px;
+
+  line-height: 1.3;
+
+  letter-spacing: 8px;
+
+  text-transform: uppercase;
+
+  color: #b9d7e7;
+}
+
+
+/* ==========================================================
+   CHARACTER FRAME
+========================================================== */
+
+.ancient-frame {
+  position: relative;
+
+  width: 700px;
+
+  height: 900px;
+
+  margin: 0;
+
+  border-radius: 42px;
+
+  overflow: hidden;
+
+  background: #12181d;
+
+  border: 2px solid rgba(180, 220, 240, 0.22);
+
+  box-shadow:
+    0 0 80px rgba(0, 0, 0, 0.55),
+    0 0 70px rgba(180, 220, 240, 0.10);
+}
+
+
+.frame-inner {
+  position: absolute;
+
+  inset: 18px;
+
+  overflow: hidden;
+
+  border-radius: 30px;
+}
+
+
+.ancient-image-overflow {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  object-position: center bottom;
+
+  transform: scale(1.08);
+
+  transition:
+    transform 0.8s ease,
+    filter 0.8s ease;
+}
+
+
+.ancient-frame:hover
+.ancient-image-overflow {
+  transform: scale(1.12);
+
+  filter:
+    drop-shadow(
+      0 0 30px rgba(210, 240, 255, 0.22)
+    );
+}
+
+
+.frame-shadow {
+  position: absolute;
+
+  inset: -60px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(200, 235, 255, 0.12),
+      transparent 70%
+    );
+
+  filter: blur(70px);
+
+  pointer-events: none;
+}
+
+
+.frame-glow {
+  position: absolute;
+
+  inset: 0;
+
+  box-shadow:
+    inset 0 0 60px rgba(220, 245, 255, 0.06);
+
+  pointer-events: none;
+}
+
+
+.frame-border {
+  position: absolute;
+
+  inset: 12px;
+
+  border-radius: 26px;
+
+  border: 1px solid rgba(220, 245, 255, 0.10);
+
+  pointer-events: none;
+}
+
+
+.frame-light {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(230, 248, 255, 0.10),
+      transparent 55%
+    );
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================
+   SIDE PANELS
+========================================================== */
+
+.ancient-panel {
+  padding: 38px;
+
+  border-radius: 30px;
+
+  background: rgba(15, 20, 28, 0.82);
+
+  border: 1px solid rgba(185, 220, 240, 0.15);
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+
+.ancient-panel h2 {
+  margin-bottom: 24px;
+
+  font-size: 28px;
+
+  letter-spacing: 3px;
+
+  color: #edf8ff;
+}
+
+
+.detail-item {
+  margin-bottom: 22px;
+}
+
+
+.detail-item span {
+  display: block;
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color: #8ea9b7;
+}
+
+
+.detail-item strong {
+  display: block;
+
+  margin-top: 6px;
+
+  font-size: 20px;
+
+  color: #edf8ff;
+}
+
+
+/* ==========================================================
+   CHARACTER SEAL
+========================================================== */
+
+.ancient-seal {
+  position: relative;
+
+  width: 190px;
+
+  height: 190px;
+
+  margin: 48px auto 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  isolation: isolate;
+}
+
+
+.ancient-seal::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -35px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(210, 240, 255, 0.16),
+      rgba(150, 200, 220, 0.06) 42%,
+      transparent 72%
+    );
+
+  filter: blur(16px);
+
+  opacity: 0.85;
+
+  animation:
+    sealBreath
+    5s
+    ease-in-out
+    infinite;
+
+  pointer-events: none;
+}
+
+
+.ancient-seal::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -4px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(220, 245, 255, 0.10);
+
+  box-shadow:
+    0 0 25px rgba(190, 230, 250, 0.08),
+    inset 0 0 25px rgba(190, 230, 250, 0.06);
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================
+   SEAL RINGS
+========================================================== */
+
+.seal-ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+.ring-one {
+  inset: 0;
+
+  border: 1px solid rgba(215, 242, 255, 0.42);
+
+  box-shadow:
+    0 0 14px rgba(190, 230, 250, 0.12),
+    inset 0 0 14px rgba(190, 230, 250, 0.08);
+
+  animation:
+    sealRotate
+    24s
+    linear
+    infinite;
+}
+
+
+.ring-two {
+  inset: 15px;
+
+  border: 1px dashed rgba(185, 225, 245, 0.30);
+
+  animation:
+    sealRotateReverse
+    17s
+    linear
+    infinite;
+}
+
+
+.ring-three {
+  inset: 32px;
+
+  border: 1px solid rgba(220, 245, 255, 0.24);
+
+  box-shadow:
+    0 0 18px rgba(190, 230, 250, 0.10);
+
+  animation:
+    sealRotate
+    13s
+    linear
+    infinite;
+}
+
+
+.ring-one::before,
+.ring-one::after,
+.ring-three::before,
+.ring-three::after {
+  content: "✦";
+
+  position: absolute;
+
+  color: rgba(225, 247, 255, 0.72);
+
+  font-size: 11px;
+
+  line-height: 1;
+
+  text-shadow:
+    0 0 8px rgba(210, 240, 255, 0.65);
+}
+
+
+.ring-one::before {
+  top: -6px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+
+.ring-one::after {
+  bottom: -6px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+
+.ring-three::before {
+  left: -5px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+}
+
+
+.ring-three::after {
+  right: -5px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+}
+
+
+/* ==========================================================
+   SEAL CENTER
+========================================================== */
+
+.seal-symbol {
+  position: absolute;
+
+  inset: 58px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #f7fdff 0%,
+      #d9eff8 22%,
+      #9fc6d8 58%,
+      #526f7e 100%
+    );
+
+  border: 2px solid rgba(235, 250, 255, 0.65);
+
+  box-shadow:
+    0 0 20px rgba(210, 240, 255, 0.30),
+    0 0 55px rgba(170, 215, 235, 0.16),
+    inset 0 0 18px rgba(255, 255, 255, 0.32);
+
+  z-index: 3;
+
+  animation:
+    sealCorePulse
+    5s
+    ease-in-out
+    infinite;
+}
+
+
+.seal-symbol span {
+  display: block;
+
+  font-size: 38px;
+
+  line-height: 1;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.95),
+    0 0 22px rgba(190, 230, 250, 0.75);
+
+  transform: translateY(-1px);
+}
+
+
+/* ==========================================================
+   QUOTE
+========================================================== */
+
+.ancient-hero-quote {
+  position: relative;
+
+  max-width: 850px;
+
+  margin: 18px auto 0;
+
+  padding: 0 30px;
+
+  text-align: center;
+
+  font-size: 24px;
+
+  line-height: 2;
+
+  color: #dceef8;
+
+  font-style: italic;
+
+  text-shadow:
+    0 0 15px rgba(180, 220, 240, 0.15);
+}
+
+
+.ancient-hero-quote::before,
+.ancient-hero-quote::after {
+  content: "";
+
+  display: block;
+
+  width: 90px;
+
+  height: 1px;
+
+  margin: 0 auto 14px;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      rgba(190, 225, 242, 0.35),
+      transparent
+    );
+}
+
+
+.ancient-hero-quote::after {
+  margin: 14px auto 0;
+}
+
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+@keyframes sealRotate {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes sealRotateReverse {
+
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+
+@keyframes sealBreath {
+
+  0%,
+  100% {
+    transform: scale(0.94);
+
+    opacity: 0.55;
+  }
+
+  50% {
+    transform: scale(1.08);
+
+    opacity: 1;
+  }
+}
+
+
+@keyframes sealCorePulse {
+
+  0%,
+  100% {
+    transform: scale(0.96);
+
+    box-shadow:
+      0 0 20px rgba(210, 240, 255, 0.30),
+      0 0 55px rgba(170, 215, 235, 0.16),
+      inset 0 0 18px rgba(255, 255, 255, 0.32);
+  }
+
+  50% {
+    transform: scale(1.04);
+
+    box-shadow:
+      0 0 28px rgba(220, 245, 255, 0.45),
+      0 0 75px rgba(170, 215, 235, 0.24),
+      inset 0 0 22px rgba(255, 255, 255, 0.40);
+  }
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1400px) {
+
+  .ancient-layout {
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    min-height: auto;
+
+    align-items: start;
+  }
+
+  .left-panel {
+    order: 2;
+  }
+
+  .ancient-center {
+    order: 1;
+
+    justify-content: flex-start;
+  }
+
+  .right-panel {
+    order: 3;
+  }
+}
+
+
+@media (max-width: 900px) {
+
+  .ancient-page {
+    padding: 20px 20px 90px;
+  }
+
+  .ancient-name {
+    font-size: 48px;
+
+    letter-spacing: 3px;
+  }
+
+  .ancient-title {
+    margin: 6px 0 18px;
+
+    font-size: 18px;
+
+    letter-spacing: 5px;
+  }
+
+  .ancient-frame {
+    width: 100%;
+
+    max-width: 520px;
+
+    height: 700px;
+  }
+
+  .ancient-seal {
+    width: 150px;
+
+    height: 150px;
+  }
+
+  .seal-symbol {
+    inset: 46px;
+  }
+
+  .seal-symbol span {
+    font-size: 30px;
+  }
+
+  .ancient-hero-quote {
+    font-size: 20px;
+
+    padding: 0 20px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .ancient-panel {
+    padding: 24px;
+  }
+
+  .ancient-name {
+    font-size: 36px;
+  }
+
+  .ancient-title {
+    font-size: 16px;
+
+    letter-spacing: 3px;
+
+    margin: 5px 0 15px;
+  }
+
+  .ancient-frame {
+    height: 520px;
+  }
+
+  .ancient-seal {
+    width: 115px;
+
+    height: 115px;
+
+    margin-top: 38px;
+  }
+
+  .ring-two {
+    inset: 10px;
+  }
+
+  .ring-three {
+    inset: 22px;
+  }
+
+  .seal-symbol {
+    inset: 34px;
+  }
+
+  .seal-symbol span {
+    font-size: 23px;
+  }
+
+  .ancient-hero-quote {
+    font-size: 18px;
+
+    line-height: 1.9;
+
+    padding: 0 12px;
+  }
+
+  .ancient-hero-quote::before,
+  .ancient-hero-quote::after {
+    width: 60px;
+  }
+}
+
+
+/* ==========================================================
+   REMOVE TOP DECORATION
+========================================================== */
+
+.ancient-title-decoration {
+  display: none !important;
+
+  width: 0 !important;
+
+  height: 0 !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+}
