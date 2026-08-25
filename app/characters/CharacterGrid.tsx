@@ -12,17 +12,21 @@ export default async function CharacterGrid() {
   return (
     <section
       style={{
+        width: "100%",
         maxWidth: "1500px",
         margin: "0 auto",
-        padding: "10px 0 40px",
+        padding: "10px 20px 40px",
+        boxSizing: "border-box",
       }}
     >
       <div
         style={{
           display: "grid",
           gridTemplateColumns:
-            "repeat(auto-fit,minmax(360px,1fr))",
-          gap: "45px",
+            "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
+          gap: "35px",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         {characters.map((character) => (
@@ -62,7 +66,7 @@ export default async function CharacterGrid() {
                   character.status ?? "Unknown",
 
                 profileStyle:
-                  "royal",
+                  character.profileStyle ?? "royal",
               }}
             />
           </FadeIn>

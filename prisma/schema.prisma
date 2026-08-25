@@ -1,3 +1,4 @@
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -107,4 +108,15 @@ model Media {
   type String
 
   createdAt DateTime @default(now())
+}
+
+model Universe {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  description String?
+  cover       String?
+  quote       String?
+  category    String?
+  createdAt   DateTime @default(now())
 }
