@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -27,86 +26,54 @@ model Story {
 }
 
 model Character {
-  id Int @id @default(autoincrement())
-
-  name String?
-
-  slug String @unique
-
-  title String?
-
-  description String?
-
-  image String?
-
-  kingdom String?
-
-  race String?
-
-  status String?
-
-  universe String?
-
-  quote String?
-
-  music String?
-
-  profileStyle String @default("royal")
-
-  images CharacterImage[]
-
-  musics CharacterMusic[]
-
-  createdAt DateTime @default(now())
+  id           Int              @id @default(autoincrement())
+  name         String?
+  slug         String           @unique
+  title        String?
+  description  String?
+  image        String?
+  createdAt    DateTime         @default(now())
+  kingdom      String?
+  quote        String?
+  race         String?
+  status       String?
+  universe     String?
+  music        String?
+  profileStyle String           @default("royal")
+  images       CharacterImage[]
+  musics       CharacterMusic[]
 }
 
 model CharacterImage {
-  id Int @id @default(autoincrement())
-
-  image String
-
-  sortOrder Int @default(0)
-
+  id          Int       @id @default(autoincrement())
+  image       String
+  sortOrder   Int       @default(0)
   characterId Int
-
-  character Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
+  createdAt   DateTime  @default(now())
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
 }
 
 model CharacterMusic {
-  id Int @id @default(autoincrement())
-
-  name String?
-
-  file String
-
+  id          Int       @id @default(autoincrement())
+  name        String?
+  file        String
   characterId Int
-
-  character Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
+  createdAt   DateTime  @default(now())
+  character   Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
 }
 
 model Music {
-  id Int @id @default(autoincrement())
-
-  name String
-
-  file String
-
+  id        Int      @id @default(autoincrement())
+  name      String
+  file      String
   createdAt DateTime @default(now())
 }
 
 model Media {
-  id Int @id @default(autoincrement())
-
-  name String
-
-  path String
-
-  type String
-
+  id        Int      @id @default(autoincrement())
+  name      String
+  path      String
+  type      String
   createdAt DateTime @default(now())
 }
 
