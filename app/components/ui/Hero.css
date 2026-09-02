@@ -1,16 +1,78 @@
-/* ===========================
-   Hero Responsive System
-=========================== */
+/* ==========================================================
+   HERO RESPONSIVE SYSTEM
+========================================================== */
 
-.mobile-nav {
-  display: none;
+/* ==========================================================
+   HERO NAVIGATION
+========================================================== */
+
+.hero-nav-link {
+  color: #e2c67d;
+
+  font-family: "Cinzel", serif;
+
+  font-size:
+    clamp(13px, 1.5vw, 18px);
+
+  letter-spacing:
+    clamp(2px, .4vw, 5px);
+
+  text-transform: uppercase;
+
+  text-decoration: none;
+
+  text-shadow:
+    0 0 14px rgba(212,178,90,.30);
+
+  transition:
+    color .3s ease,
+    transform .3s ease,
+    text-shadow .3s ease;
+
+  white-space: nowrap;
+
+  border: none !important;
+  border-bottom: none !important;
+
+  outline: none;
+
+  box-shadow: none !important;
 }
 
-/* ===========================
-   Tablet
-=========================== */
+.hero-nav-link:hover {
+  color: #fff1b8;
+
+  text-shadow:
+    0 0 20px rgba(212,178,90,.55);
+
+  transform: translateY(-2px);
+}
+
+.hero-brand-link {
+  color: #d7b56d;
+
+  font-weight: 700;
+}
+
+/* ==========================================================
+   HERO SECTION
+========================================================== */
+
+.hero-section {
+  border-top: none !important;
+  border-bottom: none !important;
+
+  box-shadow: none !important;
+
+  outline: none;
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
 
 @media (min-width: 769px) and (max-width: 1100px) {
+
   .desktop-nav-left {
     left: 28px !important;
   }
@@ -19,348 +81,483 @@
     right: 28px !important;
   }
 
-  .desktop-nav a {
-    font-size: clamp(13px, 1.7vw, 16px) !important;
-    letter-spacing: clamp(2px, 0.5vw, 4px) !important;
+  .hero-nav-link {
+    font-size:
+      clamp(12px, 1.7vw, 16px) !important;
+
+    letter-spacing:
+      clamp(1.5px, .5vw, 4px) !important;
   }
 
   .hero-content {
     padding-left: 24px !important;
+
     padding-right: 24px !important;
   }
 
   .hero-top-title {
-    margin-bottom: clamp(70px, 10vw, 110px) !important;
+    margin-bottom:
+      clamp(60px, 10vw, 110px) !important;
   }
 
   .hero-title {
-    font-size: clamp(48px, 9vw, 76px) !important;
-    letter-spacing: clamp(4px, 1vw, 8px) !important;
+    font-size:
+      clamp(48px, 9vw, 76px) !important;
+
+    letter-spacing:
+      clamp(4px, 1vw, 8px) !important;
   }
 
   .hero-subtitle {
-    font-size: clamp(20px, 4vw, 28px) !important;
+    font-size:
+      clamp(20px, 4vw, 28px) !important;
   }
 
   .hero-button {
-    width: min(100%, 390px) !important;
+    width:
+      min(100%, 390px) !important;
   }
 }
 
-/* ===========================
-   Mobile
-=========================== */
+/* ==========================================================
+   MOBILE
+========================================================== */
 
 @media (max-width: 768px) {
+
   .hero-section {
-    min-height: 100svh !important;
+    min-height:
+      100svh !important;
+
     height: auto !important;
 
-    background-position: center center !important;
-    background-attachment: scroll !important;
-    background-size: cover !important;
+    background-position:
+      center center !important;
 
-    overflow-x: hidden !important;
+    background-attachment:
+      scroll !important;
+
+    background-size:
+      cover !important;
+
+    overflow-x:
+      hidden !important;
   }
 
-  /* ===========================
-     Desktop Navigation
-  =========================== */
+  /* ========================================================
+     LEFT / RIGHT HERO NAVIGATION
+  ======================================================== */
 
-  .desktop-nav {
-    display: none !important;
+  .desktop-nav-left,
+  .desktop-nav-right {
+    top:
+      max(18px, env(safe-area-inset-top)) !important;
+
+    gap:
+      clamp(10px, 2.5vw, 16px) !important;
+
+    z-index: 50 !important;
   }
 
-  /* ===========================
-     Mobile Navigation
-  =========================== */
+  .desktop-nav-left {
+    left:
+      clamp(10px, 3vw, 18px) !important;
 
-  .mobile-nav {
-    position: absolute;
-    top: max(18px, env(safe-area-inset-top));
-    left: 10px;
-    right: 10px;
+    align-items: flex-start !important;
 
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    align-items: stretch;
-
-    gap: clamp(4px, 1.5vw, 8px);
-
-    z-index: 100;
-
-    width: auto;
-    max-width: 100%;
-    box-sizing: border-box;
+    text-align: left !important;
   }
 
-  .mobile-nav a {
-    min-width: 0;
+  .desktop-nav-right {
+    right:
+      clamp(10px, 3vw, 18px) !important;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end !important;
 
-    min-height: clamp(44px, 11vw, 52px);
-
-    padding: clamp(7px, 2vw, 12px) 3px;
-
-    box-sizing: border-box;
-
-    color: #e2c67d;
-    text-decoration: none;
-
-    font-family: "Cinzel", serif;
-    font-size: clamp(8px, 2.7vw, 13px);
-    font-weight: 700;
-    letter-spacing: clamp(.3px, .35vw, 1.5px);
-
-    text-align: center;
-    white-space: nowrap;
-
-    border-bottom: 2px solid rgba(201, 165, 77, .45);
-
-    transition:
-      transform .25s ease,
-      border-color .25s ease,
-      background-color .25s ease;
+    text-align: right !important;
   }
 
-  .mobile-nav a:active {
-    transform: scale(.96);
+  .hero-nav-link {
+    font-size:
+      clamp(8px, 2.7vw, 12px) !important;
+
+    letter-spacing:
+      clamp(.5px, .45vw, 1.8px) !important;
+
+    line-height: 1.35 !important;
+
+    text-shadow:
+      0 0 10px rgba(0,0,0,.85);
   }
 
-  /* ===========================
-     Hero Content
-  =========================== */
+  .hero-brand-link {
+    font-size:
+      clamp(9px, 3vw, 13px) !important;
+  }
+
+  /* ========================================================
+     HERO CONTENT
+  ======================================================== */
 
   .hero-content {
     width: 100% !important;
+
     max-width: 100% !important;
 
     padding:
-      clamp(112px, 28vw, 150px)
+      clamp(115px, 28vw, 155px)
       clamp(14px, 5vw, 24px)
       clamp(70px, 12vw, 100px) !important;
 
-    box-sizing: border-box !important;
+    box-sizing:
+      border-box !important;
   }
 
-  /* ===========================
-     Top Title
-  =========================== */
+  /* ========================================================
+     TOP TITLE
+  ======================================================== */
 
   .hero-top-title {
     width: 100% !important;
+
     max-width: 100% !important;
 
-    margin-bottom: clamp(42px, 11vw, 75px) !important;
+    margin-bottom:
+      clamp(42px, 11vw, 75px) !important;
 
-    font-size: clamp(10px, 3vw, 13px) !important;
+    font-size:
+      clamp(10px, 3vw, 13px) !important;
+
     line-height: 1.5 !important;
 
-    letter-spacing: clamp(2px, 1vw, 4px) !important;
+    letter-spacing:
+      clamp(2px, 1vw, 4px) !important;
 
-    white-space: normal !important;
-    text-align: center !important;
+    white-space:
+      normal !important;
+
+    text-align:
+      center !important;
   }
 
-  /* ===========================
-     Dividers
-  =========================== */
+  /* ========================================================
+     DIVIDERS
+  ======================================================== */
 
   .hero-divider {
     width: 100% !important;
+
     max-width: 100% !important;
 
-    gap: clamp(6px, 2vw, 12px) !important;
+    gap:
+      clamp(6px, 2vw, 12px) !important;
   }
 
   .hero-divider > div:first-child,
   .hero-divider > div:last-child {
-    width: clamp(35px, 14vw, 85px) !important;
+    width:
+      clamp(35px, 14vw, 85px) !important;
   }
 
-  /* ===========================
-     Main Title
-  =========================== */
+  /* ========================================================
+     MAIN TITLE
+  ======================================================== */
 
   .hero-title {
     width: 100% !important;
+
     max-width: 100% !important;
 
-    font-size: clamp(37px, 11vw, 58px) !important;
+    font-size:
+      clamp(37px, 11vw, 58px) !important;
 
-    line-height: 1.08 !important;
+    line-height:
+      1.08 !important;
 
-    letter-spacing: clamp(1px, .8vw, 4px) !important;
+    letter-spacing:
+      clamp(1px, .8vw, 4px) !important;
 
-    text-align: center !important;
+    text-align:
+      center !important;
 
-    overflow-wrap: anywhere !important;
-    word-break: normal !important;
+    overflow-wrap:
+      anywhere !important;
+
+    word-break:
+      normal !important;
   }
 
-  /* ===========================
-     Subtitle
-  =========================== */
+  /* ========================================================
+     SUBTITLE
+  ======================================================== */
 
   .hero-subtitle {
     width: 100% !important;
+
     max-width: 100% !important;
 
     padding:
-      0
-      clamp(4px, 2vw, 10px) !important;
+      0 clamp(4px, 2vw, 10px) !important;
 
-    font-size: clamp(17px, 5.2vw, 22px) !important;
+    font-size:
+      clamp(17px, 5.2vw, 22px) !important;
 
-    line-height: 1.55 !important;
+    line-height:
+      1.55 !important;
 
-    letter-spacing: 0 !important;
+    letter-spacing:
+      0 !important;
 
-    text-align: center !important;
+    text-align:
+      center !important;
 
-    box-sizing: border-box !important;
+    box-sizing:
+      border-box !important;
   }
 
-  /* ===========================
-     Tagline
-  =========================== */
+  /* ========================================================
+     TAGLINE
+  ======================================================== */
 
   .hero-tagline {
     width: 100% !important;
+
     max-width: 100% !important;
 
-    margin-top: clamp(10px, 3vw, 16px) !important;
+    margin-top:
+      clamp(10px, 3vw, 16px) !important;
 
-    margin-bottom: clamp(32px, 8vw, 52px) !important;
+    margin-bottom:
+      clamp(32px, 8vw, 52px) !important;
 
-    padding: 0 !important;
+    padding:
+      0 !important;
 
-    font-size: clamp(10px, 3.1vw, 14px) !important;
+    font-size:
+      clamp(10px, 3.1vw, 14px) !important;
 
-    line-height: 1.55 !important;
+    line-height:
+      1.55 !important;
 
-    letter-spacing: clamp(.5px, .6vw, 2px) !important;
+    letter-spacing:
+      clamp(.5px, .6vw, 2px) !important;
 
-    text-align: center !important;
+    text-align:
+      center !important;
 
-    white-space: normal !important;
+    white-space:
+      normal !important;
   }
 
-  /* ===========================
-     Main Button
-  =========================== */
+  /* ========================================================
+     MAIN BUTTON
+  ======================================================== */
 
   .hero-button {
-    width: min(100%, 340px) !important;
-    max-width: 100% !important;
+    width:
+      min(100%, 340px) !important;
 
-    min-height: 52px;
+    max-width:
+      100% !important;
 
-    display: flex !important;
+    min-height:
+      52px;
 
-    align-items: center !important;
-    justify-content: center !important;
+    display:
+      flex !important;
 
-    gap: clamp(7px, 2vw, 12px) !important;
+    align-items:
+      center !important;
 
-    margin: 0 auto !important;
+    justify-content:
+      center !important;
+
+    gap:
+      clamp(7px, 2vw, 12px) !important;
+
+    margin:
+      0 auto !important;
 
     padding:
       clamp(13px, 3.5vw, 17px)
       clamp(16px, 5vw, 28px) !important;
 
-    box-sizing: border-box !important;
+    box-sizing:
+      border-box !important;
 
-    font-size: clamp(11px, 3.1vw, 15px) !important;
+    font-size:
+      clamp(11px, 3.1vw, 15px) !important;
 
-    letter-spacing: clamp(.7px, .6vw, 2px) !important;
+    letter-spacing:
+      clamp(.7px, .6vw, 2px) !important;
 
-    line-height: 1.3 !important;
+    line-height:
+      1.3 !important;
 
-    text-align: center !important;
+    text-align:
+      center !important;
   }
 
   .hero-button span:first-child {
     min-width: 0;
-    overflow-wrap: break-word;
+
+    overflow-wrap:
+      break-word;
   }
 
-  /* ===========================
-     Scroll Indicator
-  =========================== */
+  /* ========================================================
+     SCROLL INDICATOR
+  ======================================================== */
 
   .hero-scroll,
   .hero-scroll-line {
-    display: none !important;
+    display:
+      none !important;
   }
 }
 
-/* ===========================
-   Small Phones
-=========================== */
+/* ==========================================================
+   SMALL PHONES
+========================================================== */
 
 @media (max-width: 390px) {
-  .mobile-nav {
-    left: 7px;
-    right: 7px;
 
-    gap: 3px;
+  .desktop-nav-left {
+    left:
+      8px !important;
   }
 
-  .mobile-nav a {
-    min-height: 42px;
+  .desktop-nav-right {
+    right:
+      8px !important;
+  }
 
-    font-size: clamp(7px, 2.5vw, 10px);
-    letter-spacing: .2px;
+  .desktop-nav-left,
+  .desktop-nav-right {
+    gap:
+      9px !important;
+  }
 
-    padding-left: 2px;
-    padding-right: 2px;
+  .hero-nav-link {
+    font-size:
+      clamp(7px, 2.5vw, 10px) !important;
+
+    letter-spacing:
+      .25px !important;
+  }
+
+  .hero-brand-link {
+    font-size:
+      clamp(8px, 2.7vw, 11px) !important;
   }
 
   .hero-content {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
+    padding-left:
+      12px !important;
+
+    padding-right:
+      12px !important;
   }
 
   .hero-top-title {
-    margin-bottom: 38px !important;
-    font-size: 10px !important;
-    letter-spacing: 2px !important;
+    margin-bottom:
+      38px !important;
+
+    font-size:
+      10px !important;
+
+    letter-spacing:
+      2px !important;
   }
 
   .hero-title {
-    font-size: clamp(34px, 10.8vw, 46px) !important;
-    letter-spacing: 1px !important;
+    font-size:
+      clamp(34px, 10.8vw, 46px) !important;
+
+    letter-spacing:
+      1px !important;
   }
 
   .hero-subtitle {
-    font-size: clamp(16px, 5vw, 19px) !important;
+    font-size:
+      clamp(16px, 5vw, 19px) !important;
   }
 
   .hero-tagline {
-    font-size: 10px !important;
-    letter-spacing: .5px !important;
+    font-size:
+      10px !important;
+
+    letter-spacing:
+      .5px !important;
   }
 
   .hero-button {
-    width: min(100%, 310px) !important;
-    font-size: 11px !important;
+    width:
+      min(100%, 310px) !important;
+
+    font-size:
+      11px !important;
   }
 }
 
-/* ===========================
-   Large Screens
-=========================== */
+/* ==========================================================
+   LARGE SCREENS
+========================================================== */
 
 @media (min-width: 1400px) {
+
   .hero-content {
-    max-width: 1280px !important;
+    max-width:
+      1280px !important;
   }
 
   .hero-title {
-    font-size: clamp(80px, 6vw, 96px) !important;
+    font-size:
+      clamp(80px, 6vw, 96px) !important;
+  }
+
+  .hero-nav-link {
+    font-size:
+      clamp(15px, 1.4vw, 19px);
+  }
+}
+
+/* ==========================================================
+   REMOVE UNWANTED HORIZONTAL LINES
+========================================================== */
+
+.hero-section,
+.hero-section::before,
+.hero-section::after,
+.hero-section a {
+  border-top:
+    none !important;
+
+  border-bottom:
+    none !important;
+
+  box-shadow:
+    none !important;
+}
+
+/* Keep decorative Hero dividers */
+
+.hero-divider {
+  box-shadow:
+    none !important;
+}
+
+/* ==========================================================
+   ACCESSIBILITY
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-nav-link {
+    transition: none !important;
+  }
+
+  .hero-section * {
+    animation: none !important;
   }
 }

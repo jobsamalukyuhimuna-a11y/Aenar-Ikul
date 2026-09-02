@@ -63,10 +63,17 @@ model CharacterMusic {
 }
 
 model Music {
-  id        Int      @id @default(autoincrement())
-  name      String
-  file      String
-  createdAt DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  name        String
+  file        String
+  cover       String
+  artist      String?
+  genre       String?
+  description String?
+  translation String?
+  duration    Int?
+  pageStyle   String?
+  createdAt   DateTime @default(now())
 }
 
 model Media {

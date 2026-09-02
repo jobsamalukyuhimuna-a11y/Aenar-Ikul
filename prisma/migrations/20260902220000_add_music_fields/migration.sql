@@ -1,0 +1,8 @@
+ALTER TABLE "Music"
+ADD COLUMN "cover" TEXT NOT NULL DEFAULT '',
+ADD COLUMN "artist" TEXT,
+ADD COLUMN "genre" TEXT,
+ADD COLUMN "description" TEXT,
+ADD COLUMN "translation" TEXT,
+ADD COLUMN "duration" INTEGER,
+ADD COLUMN "pageStyle" TEXT;
