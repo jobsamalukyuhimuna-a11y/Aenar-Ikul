@@ -1,22 +1,50 @@
 export default function WarriorSky() {
-
   return (
-
     <>
-      <div className="warrior-sky" />
+      {/* SKY */}
+      <div
+        className="warrior-sky"
+        aria-hidden="true"
+      />
 
-      <div className="warrior-sun" />
+      {/* SUN */}
+      <div
+        className="warrior-sun"
+        aria-hidden="true"
+      />
 
-      <div className="warrior-cloud cloud-1" />
-      <div className="warrior-cloud cloud-2" />
-      <div className="warrior-cloud cloud-3" />
+      {/* CLOUDS */}
+      <div
+        className="warrior-cloud cloud-1"
+        aria-hidden="true"
+      />
 
-      <div className="warrior-smoke smoke-1" />
-      <div className="warrior-smoke smoke-2" />
+      <div
+        className="warrior-cloud cloud-2"
+        aria-hidden="true"
+      />
 
-      <div className="warrior-light" />
+      <div
+        className="warrior-cloud cloud-3"
+        aria-hidden="true"
+      />
+
+      {/* SMOKE */}
+      <div
+        className="warrior-smoke smoke-1"
+        aria-hidden="true"
+      />
+
+      <div
+        className="warrior-smoke smoke-2"
+        aria-hidden="true"
+      />
+
+      {/* LIGHT */}
+      <div
+        className="warrior-light"
+        aria-hidden="true"
+      />
     </>
-
   );
-
 }

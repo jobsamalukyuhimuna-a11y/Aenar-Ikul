@@ -3,15 +3,36 @@
 export default function CorruptedForest() {
   return (
     <>
-      <div className="forest-left" />
+      {/* CORRUPTED FOREST */}
 
-      <div className="forest-center" />
+      <div
+        className="forest-left"
+        aria-hidden="true"
+      />
 
-      <div className="forest-right" />
+      <div
+        className="forest-center"
+        aria-hidden="true"
+      />
 
-      <div className="forest-ground" />
+      <div
+        className="forest-right"
+        aria-hidden="true"
+      />
 
-      <div className="forest-roots" />
+      {/* GROUND */}
+
+      <div
+        className="forest-ground"
+        aria-hidden="true"
+      />
+
+      {/* ROOTS / ATMOSPHERE */}
+
+      <div
+        className="forest-roots"
+        aria-hidden="true"
+      />
     </>
   );
 }

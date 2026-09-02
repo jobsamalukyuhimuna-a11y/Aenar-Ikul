@@ -18,14 +18,30 @@ export default function WarriorTheme({
   character,
 }: Props) {
   return (
-    <main className="warrior-world">
+    <main
+      className="warrior-world"
+      style={{
+        width: "100%",
+        minHeight: "100vh",
+        position: "relative",
+        overflow: "hidden",
+        boxSizing: "border-box",
+      }}
+    >
       <WarriorSky />
 
       <WarriorBattlefield />
 
       <WarriorParticles />
 
-      <div className="warrior-page">
+      <div
+        className="warrior-page"
+        style={{
+          width: "100%",
+          minWidth: 0,
+          boxSizing: "border-box",
+        }}
+      >
         <WarriorHero character={character} />
 
         <WarriorBiography

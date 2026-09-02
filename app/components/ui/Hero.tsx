@@ -6,7 +6,7 @@ export default function Hero() {
     <section
       className="hero-section"
       style={{
-        minHeight: "100vh",
+        minHeight: "100svh",
         position: "relative",
         overflow: "hidden",
         display: "flex",
@@ -16,8 +16,7 @@ export default function Hero() {
         backgroundImage: "url('/images/hero/hero.jpg')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundPositionX: "center",
-        backgroundPositionY: "-180px",
+        backgroundPosition: "center center",
         backgroundAttachment: "fixed",
       }}
     >
@@ -29,6 +28,8 @@ export default function Hero() {
           background:
             "linear-gradient(to bottom, rgba(0,0,0,.40), rgba(0,0,0,.82))",
           backdropFilter: "blur(.5px)",
+          WebkitBackdropFilter: "blur(.5px)",
+          pointerEvents: "none",
         }}
       />
 
@@ -40,18 +41,20 @@ export default function Hero() {
           background:
             "radial-gradient(circle at center, rgba(180,140,55,.08), transparent 60%)",
           mixBlendMode: "screen",
+          pointerEvents: "none",
         }}
       />
-            {/* Left Navigation */}
+
+      {/* Left Navigation */}
       <div
         className="desktop-nav desktop-nav-left"
         style={{
           position: "absolute",
-          top: "55px",
-          left: "60px",
+          top: "clamp(32px, 5vw, 55px)",
+          left: "clamp(20px, 4vw, 60px)",
           display: "flex",
           flexDirection: "column",
-          gap: "22px",
+          gap: "clamp(14px, 2vw, 22px)",
           zIndex: 20,
         }}
       >
@@ -60,12 +63,13 @@ export default function Hero() {
           style={{
             color: "#e2c67d",
             fontFamily: "Cinzel, serif",
-            fontSize: "18px",
-            letterSpacing: "5px",
+            fontSize: "clamp(13px, 1.5vw, 18px)",
+            letterSpacing: "clamp(2px, .4vw, 5px)",
             textTransform: "uppercase",
             textDecoration: "none",
             textShadow: "0 0 14px rgba(212,178,90,.30)",
             transition: "all .3s ease",
+            whiteSpace: "nowrap",
           }}
         >
           HOME
@@ -76,12 +80,13 @@ export default function Hero() {
           style={{
             color: "#e2c67d",
             fontFamily: "Cinzel, serif",
-            fontSize: "18px",
-            letterSpacing: "5px",
+            fontSize: "clamp(13px, 1.5vw, 18px)",
+            letterSpacing: "clamp(2px, .4vw, 5px)",
             textTransform: "uppercase",
             textDecoration: "none",
             textShadow: "0 0 14px rgba(212,178,90,.30)",
             transition: "all .3s ease",
+            whiteSpace: "nowrap",
           }}
         >
           UNIVERSES
@@ -93,12 +98,12 @@ export default function Hero() {
         className="desktop-nav desktop-nav-right"
         style={{
           position: "absolute",
-          top: "55px",
-          right: "60px",
+          top: "clamp(32px, 5vw, 55px)",
+          right: "clamp(20px, 4vw, 60px)",
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-end",
-          gap: "22px",
+          gap: "clamp(14px, 2vw, 22px)",
           zIndex: 20,
         }}
       >
@@ -107,12 +112,13 @@ export default function Hero() {
           style={{
             color: "#e2c67d",
             fontFamily: "Cinzel, serif",
-            fontSize: "18px",
-            letterSpacing: "5px",
+            fontSize: "clamp(13px, 1.5vw, 18px)",
+            letterSpacing: "clamp(2px, .4vw, 5px)",
             textTransform: "uppercase",
             textDecoration: "none",
             textShadow: "0 0 14px rgba(212,178,90,.30)",
             transition: "all .3s ease",
+            whiteSpace: "nowrap",
           }}
         >
           LIBRARY
@@ -123,18 +129,20 @@ export default function Hero() {
           style={{
             color: "#e2c67d",
             fontFamily: "Cinzel, serif",
-            fontSize: "18px",
-            letterSpacing: "5px",
+            fontSize: "clamp(13px, 1.5vw, 18px)",
+            letterSpacing: "clamp(2px, .4vw, 5px)",
             textTransform: "uppercase",
             textDecoration: "none",
             textShadow: "0 0 14px rgba(212,178,90,.30)",
             transition: "all .3s ease",
+            whiteSpace: "nowrap",
           }}
         >
           CHARACTERS
         </Link>
       </div>
-            {/* Content */}
+
+      {/* Content */}
       <div
         className="hero-content"
         style={{
@@ -142,10 +150,12 @@ export default function Hero() {
           zIndex: 10,
           width: "100%",
           maxWidth: "1200px",
-          padding: "0 30px",
+          padding:
+            "clamp(110px, 14vw, 150px) clamp(18px, 4vw, 30px) 100px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          boxSizing: "border-box",
         }}
       >
         {/* Top Title */}
@@ -153,14 +163,16 @@ export default function Hero() {
           className="hero-top-title"
           style={{
             margin: 0,
-            marginBottom: "145px",
+            marginBottom: "clamp(70px, 11vw, 145px)",
             color: "#a98a4d",
-            fontSize: "clamp(14px, 2.8vw, 16px)",
-            letterSpacing: "8px",
+            fontSize: "clamp(11px, 2vw, 16px)",
+            letterSpacing: "clamp(3px, 1vw, 8px)",
+            lineHeight: 1.5,
             textTransform: "uppercase",
             fontFamily: "Cinzel, serif",
             fontWeight: 500,
             textShadow: "0 0 15px rgba(0,0,0,.8)",
+            maxWidth: "100%",
           }}
         >
           THE ROYAL ARCHIVE
@@ -172,23 +184,28 @@ export default function Hero() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "18px",
-            marginBottom: "28px",
+            justifyContent: "center",
+            gap: "clamp(8px, 2vw, 18px)",
+            marginBottom: "clamp(18px, 3vw, 28px)",
+            width: "100%",
+            maxWidth: "650px",
           }}
         >
           <div
             style={{
-              width: "140px",
+              width: "clamp(55px, 12vw, 140px)",
               height: "1px",
               background:
                 "linear-gradient(to right, transparent, #8f6b2d)",
+              flexShrink: 1,
             }}
           />
 
           <div
             style={{
               color: "#b78d3c",
-              fontSize: "18px",
+              fontSize: "clamp(14px, 2vw, 18px)",
+              flexShrink: 0,
             }}
           >
             ✦
@@ -196,10 +213,11 @@ export default function Hero() {
 
           <div
             style={{
-              width: "140px",
+              width: "clamp(55px, 12vw, 140px)",
               height: "1px",
               background:
                 "linear-gradient(to left, transparent, #8f6b2d)",
+              flexShrink: 1,
             }}
           />
         </div>
@@ -209,9 +227,11 @@ export default function Hero() {
           className="hero-title"
           style={{
             margin: 0,
-            fontSize: "clamp(52px, 10vw, 88px)",
+            maxWidth: "100%",
+            fontSize: "clamp(40px, 10vw, 88px)",
+            lineHeight: 1.05,
             fontWeight: 400,
-            letterSpacing: "11px",
+            letterSpacing: "clamp(3px, 1.2vw, 11px)",
             textTransform: "uppercase",
             fontFamily: "'Cinzel Decorative', 'Cinzel', serif",
             background:
@@ -220,35 +240,42 @@ export default function Hero() {
             WebkitTextFillColor: "transparent",
             textShadow:
               "0 0 8px rgba(255,220,120,.15),0 8px 30px rgba(0,0,0,.75)",
+            overflowWrap: "break-word",
           }}
         >
           AENAR IKUL
         </h1>
-                {/* Decorative Divider */}
+
+        {/* Decorative Divider */}
         <div
           className="hero-divider"
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "18px",
-            marginTop: "90px",
-            marginBottom: "42px",
+            justifyContent: "center",
+            gap: "clamp(8px, 2vw, 18px)",
+            marginTop: "clamp(45px, 7vw, 90px)",
+            marginBottom: "clamp(28px, 4vw, 42px)",
+            width: "100%",
+            maxWidth: "760px",
           }}
         >
           <div
             style={{
-              width: "180px",
+              width: "clamp(60px, 16vw, 180px)",
               height: "1px",
               background:
                 "linear-gradient(to right, transparent, rgba(186,146,71,.95))",
+              flexShrink: 1,
             }}
           />
 
           <div
             style={{
               color: "#c7a258",
-              fontSize: "16px",
+              fontSize: "clamp(13px, 2vw, 16px)",
               textShadow: "0 0 15px rgba(215,181,109,.35)",
+              flexShrink: 0,
             }}
           >
             ✦
@@ -256,10 +283,11 @@ export default function Hero() {
 
           <div
             style={{
-              width: "180px",
+              width: "clamp(60px, 16vw, 180px)",
               height: "1px",
               background:
                 "linear-gradient(to left, transparent, rgba(186,146,71,.95))",
+              flexShrink: 1,
             }}
           />
         </div>
@@ -270,12 +298,13 @@ export default function Hero() {
           style={{
             maxWidth: "900px",
             width: "100%",
-            padding: "0 16px",
+            padding: "0 clamp(8px, 3vw, 16px)",
             margin: 0,
+            boxSizing: "border-box",
             color: "#e7e0d0",
-            fontSize: "clamp(22px, 5vw, 32px)",
-            lineHeight: 1.85,
-            letterSpacing: "1px",
+            fontSize: "clamp(18px, 4.5vw, 32px)",
+            lineHeight: 1.55,
+            letterSpacing: "clamp(.5px, .2vw, 1px)",
             fontFamily: "'Cormorant Garamond', serif",
             fontWeight: 400,
             textShadow: "0 2px 18px rgba(0,0,0,.9)",
@@ -284,48 +313,62 @@ export default function Hero() {
           The Official Archive of Worlds & Stories
         </p>
 
+        {/* Tagline */}
         <p
           className="hero-tagline"
           style={{
-            marginTop: "14px",
-            marginBottom: "70px",
+            maxWidth: "100%",
+            marginTop: "clamp(10px, 2vw, 14px)",
+            marginBottom: "clamp(40px, 7vw, 70px)",
+            padding: "0 8px",
+            boxSizing: "border-box",
             color: "#9d8757",
-            fontSize: "clamp(16px, 3.8vw, 20px)",
-            letterSpacing: "3px",
+            fontSize: "clamp(11px, 2.8vw, 20px)",
+            lineHeight: 1.5,
+            letterSpacing: "clamp(1px, .7vw, 3px)",
             textTransform: "uppercase",
             fontFamily: "Cinzel, serif",
           }}
         >
           Philosophy ✦ Music ✦ Art ✦ Stories
         </p>
-                <Link
+
+        {/* Main Button */}
+        <Link
           href="/library"
           className="hero-button"
           style={{
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: "14px",
-            padding: "18px 48px",
+            gap: "clamp(8px, 2vw, 14px)",
+            width: "min(100%, 420px)",
+            boxSizing: "border-box",
+            padding:
+              "clamp(14px, 3vw, 18px) clamp(22px, 6vw, 48px)",
             textDecoration: "none",
             color: "#e3c57c",
             border: "1px solid rgba(183,141,60,.9)",
             background: "rgba(0,0,0,.18)",
             backdropFilter: "blur(8px)",
-            letterSpacing: "3px",
+            WebkitBackdropFilter: "blur(8px)",
+            letterSpacing: "clamp(1px, .7vw, 3px)",
             textTransform: "uppercase",
-            fontSize: "clamp(15px, 3vw, 17px)",
+            fontSize: "clamp(12px, 2.8vw, 17px)",
+            lineHeight: 1.3,
             fontFamily: "Cinzel, serif",
             boxShadow:
               "0 0 30px rgba(183,141,60,.12), inset 0 0 18px rgba(183,141,60,.08)",
             transition: ".35s",
+            textAlign: "center",
           }}
         >
           <span>ENTER THE ARCHIVE</span>
 
           <span
             style={{
-              fontSize: "18px",
+              fontSize: "clamp(15px, 3vw, 18px)",
+              flexShrink: 0,
             }}
           >
             →
@@ -336,10 +379,10 @@ export default function Hero() {
         <div
           className="hero-scroll"
           style={{
-            marginTop: "85px",
+            marginTop: "clamp(50px, 8vw, 85px)",
             color: "#8d6b30",
-            fontSize: "clamp(13px, 2.8vw, 15px)",
-            letterSpacing: "5px",
+            fontSize: "clamp(10px, 2vw, 15px)",
+            letterSpacing: "clamp(2px, .8vw, 5px)",
             textTransform: "uppercase",
             fontFamily: "Cinzel, serif",
           }}
@@ -352,13 +395,14 @@ export default function Hero() {
           style={{
             marginTop: "10px",
             width: "1px",
-            height: "70px",
+            height: "clamp(45px, 7vw, 70px)",
             background:
               "linear-gradient(to bottom,#8d6b30,transparent)",
           }}
         />
       </div>
-            {/* Mobile Navigation */}
+
+      {/* Mobile Navigation */}
       <div className="mobile-nav">
         <Link href="/">HOME</Link>
         <Link href="/universes">UNIVERSES</Link>
@@ -373,7 +417,7 @@ export default function Hero() {
           left: 0,
           right: 0,
           bottom: 0,
-          height: "260px",
+          height: "clamp(180px, 26vw, 260px)",
           background:
             "linear-gradient(to bottom, transparent, rgba(8,8,8,.95), #080808)",
           pointerEvents: "none",
@@ -386,9 +430,9 @@ export default function Hero() {
           position: "absolute",
           inset: 0,
           pointerEvents: "none",
-          boxShadow: "inset 0 0 220px rgba(0,0,0,.65)",
+          boxShadow: "inset 0 0 clamp(120px, 18vw, 220px) rgba(0,0,0,.65)",
         }}
       />
-          </section>
+    </section>
   );
 }

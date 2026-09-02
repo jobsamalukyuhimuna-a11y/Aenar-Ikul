@@ -11,22 +11,26 @@ export default function CharactersPage() {
     <main
       style={{
         minHeight: "100vh",
+        width: "100%",
         background:
           "radial-gradient(circle at top,#251736 0%,#0b0b0b 45%,#050505 100%)",
         color: "#ffffff",
-        padding: "80px 20px",
+        padding: "clamp(60px, 8vw, 110px) clamp(12px, 4vw, 40px)",
         position: "relative",
         overflow: "hidden",
+        boxSizing: "border-box",
       }}
     >
       <GoldenDust />
 
       <div
         style={{
+          width: "100%",
           maxWidth: "1400px",
           margin: "0 auto",
           position: "relative",
           zIndex: 2,
+          boxSizing: "border-box",
         }}
       >
         <CharactersHero />
@@ -34,10 +38,13 @@ export default function CharactersPage() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))",
-            gap: "60px",
+            gridTemplateColumns:
+              "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
+            gap: "clamp(28px, 5vw, 60px)",
             alignItems: "start",
-            marginBottom: "80px",
+            marginBottom: "clamp(50px, 7vw, 80px)",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <LeftQuotes />

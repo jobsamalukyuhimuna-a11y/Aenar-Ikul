@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -41,10 +40,14 @@ export default async function UniversePage({ params }: Props) {
     <main
       style={{
         minHeight: "100vh",
+        width: "100%",
         background:
           "radial-gradient(circle at top, #251736 0%, #0b0b0b 45%, #050505 100%)",
         color: "#fff",
-        padding: "110px 20px 100px",
+        padding:
+          "clamp(70px, 9vw, 110px) clamp(10px, 4vw, 20px) clamp(70px, 9vw, 100px)",
+        boxSizing: "border-box",
+        overflowX: "hidden",
       }}
     >
       <div
@@ -52,17 +55,20 @@ export default async function UniversePage({ params }: Props) {
           width: "100%",
           maxWidth: "1200px",
           margin: "0 auto",
+          boxSizing: "border-box",
         }}
       >
         {/* HEADER */}
 
         <p
           style={{
+            margin: "0 0 clamp(10px, 2vw, 15px)",
             color: "#9d7d3d",
-            letterSpacing: "8px",
+            letterSpacing: "clamp(2px, 1vw, 8px)",
             textAlign: "center",
-            fontSize: "14px",
-            marginBottom: "15px",
+            fontSize: "clamp(9px, 2vw, 14px)",
+            lineHeight: 1.5,
+            overflowWrap: "break-word",
           }}
         >
           THE WORLD OF
@@ -70,12 +76,16 @@ export default async function UniversePage({ params }: Props) {
 
         <h1
           style={{
+            width: "100%",
             color: "#d7b56d",
-            fontSize: "clamp(42px, 6vw, 64px)",
+            fontSize: "clamp(36px, 7vw, 64px)",
+            lineHeight: 1.1,
             textAlign: "center",
             fontFamily: "Cinzel, serif",
             fontWeight: 400,
             margin: 0,
+            letterSpacing: "clamp(1px, .5vw, 4px)",
+            overflowWrap: "break-word",
           }}
         >
           {universe.name}
@@ -83,12 +93,14 @@ export default async function UniversePage({ params }: Props) {
 
         <p
           style={{
+            margin:
+              "clamp(12px, 3vw, 18px) 0 clamp(35px, 6vw, 55px)",
             textAlign: "center",
             color: "#a98a4b",
-            letterSpacing: "4px",
-            fontSize: "13px",
-            marginTop: "18px",
-            marginBottom: "55px",
+            letterSpacing: "clamp(1px, .7vw, 4px)",
+            fontSize: "clamp(10px, 2vw, 13px)",
+            lineHeight: 1.5,
+            overflowWrap: "break-word",
           }}
         >
           {universe.category}
@@ -101,11 +113,12 @@ export default async function UniversePage({ params }: Props) {
             width: "100%",
             maxWidth: "1100px",
             margin: "0 auto",
-            borderRadius: "18px",
+            borderRadius: "clamp(10px, 2vw, 18px)",
             overflow: "hidden",
             border: "2px solid rgba(200,164,77,.35)",
             boxShadow: "0 25px 70px rgba(0,0,0,.55)",
             background: "#090909",
+            boxSizing: "border-box",
           }}
         >
           <Image
@@ -114,6 +127,7 @@ export default async function UniversePage({ params }: Props) {
             width={1200}
             height={700}
             priority
+            sizes="(max-width: 768px) 100vw, 1100px"
             style={{
               display: "block",
               width: "100%",
@@ -129,21 +143,24 @@ export default async function UniversePage({ params }: Props) {
 
         <section
           style={{
-            marginTop: "55px",
+            marginTop: "clamp(35px, 6vw, 55px)",
             background: "rgba(17,17,17,.78)",
             border: "1px solid rgba(200,164,77,.25)",
-            borderRadius: "18px",
-            padding: "clamp(25px, 4vw, 40px)",
+            borderRadius: "clamp(12px, 2.5vw, 18px)",
+            padding: "clamp(20px, 5vw, 40px)",
             boxShadow: "0 20px 50px rgba(0,0,0,.3)",
+            boxSizing: "border-box",
           }}
         >
           <h2
             style={{
               color: "#d7b56d",
-              fontSize: "clamp(28px, 4vw, 36px)",
-              margin: "0 0 22px",
+              fontSize: "clamp(25px, 5vw, 36px)",
+              lineHeight: 1.2,
+              margin: "0 0 clamp(16px, 3vw, 22px)",
               fontFamily: "Cinzel, serif",
               fontWeight: 400,
+              overflowWrap: "break-word",
             }}
           >
             About this World
@@ -152,9 +169,11 @@ export default async function UniversePage({ params }: Props) {
           <p
             style={{
               color: "#cfcfcf",
-              lineHeight: 2,
-              fontSize: "18px",
+              lineHeight: 1.9,
+              fontSize: "clamp(15px, 2.7vw, 18px)",
               margin: 0,
+              overflowWrap: "break-word",
+              wordBreak: "break-word",
             }}
           >
             {universe.description}
@@ -162,14 +181,17 @@ export default async function UniversePage({ params }: Props) {
 
           <div
             style={{
-              marginTop: "30px",
-              padding: "22px 25px",
+              marginTop: "clamp(20px, 4vw, 30px)",
+              padding:
+                "clamp(16px, 3vw, 22px) clamp(16px, 4vw, 25px)",
               borderLeft: "3px solid #d7b56d",
               background: "rgba(215,181,109,.05)",
               color: "#d7b56d",
               fontFamily: "Georgia, serif",
+              fontSize: "clamp(14px, 2.5vw, 17px)",
               fontStyle: "italic",
               lineHeight: 1.8,
+              boxSizing: "border-box",
             }}
           >
             “{universe.quote}”
@@ -180,10 +202,13 @@ export default async function UniversePage({ params }: Props) {
 
         <section
           style={{
-            marginTop: "40px",
+            marginTop: "clamp(25px, 5vw, 40px)",
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "20px",
+            gridTemplateColumns:
+              "repeat(3, minmax(0, 1fr))",
+            gap: "clamp(10px, 2.5vw, 20px)",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <WorldStat
@@ -206,7 +231,7 @@ export default async function UniversePage({ params }: Props) {
 
         <section
           style={{
-            marginTop: "85px",
+            marginTop: "clamp(55px, 8vw, 85px)",
           }}
         >
           <SectionTitle title="Characters" />
@@ -218,11 +243,13 @@ export default async function UniversePage({ params }: Props) {
               style={{
                 display: "grid",
                 gridTemplateColumns:
-                  "repeat(auto-fit, minmax(300px, 360px))",
+                  "repeat(auto-fit, minmax(min(100%, 280px), 360px))",
                 justifyContent: "center",
-                gap: "30px",
+                gap: "clamp(18px, 3vw, 30px)",
+                width: "100%",
                 maxWidth: "1100px",
                 margin: "0 auto",
+                boxSizing: "border-box",
               }}
             >
               {universeCharacters.map((character) => (
@@ -232,13 +259,15 @@ export default async function UniversePage({ params }: Props) {
                   style={{
                     textDecoration: "none",
                     color: "inherit",
+                    width: "100%",
+                    minWidth: 0,
                   }}
                 >
                   <article
                     style={{
                       width: "100%",
                       overflow: "hidden",
-                      borderRadius: "18px",
+                      borderRadius: "clamp(12px, 2.5vw, 18px)",
                       background: "rgba(17,17,17,.85)",
                       border:
                         "1px solid rgba(200,164,77,.25)",
@@ -246,13 +275,16 @@ export default async function UniversePage({ params }: Props) {
                         "0 20px 45px rgba(0,0,0,.45)",
                       transition:
                         "transform .25s ease, border-color .25s ease",
+                      boxSizing: "border-box",
                     }}
                   >
                     {character.image ? (
                       <div
                         style={{
+                          position: "relative",
                           width: "100%",
-                          height: "420px",
+                          height:
+                            "clamp(300px, 70vw, 420px)",
                           overflow: "hidden",
                           background: "#080808",
                         }}
@@ -260,8 +292,13 @@ export default async function UniversePage({ params }: Props) {
                         <Image
                           src={character.image}
                           alt={character.name}
-                          width={600}
-                          height={800}
+                          fill
+                          unoptimized
+                          sizes="
+                            (max-width: 600px) 92vw,
+                            (max-width: 1024px) 45vw,
+                            360px
+                          "
                           style={{
                             display: "block",
                             width: "100%",
@@ -275,7 +312,8 @@ export default async function UniversePage({ params }: Props) {
                       <div
                         style={{
                           width: "100%",
-                          height: "420px",
+                          height:
+                            "clamp(300px, 70vw, 420px)",
                           background:
                             "linear-gradient(135deg,#241b0d,#080808)",
                         }}
@@ -284,15 +322,22 @@ export default async function UniversePage({ params }: Props) {
 
                     <div
                       style={{
-                        padding: "24px",
+                        padding:
+                          "clamp(18px, 4vw, 24px)",
+                        boxSizing: "border-box",
                       }}
                     >
                       <p
                         style={{
+                          margin:
+                            "0 0 clamp(6px, 1.5vw, 8px)",
                           color: "#9d7d3d",
-                          fontSize: "11px",
-                          letterSpacing: "3px",
-                          margin: "0 0 8px",
+                          fontSize:
+                            "clamp(9px, 2vw, 11px)",
+                          letterSpacing:
+                            "clamp(1px, .7vw, 3px)",
+                          lineHeight: 1.5,
+                          overflowWrap: "break-word",
                         }}
                       >
                         {character.title}
@@ -301,10 +346,15 @@ export default async function UniversePage({ params }: Props) {
                       <h3
                         style={{
                           color: "#d7b56d",
-                          fontSize: "28px",
+                          fontSize:
+                            "clamp(22px, 5vw, 28px)",
+                          lineHeight: 1.25,
                           fontFamily: "Cinzel, serif",
                           fontWeight: 400,
-                          margin: "0 0 14px",
+                          margin:
+                            "0 0 clamp(10px, 2vw, 14px)",
+                          overflowWrap: "break-word",
+                          wordBreak: "break-word",
                         }}
                       >
                         {character.name}
@@ -314,8 +364,11 @@ export default async function UniversePage({ params }: Props) {
                         style={{
                           color: "#bdbdbd",
                           lineHeight: 1.8,
-                          fontSize: "14px",
+                          fontSize:
+                            "clamp(13px, 2.4vw, 14px)",
                           margin: 0,
+                          overflowWrap: "break-word",
+                          wordBreak: "break-word",
                         }}
                       >
                         {character.description}
@@ -332,7 +385,7 @@ export default async function UniversePage({ params }: Props) {
 
         <section
           style={{
-            marginTop: "95px",
+            marginTop: "clamp(60px, 9vw, 95px)",
           }}
         >
           <SectionTitle title="Books" />
@@ -344,11 +397,13 @@ export default async function UniversePage({ params }: Props) {
               style={{
                 display: "grid",
                 gridTemplateColumns:
-                  "repeat(auto-fit, minmax(280px, 340px))",
+                  "repeat(auto-fit, minmax(min(100%, 270px), 340px))",
                 justifyContent: "center",
-                gap: "30px",
+                gap: "clamp(18px, 3vw, 30px)",
+                width: "100%",
                 maxWidth: "1100px",
                 margin: "0 auto",
+                boxSizing: "border-box",
               }}
             >
               {universeBooks.map((book) => (
@@ -358,25 +413,30 @@ export default async function UniversePage({ params }: Props) {
                   style={{
                     textDecoration: "none",
                     color: "inherit",
+                    width: "100%",
+                    minWidth: 0,
                   }}
                 >
                   <article
                     style={{
                       width: "100%",
                       overflow: "hidden",
-                      borderRadius: "18px",
+                      borderRadius: "clamp(12px, 2.5vw, 18px)",
                       background: "rgba(17,17,17,.85)",
                       border:
                         "1px solid rgba(200,164,77,.25)",
                       boxShadow:
                         "0 20px 45px rgba(0,0,0,.45)",
+                      boxSizing: "border-box",
                     }}
                   >
                     {book.cover ? (
                       <div
                         style={{
+                          position: "relative",
                           width: "100%",
-                          height: "510px",
+                          height:
+                            "clamp(360px, 100vw, 510px)",
                           overflow: "hidden",
                           background: "#080808",
                         }}
@@ -384,8 +444,13 @@ export default async function UniversePage({ params }: Props) {
                         <Image
                           src={book.cover}
                           alt={book.title}
-                          width={680}
-                          height={1020}
+                          fill
+                          unoptimized
+                          sizes="
+                            (max-width: 600px) 92vw,
+                            (max-width: 1024px) 45vw,
+                            340px
+                          "
                           style={{
                             display: "block",
                             width: "100%",
@@ -399,7 +464,8 @@ export default async function UniversePage({ params }: Props) {
                       <div
                         style={{
                           width: "100%",
-                          height: "510px",
+                          height:
+                            "clamp(360px, 100vw, 510px)",
                           background:
                             "linear-gradient(135deg,#241b0d,#080808)",
                         }}
@@ -408,15 +474,21 @@ export default async function UniversePage({ params }: Props) {
 
                     <div
                       style={{
-                        padding: "24px",
+                        padding:
+                          "clamp(18px, 4vw, 24px)",
+                        boxSizing: "border-box",
                       }}
                     >
                       <p
                         style={{
+                          margin:
+                            "0 0 clamp(6px, 1.5vw, 8px)",
                           color: "#9d7d3d",
-                          fontSize: "11px",
-                          letterSpacing: "3px",
-                          margin: "0 0 8px",
+                          fontSize:
+                            "clamp(9px, 2vw, 11px)",
+                          letterSpacing:
+                            "clamp(1px, .7vw, 3px)",
+                          lineHeight: 1.5,
                         }}
                       >
                         {book.type}
@@ -425,10 +497,15 @@ export default async function UniversePage({ params }: Props) {
                       <h3
                         style={{
                           color: "#d7b56d",
-                          fontSize: "26px",
+                          fontSize:
+                            "clamp(21px, 4.5vw, 26px)",
+                          lineHeight: 1.25,
                           fontFamily: "Cinzel, serif",
                           fontWeight: 400,
-                          margin: "0 0 10px",
+                          margin:
+                            "0 0 clamp(8px, 2vw, 10px)",
+                          overflowWrap: "break-word",
+                          wordBreak: "break-word",
                         }}
                       >
                         {book.title}
@@ -437,9 +514,12 @@ export default async function UniversePage({ params }: Props) {
                       <p
                         style={{
                           color: "#bdbdbd",
-                          fontSize: "14px",
+                          fontSize:
+                            "clamp(13px, 2.5vw, 14px)",
                           lineHeight: 1.7,
                           margin: 0,
+                          overflowWrap: "break-word",
+                          wordBreak: "break-word",
                         }}
                       >
                         {book.subtitle}
@@ -447,9 +527,13 @@ export default async function UniversePage({ params }: Props) {
 
                       <p
                         style={{
-                          margin: "14px 0 0",
+                          margin:
+                            "clamp(10px, 2.5vw, 14px) 0 0",
                           color: "#8f8f8f",
-                          fontSize: "13px",
+                          fontSize:
+                            "clamp(11px, 2.2vw, 13px)",
+                          lineHeight: 1.5,
+                          overflowWrap: "break-word",
                         }}
                       >
                         {book.status} • {book.chapters} chapters
@@ -466,7 +550,7 @@ export default async function UniversePage({ params }: Props) {
 
         <section
           style={{
-            marginTop: "95px",
+            marginTop: "clamp(60px, 9vw, 95px)",
           }}
         >
           <SectionTitle title="Kingdoms" />
@@ -478,31 +562,44 @@ export default async function UniversePage({ params }: Props) {
               style={{
                 display: "grid",
                 gridTemplateColumns:
-                  "repeat(auto-fit, minmax(300px, 1fr))",
-                gap: "30px",
+                  "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+                gap: "clamp(18px, 3vw, 30px)",
+                width: "100%",
+                boxSizing: "border-box",
               }}
             >
               {universeKingdoms.map((kingdom) => (
                 <article
                   key={kingdom.id}
                   style={{
+                    width: "100%",
+                    minWidth: 0,
                     background: "rgba(17,17,17,.85)",
                     border:
                       "1px solid rgba(200,164,77,.25)",
-                    borderRadius: "18px",
-                    padding: "30px",
+                    borderRadius:
+                      "clamp(12px, 2.5vw, 18px)",
+                    padding:
+                      "clamp(20px, 4vw, 30px)",
                     backdropFilter: "blur(10px)",
+                    WebkitBackdropFilter: "blur(10px)",
                     boxShadow:
                       "0 20px 40px rgba(0,0,0,.45)",
+                    boxSizing: "border-box",
                   }}
                 >
                   <h3
                     style={{
                       color: "#d7b56d",
-                      fontSize: "28px",
+                      fontSize:
+                        "clamp(23px, 4.5vw, 28px)",
+                      lineHeight: 1.25,
                       fontFamily: "Cinzel, serif",
                       fontWeight: 400,
-                      margin: "0 0 20px",
+                      margin:
+                        "0 0 clamp(14px, 3vw, 20px)",
+                      overflowWrap: "break-word",
+                      wordBreak: "break-word",
                     }}
                   >
                     {kingdom.name}
@@ -511,7 +608,13 @@ export default async function UniversePage({ params }: Props) {
                   <p
                     style={{
                       color: "#bdbdbd",
-                      margin: "0 0 10px",
+                      fontSize:
+                        "clamp(13px, 2.5vw, 16px)",
+                      lineHeight: 1.7,
+                      margin:
+                        "0 0 clamp(8px, 2vw, 10px)",
+                      overflowWrap: "break-word",
+                      wordBreak: "break-word",
                     }}
                   >
                     👑 <strong>Ruler:</strong>{" "}
@@ -521,7 +624,13 @@ export default async function UniversePage({ params }: Props) {
                   <p
                     style={{
                       color: "#bdbdbd",
-                      margin: "0 0 20px",
+                      fontSize:
+                        "clamp(13px, 2.5vw, 16px)",
+                      lineHeight: 1.7,
+                      margin:
+                        "0 0 clamp(15px, 3vw, 20px)",
+                      overflowWrap: "break-word",
+                      wordBreak: "break-word",
                     }}
                   >
                     🏰 <strong>Capital:</strong>{" "}
@@ -531,8 +640,12 @@ export default async function UniversePage({ params }: Props) {
                   <p
                     style={{
                       color: "#cfcfcf",
+                      fontSize:
+                        "clamp(14px, 2.5vw, 16px)",
                       lineHeight: 1.8,
                       margin: 0,
+                      overflowWrap: "break-word",
+                      wordBreak: "break-word",
                     }}
                   >
                     {kingdom.description}
@@ -555,12 +668,16 @@ function SectionTitle({ title }: { title: string }) {
   return (
     <h2
       style={{
+        width: "100%",
         color: "#d7b56d",
-        fontSize: "clamp(32px, 5vw, 42px)",
+        fontSize: "clamp(28px, 5.5vw, 42px)",
+        lineHeight: 1.2,
         textAlign: "center",
         fontFamily: "Cinzel, serif",
         fontWeight: 400,
-        margin: "0 0 40px",
+        margin: "0 0 clamp(28px, 5vw, 40px)",
+        letterSpacing: "clamp(1px, .5vw, 3px)",
+        overflowWrap: "break-word",
       }}
     >
       {title}
@@ -582,18 +699,25 @@ function WorldStat({
   return (
     <div
       style={{
-        padding: "25px 15px",
+        width: "100%",
+        minWidth: 0,
+        padding:
+          "clamp(16px, 3vw, 25px) clamp(8px, 2vw, 15px)",
         textAlign: "center",
-        borderRadius: "18px",
+        borderRadius:
+          "clamp(12px, 2.5vw, 18px)",
         background: "rgba(17,17,17,.75)",
         border:
           "1px solid rgba(200,164,77,.2)",
+        boxSizing: "border-box",
       }}
     >
       <div
         style={{
           color: "#d7b56d",
-          fontSize: "36px",
+          fontSize:
+            "clamp(24px, 5vw, 36px)",
+          lineHeight: 1.2,
           fontFamily: "Cinzel, serif",
         }}
       >
@@ -602,11 +726,15 @@ function WorldStat({
 
       <div
         style={{
-          marginTop: "8px",
+          marginTop: "clamp(5px, 1.5vw, 8px)",
           color: "#8f8f8f",
-          fontSize: "12px",
-          letterSpacing: "3px",
+          fontSize:
+            "clamp(8px, 1.8vw, 12px)",
+          lineHeight: 1.4,
+          letterSpacing:
+            "clamp(.5px, .5vw, 3px)",
           textTransform: "uppercase",
+          overflowWrap: "break-word",
         }}
       >
         {label}
@@ -623,13 +751,20 @@ function EmptySection({ text }: { text: string }) {
   return (
     <div
       style={{
-        padding: "50px 25px",
+        width: "100%",
+        padding:
+          "clamp(30px, 6vw, 50px) clamp(16px, 4vw, 25px)",
         textAlign: "center",
-        borderRadius: "18px",
+        borderRadius:
+          "clamp(12px, 2.5vw, 18px)",
         background: "rgba(17,17,17,.6)",
         border:
           "1px solid rgba(200,164,77,.15)",
         color: "#777",
+        fontSize: "clamp(14px, 2.5vw, 18px)",
+        lineHeight: 1.7,
+        boxSizing: "border-box",
+        overflowWrap: "break-word",
       }}
     >
       {text}

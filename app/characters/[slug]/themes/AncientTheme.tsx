@@ -23,10 +23,20 @@ type Props = {
   };
 };
 
-export default function AncientTheme({ character }: Props) {
+export default function AncientTheme({
+  character,
+}: Props) {
   return (
-    <main className="ancient-world">
-
+    <main
+      className="ancient-world"
+      style={{
+        width: "100%",
+        minHeight: "100vh",
+        position: "relative",
+        overflow: "hidden",
+        boxSizing: "border-box",
+      }}
+    >
       <AncientSky />
 
       <AncientCity />
@@ -37,10 +47,19 @@ export default function AncientTheme({ character }: Props) {
 
       <AncientEffects />
 
-      <div className="ancient-overlay" />
+      <div
+        className="ancient-overlay"
+        aria-hidden="true"
+      />
 
-      <section className="ancient-page">
-
+      <section
+        className="ancient-page"
+        style={{
+          width: "100%",
+          minWidth: 0,
+          boxSizing: "border-box",
+        }}
+      >
         <AncientHero character={character} />
 
         <AncientMusic
@@ -55,9 +74,7 @@ export default function AncientTheme({ character }: Props) {
         <AncientGallery
           images={character.images ?? []}
         />
-
       </section>
-
     </main>
   );
 }

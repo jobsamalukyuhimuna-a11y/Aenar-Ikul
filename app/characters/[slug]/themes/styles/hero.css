@@ -1,26 +1,30 @@
 /* ==========================================================
-   HERO LAYOUT
+   ANCIENT HERO
+   RESPONSIVE
 ========================================================== */
 
 .ancient-layout {
   display: grid;
 
   grid-template-columns:
-    320px
-    minmax(650px, 1fr)
-    320px;
+    minmax(220px, 320px)
+    minmax(0, 1fr)
+    minmax(220px, 320px);
 
-  gap: 70px;
+  gap:
+    clamp(20px, 4vw, 70px);
 
   align-items: start;
+
+  width: 100%;
 
   min-height: auto;
 
   margin: 0;
-
   padding: 0;
-}
 
+  box-sizing: border-box;
+}
 
 .ancient-center {
   display: flex;
@@ -28,64 +32,84 @@
   flex-direction: column;
 
   align-items: center;
-
   justify-content: flex-start;
+
+  width: 100%;
+  min-width: 0;
 
   text-align: center;
 
   margin: 0;
-
   padding: 0;
-}
 
+  box-sizing: border-box;
+}
 
 /* ==========================================================
    CHARACTER NAME
 ========================================================== */
 
 .ancient-name {
-  margin: 0;
+  width: 100%;
 
+  margin: 0;
   padding: 0;
 
-  font-size: 72px;
+  font-size:
+    clamp(34px, 6vw, 72px);
 
   font-weight: 900;
 
   line-height: 1.05;
 
-  letter-spacing: 5px;
+  letter-spacing:
+    clamp(1px, .45vw, 5px);
 
   text-transform: uppercase;
+
+  text-align: center;
 
   color: #edf7ff;
 
   text-shadow:
     0 0 20px rgba(200, 235, 255, 0.35),
     0 0 60px rgba(140, 190, 220, 0.15);
-}
 
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 
 /* ==========================================================
    CHARACTER TITLE
 ========================================================== */
 
 .ancient-title {
-  margin: 8px 0 20px;
+  width: 100%;
+
+  margin:
+    8px
+    0
+    clamp(15px, 2vw, 20px);
 
   padding: 0;
 
-  font-size: 22px;
+  font-size:
+    clamp(13px, 2vw, 22px);
 
-  line-height: 1.3;
+  line-height: 1.4;
 
-  letter-spacing: 8px;
+  letter-spacing:
+    clamp(2px, .7vw, 8px);
 
   text-transform: uppercase;
 
-  color: #b9d7e7;
-}
+  text-align: center;
 
+  color: #b9d7e7;
+
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 
 /* ==========================================================
    CHARACTER FRAME
@@ -94,40 +118,52 @@
 .ancient-frame {
   position: relative;
 
-  width: 700px;
+  width: min(100%, 700px);
 
-  height: 900px;
+  aspect-ratio: 7 / 9;
+
+  height: auto;
 
   margin: 0;
 
-  border-radius: 42px;
+  border-radius:
+    clamp(22px, 3vw, 42px);
 
   overflow: hidden;
 
   background: #12181d;
 
-  border: 2px solid rgba(180, 220, 240, 0.22);
+  border:
+    2px solid
+    rgba(180, 220, 240, 0.22);
 
   box-shadow:
     0 0 80px rgba(0, 0, 0, 0.55),
     0 0 70px rgba(180, 220, 240, 0.10);
-}
 
+  box-sizing: border-box;
+
+  isolation: isolate;
+}
 
 .frame-inner {
   position: absolute;
 
-  inset: 18px;
+  inset:
+    clamp(10px, 1.8vw, 18px);
 
   overflow: hidden;
 
-  border-radius: 30px;
-}
+  border-radius:
+    clamp(16px, 2.2vw, 30px);
 
+  background: #11181e;
+
+  box-sizing: border-box;
+}
 
 .ancient-image-overflow {
   width: 100%;
-
   height: 100%;
 
   object-fit: contain;
@@ -139,8 +175,13 @@
   transition:
     transform 0.8s ease,
     filter 0.8s ease;
-}
 
+  filter:
+    drop-shadow(
+      0 0 30px
+      rgba(210, 240, 255, 0.18)
+    );
+}
 
 .ancient-frame:hover
 .ancient-image-overflow {
@@ -148,10 +189,10 @@
 
   filter:
     drop-shadow(
-      0 0 30px rgba(210, 240, 255, 0.22)
+      0 0 30px
+      rgba(210, 240, 255, 0.22)
     );
 }
-
 
 .frame-shadow {
   position: absolute;
@@ -168,8 +209,9 @@
   filter: blur(70px);
 
   pointer-events: none;
-}
 
+  z-index: 0;
+}
 
 .frame-glow {
   position: absolute;
@@ -177,24 +219,31 @@
   inset: 0;
 
   box-shadow:
-    inset 0 0 60px rgba(220, 245, 255, 0.06);
+    inset 0 0 60px
+    rgba(220, 245, 255, 0.06);
 
   pointer-events: none;
-}
 
+  z-index: 4;
+}
 
 .frame-border {
   position: absolute;
 
-  inset: 12px;
+  inset:
+    clamp(8px, 1.3vw, 12px);
 
-  border-radius: 26px;
+  border-radius:
+    clamp(17px, 2vw, 26px);
 
-  border: 1px solid rgba(220, 245, 255, 0.10);
+  border:
+    1px solid
+    rgba(220, 245, 255, 0.10);
 
   pointer-events: none;
-}
 
+  z-index: 5;
+}
 
 .frame-light {
   position: absolute;
@@ -209,69 +258,108 @@
     );
 
   pointer-events: none;
-}
 
+  z-index: 3;
+}
 
 /* ==========================================================
    SIDE PANELS
 ========================================================== */
 
 .ancient-panel {
-  padding: 38px;
+  width: 100%;
+  min-width: 0;
 
-  border-radius: 30px;
+  padding:
+    clamp(18px, 2.5vw, 38px);
 
-  background: rgba(15, 20, 28, 0.82);
+  border-radius:
+    clamp(20px, 2.5vw, 30px);
 
-  border: 1px solid rgba(185, 220, 240, 0.15);
+  background:
+    rgba(15, 20, 28, 0.82);
+
+  border:
+    1px solid
+    rgba(185, 220, 240, 0.15);
 
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 
   box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
+    0 18px 50px
+      rgba(0, 0, 0, 0.35),
+    inset 0 1px 0
+      rgba(255, 255, 255, 0.04);
 
+  box-sizing: border-box;
+
+  align-self: start;
+}
 
 .ancient-panel h2 {
-  margin-bottom: 24px;
+  margin:
+    0
+    0
+    clamp(18px, 2vw, 24px);
 
-  font-size: 28px;
+  font-size:
+    clamp(20px, 2.5vw, 28px);
 
-  letter-spacing: 3px;
+  line-height: 1.3;
+
+  letter-spacing:
+    clamp(1px, .4vw, 3px);
 
   color: #edf8ff;
-}
 
+  overflow-wrap: break-word;
+}
 
 .detail-item {
-  margin-bottom: 22px;
+  width: 100%;
+
+  margin-bottom:
+    clamp(16px, 2vw, 22px);
+
+  min-width: 0;
 }
 
+.detail-item:last-child {
+  margin-bottom: 0;
+}
 
 .detail-item span {
   display: block;
 
-  font-size: 12px;
+  font-size:
+    clamp(10px, 1.3vw, 12px);
 
-  letter-spacing: 2px;
+  line-height: 1.4;
+
+  letter-spacing:
+    clamp(1px, .3vw, 2px);
 
   text-transform: uppercase;
 
   color: #8ea9b7;
 }
 
-
 .detail-item strong {
   display: block;
 
   margin-top: 6px;
 
-  font-size: 20px;
+  font-size:
+    clamp(16px, 1.8vw, 20px);
+
+  line-height: 1.45;
 
   color: #edf8ff;
-}
 
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 
 /* ==========================================================
    CHARACTER SEAL
@@ -280,28 +368,34 @@
 .ancient-seal {
   position: relative;
 
-  width: 190px;
+  width:
+    clamp(105px, 14vw, 190px);
 
-  height: 190px;
+  height:
+    clamp(105px, 14vw, 190px);
 
-  margin: 48px auto 22px;
+  margin:
+    clamp(28px, 4vw, 48px)
+    auto
+    clamp(15px, 2vw, 22px);
 
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   isolation: isolate;
-}
 
+  flex-shrink: 0;
+}
 
 .ancient-seal::before {
   content: "";
 
   position: absolute;
 
-  inset: -35px;
+  inset:
+    clamp(-35px, -3vw, -18px);
 
   border-radius: 50%;
 
@@ -326,7 +420,6 @@
   pointer-events: none;
 }
 
-
 .ancient-seal::after {
   content: "";
 
@@ -336,15 +429,18 @@
 
   border-radius: 50%;
 
-  border: 1px solid rgba(220, 245, 255, 0.10);
+  border:
+    1px solid
+    rgba(220, 245, 255, 0.10);
 
   box-shadow:
-    0 0 25px rgba(190, 230, 250, 0.08),
-    inset 0 0 25px rgba(190, 230, 250, 0.06);
+    0 0 25px
+      rgba(190, 230, 250, 0.08),
+    inset 0 0 25px
+      rgba(190, 230, 250, 0.06);
 
   pointer-events: none;
 }
-
 
 /* ==========================================================
    SEAL RINGS
@@ -358,15 +454,18 @@
   pointer-events: none;
 }
 
-
 .ring-one {
   inset: 0;
 
-  border: 1px solid rgba(215, 242, 255, 0.42);
+  border:
+    1px solid
+    rgba(215, 242, 255, 0.42);
 
   box-shadow:
-    0 0 14px rgba(190, 230, 250, 0.12),
-    inset 0 0 14px rgba(190, 230, 250, 0.08);
+    0 0 14px
+      rgba(190, 230, 250, 0.12),
+    inset 0 0 14px
+      rgba(190, 230, 250, 0.08);
 
   animation:
     sealRotate
@@ -375,11 +474,13 @@
     infinite;
 }
 
-
 .ring-two {
-  inset: 15px;
+  inset:
+    clamp(10px, 1vw, 15px);
 
-  border: 1px dashed rgba(185, 225, 245, 0.30);
+  border:
+    1px dashed
+    rgba(185, 225, 245, 0.30);
 
   animation:
     sealRotateReverse
@@ -388,14 +489,17 @@
     infinite;
 }
 
-
 .ring-three {
-  inset: 32px;
+  inset:
+    clamp(22px, 2.2vw, 32px);
 
-  border: 1px solid rgba(220, 245, 255, 0.24);
+  border:
+    1px solid
+    rgba(220, 245, 255, 0.24);
 
   box-shadow:
-    0 0 18px rgba(190, 230, 250, 0.10);
+    0 0 18px
+      rgba(190, 230, 250, 0.10);
 
   animation:
     sealRotate
@@ -403,7 +507,6 @@
     linear
     infinite;
 }
-
 
 .ring-one::before,
 .ring-one::after,
@@ -413,52 +516,50 @@
 
   position: absolute;
 
-  color: rgba(225, 247, 255, 0.72);
+  color:
+    rgba(225, 247, 255, 0.72);
 
-  font-size: 11px;
+  font-size:
+    clamp(8px, 1vw, 11px);
 
   line-height: 1;
 
   text-shadow:
-    0 0 8px rgba(210, 240, 255, 0.65);
+    0 0 8px
+    rgba(210, 240, 255, 0.65);
 }
-
 
 .ring-one::before {
   top: -6px;
-
   left: 50%;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 }
-
 
 .ring-one::after {
   bottom: -6px;
-
   left: 50%;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 }
-
 
 .ring-three::before {
   left: -5px;
-
   top: 50%;
 
-  transform: translateY(-50%);
+  transform:
+    translateY(-50%);
 }
-
 
 .ring-three::after {
   right: -5px;
-
   top: 50%;
 
-  transform: translateY(-50%);
+  transform:
+    translateY(-50%);
 }
-
 
 /* ==========================================================
    SEAL CENTER
@@ -467,14 +568,14 @@
 .seal-symbol {
   position: absolute;
 
-  inset: 58px;
+  inset:
+    clamp(34px, 4vw, 58px);
 
   border-radius: 50%;
 
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
   background:
@@ -486,12 +587,17 @@
       #526f7e 100%
     );
 
-  border: 2px solid rgba(235, 250, 255, 0.65);
+  border:
+    2px solid
+    rgba(235, 250, 255, 0.65);
 
   box-shadow:
-    0 0 20px rgba(210, 240, 255, 0.30),
-    0 0 55px rgba(170, 215, 235, 0.16),
-    inset 0 0 18px rgba(255, 255, 255, 0.32);
+    0 0 20px
+      rgba(210, 240, 255, 0.30),
+    0 0 55px
+      rgba(170, 215, 235, 0.16),
+    inset 0 0 18px
+      rgba(255, 255, 255, 0.32);
 
   z-index: 3;
 
@@ -502,23 +608,24 @@
     infinite;
 }
 
-
 .seal-symbol span {
   display: block;
 
-  font-size: 38px;
+  font-size:
+    clamp(23px, 3vw, 38px);
 
   line-height: 1;
 
   color: #ffffff;
 
   text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.95),
-    0 0 22px rgba(190, 230, 250, 0.75);
+    0 0 8px
+      rgba(255, 255, 255, 0.95),
+    0 0 22px
+      rgba(190, 230, 250, 0.75);
 
   transform: translateY(-1px);
 }
-
 
 /* ==========================================================
    QUOTE
@@ -527,26 +634,38 @@
 .ancient-hero-quote {
   position: relative;
 
+  width: 100%;
+
   max-width: 850px;
 
-  margin: 18px auto 0;
+  margin:
+    clamp(12px, 2vw, 18px)
+    auto
+    0;
 
-  padding: 0 30px;
+  padding:
+    0
+    clamp(10px, 3vw, 30px);
 
   text-align: center;
 
-  font-size: 24px;
+  font-size:
+    clamp(16px, 2.2vw, 24px);
 
-  line-height: 2;
+  line-height:
+    clamp(1.7, 1.9, 2);
 
   color: #dceef8;
 
   font-style: italic;
 
   text-shadow:
-    0 0 15px rgba(180, 220, 240, 0.15);
-}
+    0 0 15px
+    rgba(180, 220, 240, 0.15);
 
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 
 .ancient-hero-quote::before,
 .ancient-hero-quote::after {
@@ -554,11 +673,15 @@
 
   display: block;
 
-  width: 90px;
+  width:
+    clamp(55px, 8vw, 90px);
 
   height: 1px;
 
-  margin: 0 auto 14px;
+  margin:
+    0
+    auto
+    14px;
 
   background:
     linear-gradient(
@@ -569,118 +692,49 @@
     );
 }
 
-
 .ancient-hero-quote::after {
-  margin: 14px auto 0;
+  margin:
+    14px
+    auto
+    0;
 }
-
 
 /* ==========================================================
-   ANIMATIONS
-========================================================== */
-
-@keyframes sealRotate {
-
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-@keyframes sealRotateReverse {
-
-  from {
-    transform: rotate(360deg);
-  }
-
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-
-@keyframes sealBreath {
-
-  0%,
-  100% {
-    transform: scale(0.94);
-
-    opacity: 0.55;
-  }
-
-  50% {
-    transform: scale(1.08);
-
-    opacity: 1;
-  }
-}
-
-
-@keyframes sealCorePulse {
-
-  0%,
-  100% {
-    transform: scale(0.96);
-
-    box-shadow:
-      0 0 20px rgba(210, 240, 255, 0.30),
-      0 0 55px rgba(170, 215, 235, 0.16),
-      inset 0 0 18px rgba(255, 255, 255, 0.32);
-  }
-
-  50% {
-    transform: scale(1.04);
-
-    box-shadow:
-      0 0 28px rgba(220, 245, 255, 0.45),
-      0 0 75px rgba(170, 215, 235, 0.24),
-      inset 0 0 22px rgba(255, 255, 255, 0.40);
-  }
-}
-
-
-/* ==========================================================
-   RESPONSIVE
+   TABLET
 ========================================================== */
 
 @media (max-width: 1400px) {
-
   .ancient-layout {
     grid-template-columns: 1fr;
 
-    gap: 35px;
-
-    min-height: auto;
-
-    align-items: start;
-  }
-
-  .left-panel {
-    order: 2;
+    gap:
+      clamp(25px, 4vw, 35px);
   }
 
   .ancient-center {
     order: 1;
+  }
 
-    justify-content: flex-start;
+  .left-panel {
+    order: 2;
+
+    justify-self: center;
   }
 
   .right-panel {
     order: 3;
+
+    justify-self: center;
+  }
+
+  .ancient-panel {
+    width: 100%;
+
+    max-width: 700px;
   }
 }
 
-
 @media (max-width: 900px) {
-
-  .ancient-page {
-    padding: 20px 20px 90px;
-  }
-
   .ancient-name {
     font-size: 48px;
 
@@ -688,71 +742,86 @@
   }
 
   .ancient-title {
-    margin: 6px 0 18px;
-
     font-size: 18px;
 
     letter-spacing: 5px;
   }
 
   .ancient-frame {
-    width: 100%;
-
-    max-width: 520px;
-
-    height: 700px;
+    width: min(100%, 520px);
   }
 
-  .ancient-seal {
-    width: 150px;
-
-    height: 150px;
-  }
-
-  .seal-symbol {
-    inset: 46px;
-  }
-
-  .seal-symbol span {
-    font-size: 30px;
+  .ancient-panel {
+    max-width: 700px;
   }
 
   .ancient-hero-quote {
     font-size: 20px;
 
-    padding: 0 20px;
+    padding:
+      0
+      20px;
   }
 }
 
+/* ==========================================================
+   MOBILE
+========================================================== */
 
 @media (max-width: 600px) {
-
-  .ancient-panel {
-    padding: 24px;
+  .ancient-layout {
+    gap: 24px;
   }
 
   .ancient-name {
     font-size: 36px;
+
+    line-height: 1.1;
+
+    letter-spacing: 2px;
   }
 
   .ancient-title {
-    font-size: 16px;
+    margin:
+      6px
+      0
+      15px;
+
+    font-size: 15px;
 
     letter-spacing: 3px;
 
-    margin: 5px 0 15px;
+    line-height: 1.5;
   }
 
   .ancient-frame {
-    height: 520px;
+    width:
+      min(88vw, 430px);
+
+    border-radius: 24px;
+  }
+
+  .ancient-panel {
+    padding:
+      22px
+      18px;
+
+    border-radius: 21px;
+  }
+
+  .ancient-panel h2 {
+    font-size: 21px;
+  }
+
+  .detail-item strong {
+    font-size: 17px;
   }
 
   .ancient-seal {
     width: 115px;
-
     height: 115px;
 
-    margin-top: 38px;
+    margin-top: 35px;
   }
 
   .ring-two {
@@ -772,11 +841,13 @@
   }
 
   .ancient-hero-quote {
-    font-size: 18px;
+    font-size: 17px;
 
-    line-height: 1.9;
+    line-height: 1.85;
 
-    padding: 0 12px;
+    padding:
+      0
+      10px;
   }
 
   .ancient-hero-quote::before,
@@ -785,19 +856,72 @@
   }
 }
 
+/* ==========================================================
+   SMALL PHONES
+========================================================== */
+
+@media (max-width: 400px) {
+  .ancient-name {
+    font-size: 30px;
+
+    letter-spacing: 1.5px;
+  }
+
+  .ancient-title {
+    font-size: 12px;
+
+    letter-spacing: 2px;
+  }
+
+  .ancient-frame {
+    width:
+      min(88vw, 350px);
+
+    border-radius: 21px;
+  }
+
+  .ancient-panel {
+    padding:
+      19px
+      14px;
+  }
+
+  .ancient-hero-quote {
+    font-size: 15px;
+
+    line-height: 1.8;
+  }
+}
 
 /* ==========================================================
-   REMOVE TOP DECORATION
+   REMOVE OLD TITLE DECORATION
 ========================================================== */
 
 .ancient-title-decoration {
   display: none !important;
 
   width: 0 !important;
-
   height: 0 !important;
 
   margin: 0 !important;
-
   padding: 0 !important;
+}
+
+/* ==========================================================
+   ACCESSIBILITY
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .ancient-seal,
+  .ancient-seal::before,
+  .ring-one,
+  .ring-two,
+  .ring-three,
+  .seal-symbol {
+    animation: none !important;
+  }
+
+  .ancient-image-overflow {
+    transition: none !important;
+  }
 }

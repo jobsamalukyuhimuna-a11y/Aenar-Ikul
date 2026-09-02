@@ -1,13 +1,21 @@
 "use client";
 
 export default function CorruptedParticles() {
+  const particles = Array.from({ length: 120 });
+  const sparks = Array.from({ length: 60 });
+  const ash = Array.from({ length: 40 });
+  const smoke = Array.from({ length: 18 });
+  const embers = Array.from({ length: 50 });
+
   return (
     <>
-      {/* Main Corrupted Particles */}
-      {Array.from({ length: 120 }).map((_, i) => (
+      {/* MAIN CORRUPTED PARTICLES */}
+
+      {particles.map((_, i) => (
         <span
           key={`particle-${i}`}
           className="corrupted-particle"
+          aria-hidden="true"
           style={{
             left: `${(i * 17) % 100}%`,
             animationDelay: `${i * 0.08}s`,
@@ -16,11 +24,13 @@ export default function CorruptedParticles() {
         />
       ))}
 
-      {/* Purple Sparks */}
-      {Array.from({ length: 60 }).map((_, i) => (
+      {/* PURPLE SPARKS */}
+
+      {sparks.map((_, i) => (
         <span
           key={`spark-${i}`}
           className="corrupted-spark"
+          aria-hidden="true"
           style={{
             left: `${(i * 21) % 100}%`,
             top: `${(i * 13) % 100}%`,
@@ -29,11 +39,13 @@ export default function CorruptedParticles() {
         />
       ))}
 
-      {/* Floating Ash */}
-      {Array.from({ length: 40 }).map((_, i) => (
+      {/* FLOATING ASH */}
+
+      {ash.map((_, i) => (
         <span
           key={`ash-${i}`}
           className="corrupted-ash"
+          aria-hidden="true"
           style={{
             left: `${(i * 31) % 100}%`,
             animationDelay: `${i * 0.22}s`,
@@ -42,11 +54,13 @@ export default function CorruptedParticles() {
         />
       ))}
 
-      {/* Smoke */}
-      {Array.from({ length: 18 }).map((_, i) => (
+      {/* SMOKE */}
+
+      {smoke.map((_, i) => (
         <span
           key={`smoke-${i}`}
           className="corrupted-smoke"
+          aria-hidden="true"
           style={{
             left: `${(i * 29) % 100}%`,
             animationDelay: `${i * 0.8}s`,
@@ -55,11 +69,13 @@ export default function CorruptedParticles() {
         />
       ))}
 
-      {/* Embers */}
-      {Array.from({ length: 50 }).map((_, i) => (
+      {/* EMBERS */}
+
+      {embers.map((_, i) => (
         <span
           key={`ember-${i}`}
           className="corrupted-ember"
+          aria-hidden="true"
           style={{
             left: `${(i * 13) % 100}%`,
             animationDelay: `${i * 0.08}s`,

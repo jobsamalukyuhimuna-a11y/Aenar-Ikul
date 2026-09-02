@@ -5,33 +5,39 @@ type Props = {
 export default function CelestialBiography({
   description,
 }: Props) {
-
   return (
-
-    <section className="biography">
-
-      <div className="biography-header">
-
+    <section
+      className="biography"
+      style={{
+        width: "100%",
+        boxSizing: "border-box",
+      }}
+    >
+      <div
+        className="biography-header"
+        style={{
+          width: "100%",
+          boxSizing: "border-box",
+        }}
+      >
         <span className="line" />
 
         <h2>Biography</h2>
+
         <span className="line" />
-
       </div>
 
-      <div className="biography-card">
-
+      <div
+        className="biography-card"
+        style={{
+          width: "100%",
+          boxSizing: "border-box",
+        }}
+      >
         <p>
-
-          {description ||
-            "No biography available."}
-
+          {description || "No biography available."}
         </p>
-
       </div>
-
     </section>
-
   );
-
 }

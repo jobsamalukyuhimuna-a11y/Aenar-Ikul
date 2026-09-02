@@ -15,7 +15,8 @@ export default async function CharacterGrid() {
         width: "100%",
         maxWidth: "1500px",
         margin: "0 auto",
-        padding: "10px 20px 40px",
+        padding:
+          "clamp(8px, 2vw, 10px) clamp(0px, 2vw, 20px) clamp(30px, 5vw, 40px)",
         boxSizing: "border-box",
       }}
     >
@@ -23,10 +24,11 @@ export default async function CharacterGrid() {
         style={{
           display: "grid",
           gridTemplateColumns:
-            "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
-          gap: "35px",
+            "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
+          gap: "clamp(20px, 3.5vw, 35px)",
           width: "100%",
           boxSizing: "border-box",
+          alignItems: "start",
         }}
       >
         {characters.map((character) => (
@@ -34,39 +36,20 @@ export default async function CharacterGrid() {
             <CharacterCard
               character={{
                 id: character.id,
-
                 slug: character.slug ?? "",
-
-                name:
-                  character.name ?? "Unknown",
-
-                title:
-                  character.title ?? "",
-
+                name: character.name ?? "Unknown",
+                title: character.title ?? "",
                 image:
-                  character.image ??
-                  "/images/default-character.png",
-
-                description:
-                  character.description ?? "",
-
-                quote:
-                  character.quote ?? "",
-
-                kingdom:
-                  character.kingdom ?? "",
-
-                universe:
-                  character.universe ?? "Unknown",
-
-                race:
-                  character.race ?? "",
-
-                status:
-                  character.status ?? "Unknown",
-
-                profileStyle:
-                  character.profileStyle ?? "royal",
+                  character.image && character.image.trim() !== ""
+                    ? character.image
+                    : null,
+                description: character.description ?? "",
+                quote: character.quote ?? "",
+                kingdom: character.kingdom ?? "",
+                universe: character.universe ?? "Unknown",
+                race: character.race ?? "",
+                status: character.status ?? "Unknown",
+                profileStyle: character.profileStyle ?? "royal",
               }}
             />
           </FadeIn>

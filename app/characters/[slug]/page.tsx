@@ -46,10 +46,12 @@ export default async function CharacterPage({
     <main
       style={{
         minHeight: "100vh",
+        width: "100%",
         background: "#050505",
         color: "#fff",
         overflow: "hidden",
         position: "relative",
+        boxSizing: "border-box",
       }}
     >
       <ThemeRenderer
@@ -60,6 +62,9 @@ export default async function CharacterPage({
         style={{
           position: "relative",
           zIndex: 2,
+          width: "100%",
+          minWidth: 0,
+          boxSizing: "border-box",
         }}
       >
         <CharacterProfile

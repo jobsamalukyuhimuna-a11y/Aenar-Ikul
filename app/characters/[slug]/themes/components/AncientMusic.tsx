@@ -15,18 +15,16 @@ export default function AncientMusic({
   const [playing, setPlaying] = useState(false);
 
   /*
-    نستخدم الملف الموجود مباشرة داخل public/music
-    لأننا تأكدنا أن هذا الرابط يعمل:
-    /music/ithan-theme.mp3
+    الموسيقى الحالية المستخدمة في الثيم القديم.
+    الملف يعمل من داخل public/music.
   */
-  const musicSource = "/music/ithan-theme.mp3";
+  const musicSource = music || "/music/ithan-theme.mp3";
 
   const toggleMusic = async () => {
     const audio = audioRef.current;
 
     if (!audio) return;
 
-    // إذا كانت الموسيقى تعمل، أوقفها
     if (!audio.paused) {
       audio.pause();
       setPlaying(false);
@@ -36,25 +34,35 @@ export default function AncientMusic({
     try {
       audio.volume = 0.75;
 
-      const playPromise = audio.play();
-
-      if (playPromise !== undefined) {
-        await playPromise;
-      }
+      await audio.play();
 
       setPlaying(true);
     } catch (error) {
-      console.error("Ancient music playback error:", error);
+      console.error(
+        "Ancient music playback error:",
+        error
+      );
+
       setPlaying(false);
     }
   };
 
   return (
-    <section className="ancient-music">
+    <section
+      className="ancient-music"
+      style={{
+        width: "100%",
+        boxSizing: "border-box",
+      }}
+    >
       <div
         className={`ancient-music-shrine ${
           playing ? "is-playing" : ""
         }`}
+        style={{
+          width: "100%",
+          boxSizing: "border-box",
+        }}
       >
         {/* SACRED MUSIC BUTTON */}
 
@@ -62,28 +70,50 @@ export default function AncientMusic({
           type="button"
           className="music-sacred-button"
           onClick={toggleMusic}
+          disabled={!musicSource}
           aria-label={
             playing
               ? "Pause sacred music"
               : "Play sacred music"
           }
+          style={{
+            maxWidth: "100%",
+          }}
         >
-          <span className="music-outer-ring" />
+          <span
+            className="music-outer-ring"
+            aria-hidden="true"
+          />
 
-          <span className="music-middle-ring" />
+          <span
+            className="music-middle-ring"
+            aria-hidden="true"
+          />
 
-          <span className="music-inner-ring" />
+          <span
+            className="music-inner-ring"
+            aria-hidden="true"
+          />
 
-          <span className="music-energy" />
+          <span
+            className="music-energy"
+            aria-hidden="true"
+          />
 
-          <span className="music-symbol">
+          <span
+            className="music-symbol"
+            aria-hidden="true"
+          >
             {playing ? "Ⅱ" : "▶"}
           </span>
         </button>
 
         {/* FLOATING RINGS */}
 
-        <div className="music-rings">
+        <div
+          className="music-rings"
+          aria-hidden="true"
+        >
           <span />
           <span />
           <span />
@@ -100,7 +130,8 @@ export default function AncientMusic({
         </p>
 
         <p className="music-text">
-          The echoes of this soul have survived for thousands of years.
+          The echoes of this soul have survived for
+          thousands of years.
         </p>
 
         {/* AUDIO */}
@@ -108,7 +139,7 @@ export default function AncientMusic({
         <audio
           ref={audioRef}
           src={musicSource}
-          preload="auto"
+          preload="metadata"
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
           onEnded={() => setPlaying(false)}

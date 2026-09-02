@@ -3,18 +3,52 @@
 export default function CorruptedSky() {
   return (
     <>
-      <div className="corrupted-sky" />
+      {/* MAIN SKY */}
 
-      <div className="corrupted-overlay" />
+      <div
+        className="corrupted-sky"
+        aria-hidden="true"
+      />
 
-      <div className="corrupted-moon" />
+      {/* GLOBAL OVERLAY */}
 
-      <div className="corrupted-light" />
+      <div
+        className="corrupted-overlay"
+        aria-hidden="true"
+      />
 
-      <div className="corrupted-fog fog-1" />
-      <div className="corrupted-fog fog-2" />
+      {/* CORRUPTED MOON */}
 
-      <div className="corrupted-vignette" />
+      <div
+        className="corrupted-moon"
+        aria-hidden="true"
+      />
+
+      {/* LIGHT */}
+
+      <div
+        className="corrupted-light"
+        aria-hidden="true"
+      />
+
+      {/* FOG */}
+
+      <div
+        className="corrupted-fog fog-1"
+        aria-hidden="true"
+      />
+
+      <div
+        className="corrupted-fog fog-2"
+        aria-hidden="true"
+      />
+
+      {/* VIGNETTE */}
+
+      <div
+        className="corrupted-vignette"
+        aria-hidden="true"
+      />
     </>
   );
 }

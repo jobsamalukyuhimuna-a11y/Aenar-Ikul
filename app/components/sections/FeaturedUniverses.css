@@ -1,17 +1,170 @@
-@media (max-width: 768px) {
+/* ===========================
+   Featured Universes
+   Responsive System
+=========================== */
 
+.featured-universes {
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.featured-grid {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.featured-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (min-width: 769px) and (max-width: 1100px) {
   .featured-universes {
-    padding: 80px 20px !important;
+    padding-left: clamp(24px, 5vw, 45px) !important;
+    padding-right: clamp(24px, 5vw, 45px) !important;
   }
 
   .featured-grid {
-    grid-template-columns: 1fr !important;
-    justify-items: center !important;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+    gap: clamp(22px, 3vw, 30px) !important;
+  }
+
+  .featured-card {
+    max-width: 100% !important;
+  }
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 768px) {
+  .featured-universes {
+    width: 100% !important;
+
+    padding:
+      clamp(65px, 12vw, 90px)
+      clamp(14px, 5vw, 24px) !important;
+
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  .featured-universes h2 {
+    font-size: clamp(32px, 9vw, 46px) !important;
+
+    margin-bottom:
+      clamp(32px, 8vw, 55px) !important;
+
+    line-height: 1.15 !important;
+    letter-spacing: clamp(1px, .5vw, 3px) !important;
+  }
+
+  .featured-grid {
+    display: grid !important;
+
+    grid-template-columns:
+      minmax(0, 1fr) !important;
+
+    gap: clamp(18px, 5vw, 28px) !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 auto !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .featured-grid > a {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    min-width: 0 !important;
+
+    box-sizing: border-box !important;
   }
 
   .featured-card {
     width: 100% !important;
-    max-width: 320px !important;
-    box-sizing: border-box;
+    max-width: 100% !important;
+
+    min-height:
+      clamp(170px, 45vw, 210px) !important;
+
+    padding:
+      clamp(22px, 6vw, 34px) !important;
+
+    border-radius:
+      clamp(14px, 4vw, 18px) !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .featured-card h3 {
+    font-size:
+      clamp(22px, 6vw, 30px) !important;
+
+    line-height: 1.2 !important;
+
+    margin-bottom:
+      clamp(12px, 3vw, 18px) !important;
+  }
+
+  .featured-card p {
+    font-size:
+      clamp(15px, 4vw, 19px) !important;
+
+    line-height: 1.55 !important;
+
+    margin: 0 !important;
+  }
+}
+
+/* ===========================
+   Small Phones
+=========================== */
+
+@media (max-width: 390px) {
+  .featured-universes {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .featured-universes h2 {
+    font-size: clamp(30px, 9.5vw, 40px) !important;
+  }
+
+  .featured-card {
+    min-height: 165px !important;
+    padding: 20px !important;
+  }
+
+  .featured-card h3 {
+    font-size: clamp(21px, 6.5vw, 27px) !important;
+  }
+
+  .featured-card p {
+    font-size: clamp(14px, 4vw, 17px) !important;
+  }
+}
+
+/* ===========================
+   Large Desktop
+=========================== */
+
+@media (min-width: 1400px) {
+  .featured-grid {
+    max-width: 1450px !important;
+  }
+
+  .featured-card {
+    max-width: 400px !important;
   }
 }

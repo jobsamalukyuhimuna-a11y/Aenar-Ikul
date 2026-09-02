@@ -1,53 +1,189 @@
-/* ==========================
-   Desktop
-========================== */
+/* ===========================
+   Story Page
+   Responsive System
+=========================== */
 
 .story-page {
   width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-/* ==========================
-   Mobile
-========================== */
+.story-container {
+  width: 100%;
+  box-sizing: border-box;
+}
 
-@media (max-width: 768px) {
+.story-inner {
+  width: 100%;
+  box-sizing: border-box;
+}
 
+/* ===========================
+   Tablet
+=========================== */
+
+@media (min-width: 769px) and (max-width: 1100px) {
   .story-page {
-    padding: 40px 12px !important;
+    padding-left: clamp(16px, 3vw, 24px) !important;
+    padding-right: clamp(16px, 3vw, 24px) !important;
   }
 
   .story-container {
-    padding: 24px !important;
-    border-radius: 14px !important;
-  }
-
-  .story-inner {
-    padding: 20px !important;
+    max-width: 900px !important;
   }
 
   .story-title {
-    font-size: 34px !important;
-    line-height: 1.2 !important;
-  }
-
-  .story-subtitle {
-    font-size: 18px !important;
-    margin-bottom: 35px !important;
+    font-size: clamp(40px, 6vw, 52px) !important;
   }
 
   .story-content {
-    font-size: 18px !important;
+    font-size: clamp(18px, 2.5vw, 21px) !important;
+    line-height: 2 !important;
+  }
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 768px) {
+  .story-page {
+    width: 100% !important;
+    padding:
+      clamp(40px, 8vw, 60px)
+      clamp(10px, 3vw, 16px) !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  .story-container {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    padding:
+      clamp(18px, 5vw, 28px) !important;
+
+    border-radius:
+      clamp(10px, 3vw, 16px) !important;
+
+    border-width:
+      clamp(2px, .6vw, 3px) !important;
+
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .story-inner {
+    width: 100% !important;
+
+    padding:
+      clamp(18px, 5vw, 26px) !important;
+
+    border-width:
+      clamp(1px, .4vw, 2px) !important;
+
+    box-sizing: border-box !important;
+  }
+
+  .story-title {
+    width: 100% !important;
+
+    font-size:
+      clamp(28px, 8vw, 40px) !important;
+
+    line-height: 1.15 !important;
+
+    letter-spacing:
+      clamp(0px, .4vw, 2px) !important;
+
+    margin-bottom:
+      clamp(12px, 3vw, 18px) !important;
+
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+
+  .story-subtitle {
+    width: 100% !important;
+
+    font-size:
+      clamp(14px, 4vw, 18px) !important;
+
+    line-height: 1.5 !important;
+
+    margin-bottom:
+      clamp(28px, 7vw, 40px) !important;
+  }
+
+  .story-content {
+    width: 100% !important;
+
+    font-size:
+      clamp(16px, 4.5vw, 19px) !important;
+
     line-height: 1.9 !important;
+
     text-align: left !important;
+
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
   }
 
   .story-end {
-    font-size: 13px !important;
-    letter-spacing: 3px !important;
+    width: 100% !important;
+
+    font-size:
+      clamp(9px, 2.8vw, 13px) !important;
+
+    line-height: 1.6 !important;
+
+    letter-spacing:
+      clamp(1px, .8vw, 3px) !important;
+
+    overflow-wrap: break-word !important;
   }
 
   .story-corner {
-    width: 40px !important;
-    height: 40px !important;
+    width: clamp(28px, 10vw, 40px) !important;
+    height: clamp(28px, 10vw, 40px) !important;
+  }
+}
+
+/* ===========================
+   Small Phones
+=========================== */
+
+@media (max-width: 390px) {
+  .story-page {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  .story-container {
+    padding: 14px !important;
+  }
+
+  .story-inner {
+    padding: 16px !important;
+  }
+
+  .story-title {
+    font-size: clamp(26px, 8.5vw, 34px) !important;
+  }
+
+  .story-content {
+    font-size: 16px !important;
+    line-height: 1.85 !important;
+  }
+}
+
+/* ===========================
+   Large Desktop
+=========================== */
+
+@media (min-width: 1400px) {
+  .story-container {
+    max-width: 1000px !important;
   }
 }

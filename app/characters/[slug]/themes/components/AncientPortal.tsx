@@ -3,34 +3,44 @@
 export default function AncientPortal() {
   return (
     <>
-      {/* Main Sacred Portal */}
-      <div className="ancient-portal">
+      {/* MAIN SACRED PORTAL */}
 
-        {/* Outer Ring */}
+      <div
+        className="ancient-portal"
+        aria-hidden="true"
+      >
+        {/* OUTER RING */}
+
         <div className="portal-ring portal-ring-1" />
 
-        {/* Middle Ring */}
+        {/* MIDDLE RING */}
+
         <div className="portal-ring portal-ring-2" />
 
-        {/* Inner Ring */}
+        {/* INNER RING */}
+
         <div className="portal-ring portal-ring-3" />
 
-        {/* Golden Core */}
+        {/* CORE */}
+
         <div className="portal-core" />
 
-        {/* Sacred Aura */}
+        {/* AURA */}
+
         <div className="portal-aura" />
 
-        {/* Energy Waves */}
+        {/* ENERGY WAVES */}
+
         <div className="portal-wave wave-1" />
         <div className="portal-wave wave-2" />
         <div className="portal-wave wave-3" />
 
-        {/* Ancient Runes */}
+        {/* ANCIENT RUNES */}
+
         <div className="portal-runes">
           {Array.from({ length: 18 }).map((_, i) => (
             <span
-              key={i}
+              key={`portal-rune-${i}`}
               className="portal-rune"
               style={{
                 transform: `rotate(${i * 20}deg) translateY(-215px)`,
@@ -40,31 +50,42 @@ export default function AncientPortal() {
             </span>
           ))}
         </div>
-
       </div>
 
-      {/* Light Columns */}
-      <div className="portal-light left-light" />
-      <div className="portal-light right-light" />
+      {/* LIGHT COLUMNS */}
 
-      {/* Floating Stones */}
+      <div
+        className="portal-light left-light"
+        aria-hidden="true"
+      />
+
+      <div
+        className="portal-light right-light"
+        aria-hidden="true"
+      />
+
+      {/* FLOATING STONES */}
+
       {Array.from({ length: 10 }).map((_, i) => (
         <div
           key={`stone-${i}`}
           className="floating-stone"
+          aria-hidden="true"
           style={{
-            left: `${20 + (i * 6)}%`,
+            left: `${20 + i * 6}%`,
             animationDelay: `${i * 0.4}s`,
             animationDuration: `${8 + (i % 4)}s`,
           }}
         />
       ))}
 
-      {/* Divine Sparks */}
+      {/* DIVINE SPARKS */}
+
       {Array.from({ length: 24 }).map((_, i) => (
         <span
           key={`spark-${i}`}
           className="portal-spark"
+          aria-hidden="true"
           style={{
             left: `${(i * 13) % 100}%`,
             top: `${20 + ((i * 7) % 40)}%`,

@@ -7,52 +7,110 @@ type Props = {
 export default function AncientBiography({
   description,
 }: Props) {
+  const paragraphs = description
+    ? description
+        .split("\n")
+        .map((text) => text.trim())
+        .filter((text) => text !== "")
+    : [];
+
   return (
-    <section className="ancient-biography">
+    <section
+      className="ancient-biography"
+      style={{
+        width: "100%",
+        boxSizing: "border-box",
+      }}
+    >
+      <div
+        className="ancient-biography-title"
+        style={{
+          width: "100%",
+          maxWidth: "100%",
+          boxSizing: "border-box",
+          textAlign: "center",
+        }}
+      >
+        <div
+          className="title-glow"
+          aria-hidden="true"
+        />
 
-      <div className="ancient-biography-title">
-
-        <div className="title-glow" />
-
-        <h2>
+        <h2
+          style={{
+            margin: 0,
+            maxWidth: "100%",
+            overflowWrap: "break-word",
+            wordBreak: "break-word",
+          }}
+        >
           The Eternal Chronicle
         </h2>
 
-        <p>
+        <p
+          style={{
+            maxWidth: "100%",
+            overflowWrap: "break-word",
+            wordBreak: "break-word",
+          }}
+        >
           Preserved within the archives of the First Civilization
         </p>
-
       </div>
 
-      <div className="ancient-scroll">
+      <div
+        className="ancient-scroll"
+        style={{
+          width: "100%",
+          boxSizing: "border-box",
+        }}
+      >
+        <div
+          className="scroll-light"
+          aria-hidden="true"
+        />
 
-        <div className="scroll-light" />
+        <div
+          className="scroll-runes"
+          aria-hidden="true"
+        />
 
-        <div className="scroll-runes" />
-
-        <div className="scroll-content">
-
-          {description ? (
-            description
-              .split("\n")
-              .filter((text) => text.trim() !== "")
-              .map((paragraph, index) => (
-                <p key={index}>
-                  {paragraph}
-                </p>
-              ))
+        <div
+          className="scroll-content"
+          style={{
+            width: "100%",
+            boxSizing: "border-box",
+          }}
+        >
+          {paragraphs.length > 0 ? (
+            paragraphs.map((paragraph, index) => (
+              <p
+                key={index}
+                style={{
+                  maxWidth: "100%",
+                  overflowWrap: "break-word",
+                  wordBreak: "normal",
+                  boxSizing: "border-box",
+                }}
+              >
+                {paragraph}
+              </p>
+            ))
           ) : (
-            <p>
+            <p
+              style={{
+                maxWidth: "100%",
+                overflowWrap: "break-word",
+                boxSizing: "border-box",
+              }}
+            >
               The ancient archives remain silent.
               No surviving records have ever revealed
               the true history of this legendary soul.
             </p>
           )}
-
         </div>
-
       </div>
-
     </section>
   );
 }

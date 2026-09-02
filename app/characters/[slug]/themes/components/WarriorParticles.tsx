@@ -1,10 +1,13 @@
 export default function WarriorParticles() {
+  const embers = Array.from({ length: 140 });
+  const ashes = Array.from({ length: 80 });
+  const sparks = Array.from({ length: 50 });
 
   return (
-
     <>
-      {Array.from({ length: 140 }).map((_, index) => (
+      {/* EMBERS */}
 
+      {embers.map((_, index) => (
         <span
           key={`ember-${index}`}
           className="ember"
@@ -14,11 +17,11 @@ export default function WarriorParticles() {
             animationDuration: `${8 + (index % 6)}s`,
           }}
         />
-
       ))}
 
-      {Array.from({ length: 80 }).map((_, index) => (
+      {/* ASH */}
 
+      {ashes.map((_, index) => (
         <span
           key={`ash-${index}`}
           className="ash"
@@ -28,24 +31,21 @@ export default function WarriorParticles() {
             animationDuration: `${14 + (index % 5)}s`,
           }}
         />
-
       ))}
 
-      {Array.from({ length: 50 }).map((_, index) => (
+      {/* SPARKS */}
 
+      {sparks.map((_, index) => (
         <span
           key={`spark-${index}`}
           className="spark"
           style={{
             left: `${(index * 31) % 100}%`,
             top: `${(index * 13) % 100}%`,
-            animationDelay: `${index * .15}s`,
+            animationDelay: `${index * 0.15}s`,
           }}
         />
-
       ))}
     </>
-
   );
-
 }

@@ -3,9 +3,11 @@ export default function CharactersHero() {
     <section
       style={{
         position: "relative",
+        width: "100%",
         textAlign: "center",
-        padding: "20px 0 70px",
+        padding: "clamp(15px, 3vw, 20px) 0 clamp(45px, 8vw, 70px)",
         overflow: "hidden",
+        boxSizing: "border-box",
       }}
     >
       {/* Golden Aura */}
@@ -15,13 +17,13 @@ export default function CharactersHero() {
           position: "absolute",
           left: "50%",
           top: "45%",
-          transform: "translate(-50%,-50%)",
-          width: "420px",
-          height: "420px",
+          transform: "translate(-50%, -50%)",
+          width: "clamp(260px, 55vw, 420px)",
+          height: "clamp(260px, 55vw, 420px)",
           borderRadius: "50%",
           background:
             "radial-gradient(circle, rgba(215,181,109,.18), transparent 70%)",
-          filter: "blur(70px)",
+          filter: "blur(clamp(45px, 8vw, 70px))",
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -31,50 +33,74 @@ export default function CharactersHero() {
         style={{
           position: "relative",
           zIndex: 2,
+          width: "100%",
+          maxWidth: "1000px",
+          margin: "0 auto",
+          padding: "0 clamp(10px, 3vw, 20px)",
+          boxSizing: "border-box",
         }}
       >
+        {/* Small Title */}
+
         <p
           style={{
+            width: "100%",
+            margin: "0 0 clamp(14px, 3vw, 18px)",
             color: "#9d7d3d",
-            letterSpacing: "10px",
-            fontSize: "13px",
-            marginBottom: "18px",
+            letterSpacing: "clamp(2px, 1vw, 10px)",
+            fontSize: "clamp(9px, 2.2vw, 13px)",
+            lineHeight: 1.5,
             textTransform: "uppercase",
+            overflowWrap: "break-word",
+            boxSizing: "border-box",
           }}
         >
           ✦ LEGENDS OF THE REALM ✦
         </p>
 
+        {/* Main Title */}
+
         <h1
           style={{
+            width: "100%",
+            margin: "0 0 clamp(14px, 3vw, 18px)",
             fontFamily: "Cinzel, serif",
             fontWeight: 400,
-            fontSize: "clamp(46px,7vw,78px)",
+            fontSize: "clamp(38px, 8vw, 78px)",
+            lineHeight: 1.1,
             color: "#e4c77d",
-            marginBottom: "18px",
+            letterSpacing: "clamp(1px, .5vw, 4px)",
             textShadow: "0 0 25px rgba(215,181,109,.25)",
+            overflowWrap: "break-word",
           }}
         >
           Characters
         </h1>
 
+        {/* Decorative Line */}
+
         <div
           style={{
-            width: "220px",
+            width: "clamp(100px, 32vw, 220px)",
+            maxWidth: "80%",
             height: "2px",
-            margin: "0 auto 30px",
+            margin: "0 auto clamp(22px, 5vw, 30px)",
             background:
               "linear-gradient(to right, transparent,#d7b56d,transparent)",
           }}
         />
 
+        {/* Description */}
+
         <p
           style={{
+            width: "100%",
             maxWidth: "760px",
             margin: "0 auto",
             color: "#cfcfcf",
-            lineHeight: 2,
-            fontSize: "18px",
+            lineHeight: 1.9,
+            fontSize: "clamp(15px, 2.8vw, 18px)",
+            overflowWrap: "break-word",
           }}
         >
           Every soul has a legend...

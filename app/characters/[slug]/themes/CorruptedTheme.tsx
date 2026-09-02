@@ -25,18 +25,35 @@ export default function CorruptedTheme({
   character,
 }: Props) {
   return (
-    <main className="corrupted-world">
-
+    <main
+      className="corrupted-world"
+      style={{
+        width: "100%",
+        minHeight: "100vh",
+        position: "relative",
+        overflowX: "hidden",
+        boxSizing: "border-box",
+      }}
+    >
       <CorruptedSky />
 
       <CorruptedForest />
 
       <CorruptedParticles />
 
-      <div className="corrupted-overlay" />
+      <div
+        className="corrupted-overlay"
+        aria-hidden="true"
+      />
 
-      <section className="corrupted-page">
-
+      <section
+        className="corrupted-page"
+        style={{
+          width: "100%",
+          minWidth: 0,
+          boxSizing: "border-box",
+        }}
+      >
         <CorruptedHero
           character={character}
         />
@@ -53,9 +70,7 @@ export default function CorruptedTheme({
         <CorruptedGallery
           images={character.images ?? []}
         />
-
       </section>
-
     </main>
   );
 }

@@ -1,29 +1,81 @@
 export default function WarriorBattlefield() {
-
   return (
-
     <>
-      <div className="battle-horizon" />
+      {/* HORIZON */}
+      <div
+        className="battle-horizon"
+        aria-hidden="true"
+      />
 
-      <div className="battle-mountains mountains-left" />
-      <div className="battle-mountains mountains-center" />
-      <div className="battle-mountains mountains-right" />
+      {/* MOUNTAINS */}
+      <div
+        className="battle-mountains mountains-left"
+        aria-hidden="true"
+      />
 
-      <div className="battle-castle" />
+      <div
+        className="battle-mountains mountains-center"
+        aria-hidden="true"
+      />
 
-      <div className="battle-ground" />
+      <div
+        className="battle-mountains mountains-right"
+        aria-hidden="true"
+      />
 
-      <div className="battle-sword sword-1" />
-      <div className="battle-sword sword-2" />
-      <div className="battle-sword sword-3" />
-      <div className="battle-sword sword-4" />
-      <div className="battle-sword sword-5" />
+      {/* CASTLE */}
+      <div
+        className="battle-castle"
+        aria-hidden="true"
+      />
 
-      <div className="battle-fire fire-1" />
-      <div className="battle-fire fire-2" />
-      <div className="battle-fire fire-3" />
+      {/* GROUND */}
+      <div
+        className="battle-ground"
+        aria-hidden="true"
+      />
+
+      {/* SWORDS */}
+      <div
+        className="battle-sword sword-1"
+        aria-hidden="true"
+      />
+
+      <div
+        className="battle-sword sword-2"
+        aria-hidden="true"
+      />
+
+      <div
+        className="battle-sword sword-3"
+        aria-hidden="true"
+      />
+
+      <div
+        className="battle-sword sword-4"
+        aria-hidden="true"
+      />
+
+      <div
+        className="battle-sword sword-5"
+        aria-hidden="true"
+      />
+
+      {/* FIRE */}
+      <div
+        className="battle-fire fire-1"
+        aria-hidden="true"
+      />
+
+      <div
+        className="battle-fire fire-2"
+        aria-hidden="true"
+      />
+
+      <div
+        className="battle-fire fire-3"
+        aria-hidden="true"
+      />
     </>
-
   );
-
 }

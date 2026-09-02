@@ -9,11 +9,14 @@ type Props = {
 export default function CelestialInfo({
   character,
 }: Props) {
-
   return (
-
-    <section className="celestial-info">
-
+    <section
+      className="celestial-info"
+      style={{
+        width: "100%",
+        boxSizing: "border-box",
+      }}
+    >
       <InfoCard
         title="Kingdom"
         value={character.kingdom}
@@ -33,45 +36,44 @@ export default function CelestialInfo({
         title="Universe"
         value={character.universe}
       />
-
     </section>
-
   );
-
 }
 
 function InfoCard({
-
   title,
-
   value,
-
-}:{
-
-  title:string;
-
-  value?:string | null;
-
-}){
-
-  return(
-
-    <article className="info-card">
-
-      <span className="info-title">
-
+}: {
+  title: string;
+  value?: string | null;
+}) {
+  return (
+    <article
+      className="info-card"
+      style={{
+        width: "100%",
+        minWidth: 0,
+        boxSizing: "border-box",
+      }}
+    >
+      <span
+        className="info-title"
+        style={{
+          overflowWrap: "break-word",
+        }}
+      >
         {title}
-
       </span>
 
-      <span className="info-value">
-
+      <span
+        className="info-value"
+        style={{
+          overflowWrap: "break-word",
+          wordBreak: "break-word",
+        }}
+      >
         {value || "Unknown"}
-
       </span>
-
     </article>
-
   );
-
 }

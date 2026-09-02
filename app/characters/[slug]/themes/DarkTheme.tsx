@@ -1,4 +1,3 @@
-
 "use client";
 
 import type { Character } from "../components/CharacterTypes";
@@ -16,8 +15,13 @@ export default function DarkTheme({
     <>
       <style jsx>{`
         .dark-theme-page {
+          width: 100%;
           min-height: 100vh;
-          padding: 30px 20px;
+          padding:
+            clamp(15px, 4vw, 30px)
+            clamp(8px, 2vw, 20px)
+            clamp(35px, 5vw, 60px);
+
           background:
             radial-gradient(
               circle at top,
@@ -30,39 +34,65 @@ export default function DarkTheme({
               #050505 70%,
               #000
             );
+
           color: #fff;
           overflow-x: hidden;
+          box-sizing: border-box;
         }
 
         .dark-theme-container {
+          width: 100%;
           max-width: 1600px;
           margin: 0 auto;
           position: relative;
+          box-sizing: border-box;
         }
+
+        /* =====================================================
+           MUSIC
+        ===================================================== */
 
         .dark-music-bar {
           position: relative;
-          margin-bottom: 45px;
-          padding: 25px 40px;
-          border-radius: 30px;
-          border: 2px solid rgba(139, 92, 246, 0.55);
+
+          width: 100%;
+
+          margin-bottom:
+            clamp(25px, 4vw, 45px);
+
+          padding:
+            clamp(18px, 3vw, 25px)
+            clamp(14px, 4vw, 40px);
+
+          border-radius:
+            clamp(18px, 2.5vw, 30px);
+
+          border:
+            2px solid rgba(139, 92, 246, 0.55);
+
           background:
             linear-gradient(
               180deg,
               rgba(35, 15, 65, 0.95),
               rgba(8, 5, 15, 0.98)
             );
+
           box-shadow:
             0 0 60px rgba(139, 92, 246, 0.35),
             inset 0 0 40px rgba(139, 92, 246, 0.15);
+
+          box-sizing: border-box;
         }
 
         .dark-music-top-line,
         .dark-music-bottom-line {
           position: absolute;
-          left: 20px;
-          right: 20px;
+
+          left: clamp(10px, 2vw, 20px);
+          right: clamp(10px, 2vw, 20px);
+
           height: 2px;
+
           background:
             linear-gradient(
               to right,
@@ -73,249 +103,512 @@ export default function DarkTheme({
         }
 
         .dark-music-top-line {
-          top: 10px;
+          top: 8px;
         }
 
         .dark-music-bottom-line {
-          bottom: 10px;
+          bottom: 8px;
         }
 
         .dark-music-title {
           display: flex;
+
           justify-content: center;
           align-items: center;
-          gap: 20px;
+
+          gap:
+            clamp(8px, 2vw, 20px);
+
+          width: 100%;
+
+          box-sizing: border-box;
         }
 
         .dark-music-symbol {
+          flex-shrink: 0;
+
           color: #8b5cf6;
-          font-size: 25px;
+
+          font-size:
+            clamp(18px, 3vw, 25px);
+
           text-shadow:
             0 0 15px rgba(139, 92, 246, 0.8);
         }
 
         .dark-music-text {
+          margin: 0;
+
           color: #d8c7ff;
+
           font-family: Cinzel, serif;
-          letter-spacing: 8px;
-          font-size: 14px;
+
+          letter-spacing:
+            clamp(2px, .8vw, 8px);
+
+          font-size:
+            clamp(10px, 1.7vw, 14px);
+
+          text-align: center;
+
+          overflow-wrap: break-word;
         }
 
         .dark-music-player {
-          margin-top: 25px;
-          padding: 15px;
-          border-radius: 20px;
-          background: rgba(139, 92, 246, 0.08);
-          border: 1px solid rgba(139, 92, 246, 0.35);
+          width: 100%;
+
+          margin-top:
+            clamp(15px, 3vw, 25px);
+
+          padding:
+            clamp(8px, 2vw, 15px);
+
+          border-radius:
+            clamp(14px, 2vw, 20px);
+
+          background:
+            rgba(139, 92, 246, 0.08);
+
+          border:
+            1px solid rgba(139, 92, 246, 0.35);
+
           box-shadow:
             inset 0 0 25px rgba(139, 92, 246, 0.15);
+
+          box-sizing: border-box;
         }
+
+        /* =====================================================
+           MAIN FRAME
+        ===================================================== */
 
         .dark-main-frame {
           position: relative;
-          padding: 55px;
-          border-radius: 40px;
+
+          width: 100%;
+
+          padding:
+            clamp(25px, 5vw, 55px);
+
+          border-radius:
+            clamp(20px, 3vw, 40px);
+
           background:
             linear-gradient(
               180deg,
               rgba(8, 5, 18, 0.98),
               rgba(3, 3, 8, 0.98)
             );
-          border: 2px solid rgba(139, 92, 246, 0.55);
+
+          border:
+            2px solid rgba(139, 92, 246, 0.55);
+
           box-shadow:
             0 0 90px rgba(139, 92, 246, 0.28),
             inset 0 0 50px rgba(139, 92, 246, 0.12);
+
+          box-sizing: border-box;
         }
 
         .dark-corner {
           position: absolute;
-          font-size: 45px;
+
+          font-size:
+            clamp(22px, 3vw, 45px);
+
+          line-height: 1;
+
           color: #8b5cf6;
+
           text-shadow:
             0 0 20px rgba(139, 92, 246, 0.8);
+
           z-index: 5;
+
+          pointer-events: none;
         }
 
         .dark-corner.top-left {
-          top: 18px;
-          left: 18px;
+          top:
+            clamp(8px, 1.5vw, 18px);
+
+          left:
+            clamp(8px, 1.5vw, 18px);
         }
 
         .dark-corner.top-right {
-          top: 18px;
-          right: 18px;
+          top:
+            clamp(8px, 1.5vw, 18px);
+
+          right:
+            clamp(8px, 1.5vw, 18px);
         }
 
         .dark-corner.bottom-left {
-          bottom: 18px;
-          left: 18px;
+          bottom:
+            clamp(8px, 1.5vw, 18px);
+
+          left:
+            clamp(8px, 1.5vw, 18px);
         }
 
         .dark-corner.bottom-right {
-          bottom: 18px;
-          right: 18px;
+          bottom:
+            clamp(8px, 1.5vw, 18px);
+
+          right:
+            clamp(8px, 1.5vw, 18px);
         }
 
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
         .dark-header {
+          width: 100%;
+
           text-align: center;
-          margin-bottom: 50px;
+
+          margin-bottom:
+            clamp(30px, 5vw, 50px);
+
+          box-sizing: border-box;
         }
 
         .dark-realm {
+          margin: 0;
+
           color: #a78bfa;
-          letter-spacing: 9px;
+
+          letter-spacing:
+            clamp(3px, 1vw, 9px);
+
           font-family: Cinzel, serif;
-          font-size: 14px;
+
+          font-size:
+            clamp(9px, 1.5vw, 14px);
+
+          line-height: 1.5;
+
+          text-transform: uppercase;
+
+          overflow-wrap: break-word;
         }
 
         .dark-name {
-          margin-top: 25px;
+          margin-top:
+            clamp(14px, 3vw, 25px);
+
+          margin-bottom: 0;
+
           font-family: Cinzel, serif;
-          font-size: 60px;
-          letter-spacing: 5px;
+
+          font-size:
+            clamp(30px, 6vw, 60px);
+
+          line-height: 1.15;
+
+          letter-spacing:
+            clamp(1px, .6vw, 5px);
+
           color: #c7a8ff;
+
           text-shadow:
             0 0 35px rgba(139, 92, 246, 0.8);
+
+          overflow-wrap: break-word;
+
           word-break: break-word;
         }
 
         .dark-title {
-          margin-top: 20px;
+          margin:
+            clamp(10px, 2vw, 20px)
+            0
+            0;
+
           color: #c4b5fd;
-          font-size: 18px;
-          letter-spacing: 5px;
+
+          font-size:
+            clamp(12px, 2vw, 18px);
+
+          line-height: 1.6;
+
+          letter-spacing:
+            clamp(1px, .6vw, 5px);
+
           font-family: Cinzel, serif;
+
+          overflow-wrap: break-word;
         }
+
+        /* =====================================================
+           CONTENT GRID
+        ===================================================== */
 
         .dark-content-grid {
           display: grid;
-          grid-template-columns: 280px minmax(0, 1fr) 280px;
-          gap: 35px;
+
+          grid-template-columns:
+            minmax(210px, 280px)
+            minmax(0, 1fr)
+            minmax(210px, 280px);
+
+          gap:
+            clamp(18px, 3vw, 35px);
+
           align-items: center;
+
+          width: 100%;
+
+          box-sizing: border-box;
+        }
+
+        .dark-panel,
+        .dark-right-panel {
+          width: 100%;
+          min-width: 0;
+
+          box-sizing: border-box;
         }
 
         .dark-panel {
-          padding: 30px;
-          min-height: 520px;
-          border-radius: 30px;
-          background: rgba(10, 5, 20, 0.85);
-          border: 2px solid rgba(139, 92, 246, 0.45);
+          padding:
+            clamp(18px, 3vw, 30px);
+
+          min-height:
+            clamp(320px, 38vw, 520px);
+
+          border-radius:
+            clamp(18px, 2.5vw, 30px);
+
+          background:
+            rgba(10, 5, 20, 0.85);
+
+          border:
+            2px solid rgba(139, 92, 246, 0.45);
+
           box-shadow:
             0 0 40px rgba(139, 92, 246, 0.18);
         }
 
         .dark-panel-title {
           text-align: center;
+
           color: #a78bfa;
+
           font-family: Cinzel, serif;
-          letter-spacing: 4px;
-          margin-bottom: 35px;
+
+          letter-spacing:
+            clamp(2px, .5vw, 4px);
+
+          margin:
+            0 0 clamp(22px, 3vw, 35px);
+
+          font-size:
+            clamp(17px, 2vw, 23px);
         }
+
+        /* =====================================================
+           CHARACTER IMAGE
+        ===================================================== */
 
         .dark-image-frame {
           position: relative;
+
           width: 100%;
-          height: 760px;
-          border-radius: 35px;
+
+          aspect-ratio: 3 / 4;
+
+          min-height: 0;
+
+          border-radius:
+            clamp(22px, 3vw, 35px);
+
           overflow: hidden;
+
           background:
             radial-gradient(
               circle at center,
               rgba(139, 92, 246, 0.35),
               #040404 80%
             );
-          border: 2px solid rgba(139, 92, 246, 0.55);
+
+          border:
+            2px solid rgba(139, 92, 246, 0.55);
+
           box-shadow:
             0 0 70px rgba(139, 92, 246, 0.35),
             inset 0 0 40px rgba(139, 92, 246, 0.15);
+
+          box-sizing: border-box;
         }
 
         .dark-inner-frame {
           position: absolute;
-          inset: 16px;
-          border-radius: 28px;
-          border: 1px solid rgba(139, 92, 246, 0.35);
+
+          inset:
+            clamp(8px, 1.5vw, 16px);
+
+          border-radius:
+            clamp(17px, 2.5vw, 28px);
+
+          border:
+            1px solid rgba(139, 92, 246, 0.35);
+
           z-index: 1;
+
           pointer-events: none;
         }
 
         .dark-image-glow {
           position: absolute;
+
           top: 50%;
           left: 50%;
-          width: 420px;
-          height: 420px;
-          transform: translate(-50%, -50%);
+
+          width:
+            clamp(200px, 30vw, 420px);
+
+          height:
+            clamp(200px, 30vw, 420px);
+
+          transform:
+            translate(-50%, -50%);
+
           border-radius: 50%;
+
           background:
             radial-gradient(
               circle,
               rgba(139, 92, 246, 0.25),
               transparent 70%
             );
+
           filter: blur(20px);
+
           z-index: 1;
+
           pointer-events: none;
         }
 
         .dark-character-image {
           object-fit: contain;
+
           object-position: center center;
-          padding: 15px;
+
+          padding:
+            clamp(8px, 2vw, 15px);
+
           z-index: 2;
+
           filter:
             drop-shadow(
-              0 0 55px rgba(139, 92, 246, 0.85)
+              0 0 55px
+              rgba(139, 92, 246, 0.85)
             );
         }
 
         .dark-image-symbol {
           position: absolute;
+
           left: 50%;
-          transform: translateX(-50%);
+
+          transform:
+            translateX(-50%);
+
           color: #8b5cf6;
-          font-size: 25px;
+
+          font-size:
+            clamp(16px, 2.5vw, 25px);
+
           z-index: 3;
+
+          text-shadow:
+            0 0 15px rgba(139, 92, 246, 0.8);
         }
 
         .dark-image-symbol.top {
-          top: 20px;
+          top:
+            clamp(10px, 2vw, 20px);
         }
 
         .dark-image-symbol.bottom {
-          bottom: 20px;
+          bottom:
+            clamp(10px, 2vw, 20px);
         }
 
+        /* =====================================================
+           RIGHT PANEL
+        ===================================================== */
+
         .dark-right-panel {
-          padding: 30px;
-          min-height: 520px;
-          border-radius: 30px;
-          background: rgba(10, 5, 20, 0.85);
-          border: 2px solid rgba(139, 92, 246, 0.45);
+          padding:
+            clamp(18px, 3vw, 30px);
+
+          min-height:
+            clamp(320px, 38vw, 520px);
+
+          border-radius:
+            clamp(18px, 2.5vw, 30px);
+
+          background:
+            rgba(10, 5, 20, 0.85);
+
+          border:
+            2px solid rgba(139, 92, 246, 0.45);
+
           text-align: center;
+
           box-shadow:
             0 0 40px rgba(139, 92, 246, 0.18);
         }
 
         .dark-big-symbol {
-          font-size: 70px;
+          font-size:
+            clamp(45px, 6vw, 70px);
+
+          line-height: 1;
+
           color: #8b5cf6;
+
           text-shadow:
             0 0 30px rgba(139, 92, 246, 0.8);
         }
 
         .dark-quote-title {
-          margin-top: 20px;
+          margin:
+            clamp(12px, 2vw, 20px)
+            0
+            0;
+
           font-family: Cinzel, serif;
+
           color: #c7a8ff;
-          letter-spacing: 3px;
-          word-break: break-word;
+
+          letter-spacing:
+            clamp(1px, .5vw, 3px);
+
+          font-size:
+            clamp(17px, 2.3vw, 24px);
+
+          line-height: 1.4;
+
+          overflow-wrap: break-word;
         }
 
         .dark-divider {
-          width: 160px;
+          width:
+            clamp(100px, 15vw, 160px);
+
+          max-width: 70%;
+
           height: 2px;
-          margin: 25px auto;
+
+          margin:
+            clamp(18px, 3vw, 25px)
+            auto;
+
           background:
             linear-gradient(
               to right,
@@ -326,35 +619,84 @@ export default function DarkTheme({
         }
 
         .dark-quote {
-          margin-top: 35px;
+          margin:
+            clamp(20px, 3vw, 35px) 0 0;
+
           color: #ddd;
+
           line-height: 2;
+
           font-style: italic;
+
+          font-size:
+            clamp(14px, 2vw, 19px);
+
+          overflow-wrap: break-word;
+
           word-break: break-word;
         }
 
+        /* =====================================================
+           BIOGRAPHY
+        ===================================================== */
+
         .dark-biography {
-          margin-top: 60px;
-          padding: 60px;
-          border-radius: 35px;
-          background: rgba(12, 8, 20, 0.85);
-          border: 2px solid rgba(139, 92, 246, 0.45);
+          width: 100%;
+
+          margin-top:
+            clamp(35px, 5vw, 60px);
+
+          padding:
+            clamp(22px, 5vw, 60px);
+
+          border-radius:
+            clamp(20px, 3vw, 35px);
+
+          background:
+            rgba(12, 8, 20, 0.85);
+
+          border:
+            2px solid rgba(139, 92, 246, 0.45);
+
           box-shadow:
             0 0 50px rgba(139, 92, 246, 0.18);
+
+          box-sizing: border-box;
         }
 
         .dark-biography-title {
+          margin: 0;
+
           text-align: center;
+
           font-family: Cinzel, serif;
+
           color: #a78bfa;
-          font-size: 34px;
-          letter-spacing: 5px;
+
+          font-size:
+            clamp(23px, 4vw, 34px);
+
+          line-height: 1.3;
+
+          letter-spacing:
+            clamp(2px, .6vw, 5px);
+
+          overflow-wrap: break-word;
         }
 
         .dark-biography-divider {
-          width: 240px;
+          width:
+            clamp(120px, 20vw, 240px);
+
+          max-width: 70%;
+
           height: 2px;
-          margin: 25px auto 40px;
+
+          margin:
+            clamp(18px, 3vw, 25px)
+            auto
+            clamp(25px, 4vw, 40px);
+
           background:
             linear-gradient(
               to right,
@@ -365,229 +707,217 @@ export default function DarkTheme({
         }
 
         .dark-biography-text {
+          width: 100%;
+
+          margin: 0;
+
           text-align: center;
+
           color: #ddd;
+
           font-family: Georgia, serif;
-          font-size: 20px;
-          line-height: 2.35;
+
+          font-size:
+            clamp(15px, 2.5vw, 20px);
+
+          line-height: 2.25;
+
           white-space: pre-line;
-          overflow-wrap: anywhere;
+
+          overflow-wrap: break-word;
+
+          word-break: normal;
         }
 
-        @media (max-width: 1100px) {
-          .dark-main-frame {
-            padding: 40px 30px;
-          }
+        /* =====================================================
+           INFO
+        ===================================================== */
 
+        .dark-info-item {
+          width: 100%;
+
+          margin-bottom:
+            clamp(16px, 2vw, 24px);
+
+          min-width: 0;
+
+          box-sizing: border-box;
+        }
+
+        .dark-info-item:last-child {
+          margin-bottom: 0;
+        }
+
+        .dark-info-title {
+          margin: 0;
+
+          color: #a78bfa;
+
+          font-family: Cinzel, serif;
+
+          font-size:
+            clamp(9px, 1.2vw, 12px);
+
+          letter-spacing:
+            clamp(2px, .5vw, 4px);
+
+          line-height: 1.4;
+        }
+
+        .dark-info-value {
+          margin:
+            8px
+            0
+            0;
+
+          color: #fff;
+
+          font-size:
+            clamp(14px, 1.8vw, 17px);
+
+          line-height: 1.5;
+
+          overflow-wrap: break-word;
+
+          word-break: break-word;
+        }
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 1100px) {
           .dark-content-grid {
             grid-template-columns: 1fr;
-            gap: 30px;
+
+            max-width: 760px;
+
+            margin: 0 auto;
           }
 
           .dark-panel,
           .dark-right-panel {
             min-height: auto;
+
+            max-width: 620px;
+
+            margin: 0 auto;
           }
 
           .dark-image-frame {
-            height: 650px;
-          }
+            width: min(100%, 520px);
 
-          .dark-name {
-            font-size: 48px;
+            margin: 0 auto;
           }
         }
 
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
         @media (max-width: 700px) {
           .dark-theme-page {
-            padding: 15px 10px 40px;
-          }
-
-          .dark-music-bar {
-            margin-bottom: 25px;
-            padding: 22px 15px;
-            border-radius: 22px;
-          }
-
-          .dark-music-title {
-            gap: 10px;
-          }
-
-          .dark-music-text {
-            letter-spacing: 3px;
-            font-size: 11px;
-            text-align: center;
-          }
-
-          .dark-music-symbol {
-            font-size: 18px;
-          }
-
-          .dark-music-player {
-            margin-top: 18px;
-            padding: 10px;
+            padding:
+              12px
+              7px
+              35px;
           }
 
           .dark-main-frame {
-            padding: 30px 12px;
-            border-radius: 25px;
+            padding:
+              28px
+              10px;
+
+            border-radius: 24px;
           }
 
-          .dark-corner {
-            font-size: 28px;
+          .dark-music-bar {
+            padding:
+              20px
+              12px;
+
+            border-radius: 20px;
           }
 
-          .dark-corner.top-left {
-            top: 10px;
-            left: 8px;
+          .dark-music-title {
+            gap: 8px;
           }
 
-          .dark-corner.top-right {
-            top: 10px;
-            right: 8px;
-          }
+          .dark-music-text {
+            letter-spacing: 2px;
 
-          .dark-corner.bottom-left {
-            bottom: 10px;
-            left: 8px;
-          }
-
-          .dark-corner.bottom-right {
-            bottom: 10px;
-            right: 8px;
+            font-size: 10px;
           }
 
           .dark-header {
-            margin-bottom: 30px;
-            padding: 0 10px;
-          }
+            padding:
+              0
+              8px;
 
-          .dark-realm {
-            letter-spacing: 4px;
-            font-size: 11px;
-          }
-
-          .dark-name {
-            margin-top: 15px;
-            font-size: 32px;
-            letter-spacing: 2px;
-            line-height: 1.3;
-          }
-
-          .dark-title {
-            margin-top: 12px;
-            font-size: 13px;
-            letter-spacing: 2px;
-            line-height: 1.6;
+            margin-bottom: 28px;
           }
 
           .dark-content-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 18px;
           }
 
           .dark-panel,
           .dark-right-panel {
-            padding: 20px 16px;
-            border-radius: 22px;
-          }
+            padding:
+              20px
+              15px;
 
-          .dark-panel-title {
-            margin-bottom: 25px;
-            letter-spacing: 3px;
-            font-size: 18px;
+            border-radius: 20px;
           }
 
           .dark-image-frame {
-            height: 520px;
-            border-radius: 25px;
-          }
-
-          .dark-inner-frame {
-            inset: 10px;
-            border-radius: 19px;
-          }
-
-          .dark-image-glow {
-            width: 280px;
-            height: 280px;
-          }
-
-          .dark-character-image {
-            padding: 8px;
-          }
-
-          .dark-image-symbol {
-            font-size: 18px;
-          }
-
-          .dark-image-symbol.top {
-            top: 12px;
-          }
-
-          .dark-image-symbol.bottom {
-            bottom: 12px;
-          }
-
-          .dark-big-symbol {
-            font-size: 48px;
-          }
-
-          .dark-quote-title {
-            font-size: 20px;
-            letter-spacing: 2px;
-          }
-
-          .dark-quote {
-            margin-top: 25px;
-            line-height: 1.9;
-            font-size: 15px;
+            width:
+              min(88vw, 430px);
           }
 
           .dark-biography {
-            margin-top: 30px;
-            padding: 30px 18px;
-            border-radius: 25px;
-          }
+            padding:
+              28px
+              16px;
 
-          .dark-biography-title {
-            font-size: 24px;
-            letter-spacing: 3px;
-          }
-
-          .dark-biography-divider {
-            width: 160px;
-            margin: 20px auto 30px;
+            border-radius: 22px;
           }
 
           .dark-biography-text {
-            font-size: 16px;
+            text-align: left;
+
             line-height: 2;
           }
         }
 
+        /* =====================================================
+           SMALL PHONES
+        ===================================================== */
+
         @media (max-width: 400px) {
           .dark-theme-page {
-            padding-left: 6px;
-            padding-right: 6px;
+            padding-left: 5px;
+            padding-right: 5px;
           }
 
           .dark-main-frame {
-            padding-left: 9px;
-            padding-right: 9px;
-          }
-
-          .dark-name {
-            font-size: 27px;
+            padding-left: 8px;
+            padding-right: 8px;
           }
 
           .dark-image-frame {
-            height: 460px;
+            width:
+              min(88vw, 350px);
           }
 
-          .dark-panel,
-          .dark-right-panel {
-            padding: 18px 13px;
+          .dark-biography {
+            padding:
+              24px
+              13px;
+          }
+
+          .dark-biography-text {
+            font-size: 15px;
           }
         }
       `}</style>
@@ -595,13 +925,21 @@ export default function DarkTheme({
       <main className="dark-theme-page">
         <div className="dark-theme-container">
 
-          <section className="dark-music-bar">
+          {/* ===================================================
+              MUSIC BAR
+          =================================================== */}
 
-            <div className="dark-music-top-line" />
+          <section className="dark-music-bar">
+            <div
+              className="dark-music-top-line"
+              aria-hidden="true"
+            />
 
             <div className="dark-music-title">
-
-              <span className="dark-music-symbol">
+              <span
+                className="dark-music-symbol"
+                aria-hidden="true"
+              >
                 ✦
               </span>
 
@@ -609,10 +947,12 @@ export default function DarkTheme({
                 CHARACTER THEME
               </p>
 
-              <span className="dark-music-symbol">
+              <span
+                className="dark-music-symbol"
+                aria-hidden="true"
+              >
                 ✦
               </span>
-
             </div>
 
             <div className="dark-music-player">
@@ -621,30 +961,50 @@ export default function DarkTheme({
               />
             </div>
 
-            <div className="dark-music-bottom-line" />
-
+            <div
+              className="dark-music-bottom-line"
+              aria-hidden="true"
+            />
           </section>
 
+          {/* ===================================================
+              MAIN FRAME
+          =================================================== */}
+
           <div className="dark-main-frame">
+            {/* DECORATIVE CORNERS */}
 
-            <div className="dark-corner top-left">
+            <div
+              className="dark-corner top-left"
+              aria-hidden="true"
+            >
               ❖
             </div>
 
-            <div className="dark-corner top-right">
+            <div
+              className="dark-corner top-right"
+              aria-hidden="true"
+            >
               ❖
             </div>
 
-            <div className="dark-corner bottom-left">
+            <div
+              className="dark-corner bottom-left"
+              aria-hidden="true"
+            >
               ❖
             </div>
 
-            <div className="dark-corner bottom-right">
+            <div
+              className="dark-corner bottom-right"
+              aria-hidden="true"
+            >
               ❖
             </div>
+
+            {/* HEADER */}
 
             <header className="dark-header">
-
               <p className="dark-realm">
                 DARK REALM
               </p>
@@ -656,13 +1016,15 @@ export default function DarkTheme({
               <p className="dark-title">
                 {character.title || "CHARACTER"}
               </p>
-
             </header>
+
+            {/* CONTENT */}
 
             <section className="dark-content-grid">
 
-              <aside className="dark-panel">
+              {/* DETAILS */}
 
+              <aside className="dark-panel">
                 <h2 className="dark-panel-title">
                   ✦ DETAILS ✦
                 </h2>
@@ -691,14 +1053,20 @@ export default function DarkTheme({
                   title="UNIVERSE"
                   value={character.universe}
                 />
-
               </aside>
 
+              {/* IMAGE */}
+
               <div className="dark-image-frame">
+                <div
+                  className="dark-inner-frame"
+                  aria-hidden="true"
+                />
 
-                <div className="dark-inner-frame" />
-
-                <div className="dark-image-glow" />
+                <div
+                  className="dark-image-glow"
+                  aria-hidden="true"
+                />
 
                 <Image
                   src={
@@ -712,23 +1080,36 @@ export default function DarkTheme({
                   fill
                   priority
                   unoptimized
-                  sizes="(max-width: 700px) 100vw, 700px"
+                  sizes="
+                    (max-width: 480px) 88vw,
+                    (max-width: 1100px) 70vw,
+                    520px
+                  "
                   className="dark-character-image"
                 />
 
-                <div className="dark-image-symbol top">
+                <div
+                  className="dark-image-symbol top"
+                  aria-hidden="true"
+                >
                   ✦
                 </div>
 
-                <div className="dark-image-symbol bottom">
+                <div
+                  className="dark-image-symbol bottom"
+                  aria-hidden="true"
+                >
                   ✦
                 </div>
-
               </div>
 
-              <aside className="dark-right-panel">
+              {/* QUOTE */}
 
-                <div className="dark-big-symbol">
+              <aside className="dark-right-panel">
+                <div
+                  className="dark-big-symbol"
+                  aria-hidden="true"
+                >
                   ✦
                 </div>
 
@@ -736,7 +1117,10 @@ export default function DarkTheme({
                   {character.title || "CHARACTER"}
                 </h2>
 
-                <div className="dark-divider" />
+                <div
+                  className="dark-divider"
+                  aria-hidden="true"
+                />
 
                 <p className="dark-quote">
                   ❝{" "}
@@ -744,26 +1128,26 @@ export default function DarkTheme({
                     "The darkness remembers."}{" "}
                   ❞
                 </p>
-
               </aside>
-
             </section>
 
-            <section className="dark-biography">
+            {/* BIOGRAPHY */}
 
+            <section className="dark-biography">
               <h2 className="dark-biography-title">
                 ✦ BIOGRAPHY ✦
               </h2>
 
-              <div className="dark-biography-divider" />
+              <div
+                className="dark-biography-divider"
+                aria-hidden="true"
+              />
 
               <p className="dark-biography-text">
                 {character.description ||
                   "No biography available."}
               </p>
-
             </section>
-
           </div>
         </div>
       </main>
@@ -779,30 +1163,12 @@ function Info({
   value?: string | null;
 }) {
   return (
-    <div
-      style={{
-        marginBottom: "24px",
-      }}
-    >
-      <h3
-        style={{
-          color: "#a78bfa",
-          fontFamily: "Cinzel,serif",
-          fontSize: "12px",
-          letterSpacing: "4px",
-        }}
-      >
+    <div className="dark-info-item">
+      <h3 className="dark-info-title">
         {title}
       </h3>
 
-      <p
-        style={{
-          marginTop: "8px",
-          color: "#fff",
-          fontSize: "17px",
-          overflowWrap: "anywhere",
-        }}
-      >
+      <p className="dark-info-value">
         {value || "Unknown"}
       </p>
     </div>

@@ -20,12 +20,9 @@ type Props = {
   character: Character;
 };
 
-export default function CharacterCard({
-  character,
-}: Props) {
+export default function CharacterCard({ character }: Props) {
   const imageSrc =
-    character.image &&
-    character.image.trim() !== ""
+    character.image && character.image.trim() !== ""
       ? character.image
       : "/images/default-character.png";
 
@@ -36,7 +33,7 @@ export default function CharacterCard({
         overflow: "hidden",
         width: "100%",
         maxWidth: "100%",
-        borderRadius: "24px",
+        borderRadius: "clamp(16px, 3vw, 24px)",
         background: "rgba(10,10,10,.96)",
         border: "1px solid rgba(215,181,109,.35)",
         boxShadow: "0 25px 70px rgba(0,0,0,.75)",
@@ -62,7 +59,7 @@ export default function CharacterCard({
         style={{
           position: "relative",
           width: "100%",
-          height: "clamp(320px, 90vw, 520px)",
+          height: "clamp(280px, 72vw, 520px)",
           overflow: "hidden",
           display: "flex",
           alignItems: "center",
@@ -79,17 +76,17 @@ export default function CharacterCard({
           priority
           unoptimized
           sizes="
-            (max-width: 480px) 92vw,
-            (max-width: 768px) 88vw,
+            (max-width: 480px) 94vw,
+            (max-width: 768px) 90vw,
             (max-width: 1200px) 45vw,
-            360px
+            420px
           "
           style={{
             objectFit: "contain",
             objectPosition: "center center",
             width: "100%",
             height: "100%",
-            padding: "15px",
+            padding: "clamp(10px, 2vw, 15px)",
             transform: "scale(.92)",
             filter:
               "drop-shadow(0 0 35px rgba(215,181,109,.35))",
@@ -104,7 +101,7 @@ export default function CharacterCard({
           position: "relative",
           zIndex: 2,
           width: "100%",
-          padding: "clamp(20px, 5vw, 30px)",
+          padding: "clamp(18px, 4vw, 30px)",
           textAlign: "center",
           boxSizing: "border-box",
         }}
@@ -113,10 +110,10 @@ export default function CharacterCard({
 
         <div
           style={{
-            width: "120px",
+            width: "clamp(85px, 25vw, 120px)",
             maxWidth: "60%",
             height: "2px",
-            margin: "0 auto 20px",
+            margin: "0 auto clamp(15px, 3vw, 20px)",
             background:
               "linear-gradient(to right,transparent,#d7b56d,transparent)",
           }}
@@ -128,10 +125,11 @@ export default function CharacterCard({
           style={{
             color: "#f2dfb4",
             fontFamily: "Cinzel, serif",
-            fontSize: "clamp(24px, 7vw, 34px)",
+            fontSize: "clamp(22px, 6vw, 34px)",
+            lineHeight: 1.2,
             fontWeight: 400,
-            letterSpacing: "2px",
-            margin: "0 0 14px",
+            letterSpacing: "clamp(1px, .5vw, 2px)",
+            margin: "0 0 clamp(10px, 2.5vw, 14px)",
             overflowWrap: "break-word",
             wordBreak: "break-word",
           }}
@@ -144,9 +142,10 @@ export default function CharacterCard({
         <p
           style={{
             color: "#d7b56d",
-            letterSpacing: "clamp(2px, 1vw, 4px)",
-            fontSize: "clamp(11px, 3vw, 13px)",
-            margin: "0 0 30px",
+            letterSpacing: "clamp(1px, .8vw, 4px)",
+            fontSize: "clamp(10px, 2.7vw, 13px)",
+            lineHeight: 1.5,
+            margin: "0 0 clamp(22px, 5vw, 30px)",
             overflowWrap: "break-word",
             wordBreak: "break-word",
           }}
@@ -159,20 +158,24 @@ export default function CharacterCard({
         <Link
           href={`/characters/${character.slug}`}
           style={{
-            display: "block",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             width: "100%",
+            minHeight: "clamp(48px, 12vw, 54px)",
             boxSizing: "border-box",
-            padding: "15px",
-            borderRadius: "14px",
+            padding: "clamp(12px, 3vw, 15px) clamp(14px, 4vw, 20px)",
+            borderRadius: "clamp(10px, 2.5vw, 14px)",
             background:
               "linear-gradient(90deg,#5b4216,#d7b56d,#5b4216)",
             color: "#111",
             textDecoration: "none",
             fontWeight: 700,
-            letterSpacing: "clamp(1px, 1vw, 3px)",
+            letterSpacing: "clamp(.7px, .6vw, 3px)",
             fontFamily: "Cinzel, serif",
             textAlign: "center",
-            fontSize: "clamp(12px, 3.5vw, 16px)",
+            fontSize: "clamp(11px, 3vw, 16px)",
+            lineHeight: 1.3,
           }}
         >
           ✦ VIEW PROFILE ✦

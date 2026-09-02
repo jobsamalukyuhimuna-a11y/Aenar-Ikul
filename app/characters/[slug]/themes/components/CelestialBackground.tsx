@@ -3,29 +3,95 @@
 export default function CelestialBackground() {
   return (
     <>
-      <div className="sky-gradient" />
+      {/* SKY */}
 
-      <div className="sky-light" />
+      <div
+        className="sky-gradient"
+        aria-hidden="true"
+      />
 
-      <div className="sun-core" />
+      <div
+        className="sky-light"
+        aria-hidden="true"
+      />
 
-      <div className="sun-glow" />
+      {/* SUN */}
 
-      <div className="sun-rays" />
+      <div
+        className="sun-core"
+        aria-hidden="true"
+      />
 
-      <div className="halo halo-1" />
-      <div className="halo halo-2" />
-      <div className="halo halo-3" />
+      <div
+        className="sun-glow"
+        aria-hidden="true"
+      />
 
-      <div className="cloud cloud-1" />
-      <div className="cloud cloud-2" />
-      <div className="cloud cloud-3" />
-      <div className="cloud cloud-4" />
-      <div className="cloud cloud-5" />
+      <div
+        className="sun-rays"
+        aria-hidden="true"
+      />
 
-      <div className="mist mist-1" />
-      <div className="mist mist-2" />
-      <div className="mist mist-3" />
+      {/* HALOS */}
+
+      <div
+        className="halo halo-1"
+        aria-hidden="true"
+      />
+
+      <div
+        className="halo halo-2"
+        aria-hidden="true"
+      />
+
+      <div
+        className="halo halo-3"
+        aria-hidden="true"
+      />
+
+      {/* CLOUDS */}
+
+      <div
+        className="cloud cloud-1"
+        aria-hidden="true"
+      />
+
+      <div
+        className="cloud cloud-2"
+        aria-hidden="true"
+      />
+
+      <div
+        className="cloud cloud-3"
+        aria-hidden="true"
+      />
+
+      <div
+        className="cloud cloud-4"
+        aria-hidden="true"
+      />
+
+      <div
+        className="cloud cloud-5"
+        aria-hidden="true"
+      />
+
+      {/* MIST */}
+
+      <div
+        className="mist mist-1"
+        aria-hidden="true"
+      />
+
+      <div
+        className="mist mist-2"
+        aria-hidden="true"
+      />
+
+      <div
+        className="mist mist-3"
+        aria-hidden="true"
+      />
     </>
   );
 }

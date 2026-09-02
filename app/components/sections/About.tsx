@@ -3,15 +3,20 @@ export default function About() {
     <section
       style={{
         background: "#080808",
-        padding: "160px 40px",
+        padding: "clamp(80px, 12vw, 160px) clamp(16px, 5vw, 40px)",
         position: "relative",
+        overflow: "hidden",
+        boxSizing: "border-box",
+        width: "100%",
       }}
     >
       <div
         style={{
+          width: "100%",
           maxWidth: "1100px",
           margin: "0 auto",
           textAlign: "center",
+          boxSizing: "border-box",
         }}
       >
         {/* Small Title */}
@@ -19,11 +24,13 @@ export default function About() {
         <p
           style={{
             color: "#9d7d3d",
-            letterSpacing: "8px",
-            fontSize: "15px",
+            letterSpacing: "clamp(2px, 1vw, 8px)",
+            fontSize: "clamp(10px, 2vw, 15px)",
+            lineHeight: 1.5,
             fontFamily: "Cinzel, serif",
             textTransform: "uppercase",
-            marginBottom: "30px",
+            margin: "0 0 clamp(20px, 4vw, 30px)",
+            overflowWrap: "break-word",
           }}
         >
           ABOUT THE ARCHIVE
@@ -36,23 +43,28 @@ export default function About() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            gap: "18px",
-            marginBottom: "40px",
+            gap: "clamp(8px, 2vw, 18px)",
+            marginBottom: "clamp(28px, 5vw, 40px)",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <div
             style={{
-              width: "160px",
+              width: "clamp(45px, 14vw, 160px)",
+              maxWidth: "30vw",
               height: "1px",
               background:
                 "linear-gradient(to right, transparent, rgba(186,146,71,.9))",
+              flexShrink: 1,
             }}
           />
 
           <div
             style={{
               color: "#c8a44d",
-              fontSize: "18px",
+              fontSize: "clamp(14px, 2.5vw, 18px)",
+              flexShrink: 0,
             }}
           >
             ✦
@@ -60,10 +72,12 @@ export default function About() {
 
           <div
             style={{
-              width: "160px",
+              width: "clamp(45px, 14vw, 160px)",
+              maxWidth: "30vw",
               height: "1px",
               background:
                 "linear-gradient(to left, transparent, rgba(186,146,71,.9))",
+              flexShrink: 1,
             }}
           />
         </div>
@@ -72,13 +86,14 @@ export default function About() {
 
         <h2
           style={{
-            margin: 0,
-            fontSize: "62px",
+            margin: "0 0 clamp(30px, 5vw, 45px)",
+            fontSize: "clamp(38px, 7vw, 62px)",
+            lineHeight: 1.15,
             color: "#f2efe8",
             fontWeight: 400,
             fontFamily: "'Cinzel Decorative', serif",
-            letterSpacing: "4px",
-            marginBottom: "45px",
+            letterSpacing: "clamp(1px, .6vw, 4px)",
+            overflowWrap: "break-word",
           }}
         >
           Welcome to
@@ -86,6 +101,8 @@ export default function About() {
           <span
             style={{
               color: "#c8a44d",
+              display: "inline-block",
+              maxWidth: "100%",
             }}
           >
             AENAR IKUL
@@ -96,35 +113,39 @@ export default function About() {
 
         <p
           style={{
+            width: "100%",
             maxWidth: "900px",
             margin: "0 auto",
             color: "#d2d2d2",
-            fontSize: "25px",
-            lineHeight: 1.9,
+            fontSize: "clamp(18px, 3vw, 25px)",
+            lineHeight: 1.8,
             fontFamily: "'Cormorant Garamond', serif",
+            overflowWrap: "break-word",
+            boxSizing: "border-box",
           }}
         >
-          Aenar Ikul is more than a digital library.
-          It is the official archive of worlds,
-          kingdoms, stories, philosophies,
-          music and timeless legends.
+          Aenar Ikul is more than a digital library. It is the official
+          archive of worlds, kingdoms, stories, philosophies, music and
+          timeless legends.
         </p>
 
         {/* Second Paragraph */}
 
         <p
           style={{
+            width: "100%",
             maxWidth: "860px",
-            margin: "40px auto 0",
+            margin: "clamp(28px, 5vw, 40px) auto 0",
             color: "#8f8f8f",
-            fontSize: "22px",
-            lineHeight: 1.9,
+            fontSize: "clamp(16px, 2.7vw, 22px)",
+            lineHeight: 1.8,
             fontFamily: "'Cormorant Garamond', serif",
+            overflowWrap: "break-word",
+            boxSizing: "border-box",
           }}
         >
-          Every universe is connected.
-          Every character has a purpose.
-          Every story leaves a mark that echoes through history.
+          Every universe is connected. Every character has a purpose. Every
+          story leaves a mark that echoes through history.
         </p>
 
         {/* Bottom Ornament */}
@@ -134,23 +155,28 @@ export default function About() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            gap: "18px",
-            marginTop: "70px",
+            gap: "clamp(8px, 2vw, 18px)",
+            marginTop: "clamp(45px, 7vw, 70px)",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <div
             style={{
-              width: "220px",
+              width: "clamp(55px, 18vw, 220px)",
+              maxWidth: "32vw",
               height: "1px",
               background:
                 "linear-gradient(to right, transparent, rgba(186,146,71,.9))",
+              flexShrink: 1,
             }}
           />
 
           <div
             style={{
               color: "#c8a44d",
-              fontSize: "20px",
+              fontSize: "clamp(15px, 2.5vw, 20px)",
+              flexShrink: 0,
             }}
           >
             ✦
@@ -158,10 +184,12 @@ export default function About() {
 
           <div
             style={{
-              width: "220px",
+              width: "clamp(55px, 18vw, 220px)",
+              maxWidth: "32vw",
               height: "1px",
               background:
                 "linear-gradient(to left, transparent, rgba(186,146,71,.9))",
+              flexShrink: 1,
             }}
           />
         </div>

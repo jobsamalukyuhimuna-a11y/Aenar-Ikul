@@ -1,91 +1,100 @@
 "use client";
 
-import { useRef,useState } from "react";
+import { useRef, useState } from "react";
 
 import type { Character } from "../../components/CharacterProfile";
 
-type Props={
-
-  character:Character;
-
+type Props = {
+  character: Character;
 };
 
 export default function CelestialMusic({
-
   character,
+}: Props) {
+  const audioRef =
+    useRef<HTMLAudioElement | null>(null);
 
-}:Props){
-
-  const audioRef=
-
-    useRef<HTMLAudioElement>(null);
-
-  const [playing,setPlaying]=
-
+  const [playing, setPlaying] =
     useState(false);
 
-  function toggle(){
+  const toggle = async () => {
+    const audio = audioRef.current;
 
-    if(!audioRef.current)
-
+    if (!audio || !character.music) {
       return;
-
-    if(!character.music)
-
-      return;
-
-    if(playing){
-
-      audioRef.current.pause();
-
-      setPlaying(false);
-
-    }else{
-
-      audioRef.current.volume=.35;
-
-      audioRef.current.play();
-
-      setPlaying(true);
-
     }
 
+    if (!audio.paused) {
+      audio.pause();
+      setPlaying(false);
+      return;
+    }
+
+    try {
+      audio.volume = 0.35;
+
+      await audio.play();
+
+      setPlaying(true);
+    } catch (error) {
+      console.error(
+        "Celestial music playback error:",
+        error
+      );
+
+      setPlaying(false);
+    }
+  };
+
+  if (!character.music) {
+    return null;
   }
 
-  return(
-
-    <section className="music-panel">
-
+  return (
+    <section
+      className="music-panel"
+      style={{
+        width: "100%",
+        maxWidth: "100%",
+        boxSizing: "border-box",
+      }}
+    >
       <audio
-
         ref={audioRef}
-
-        src={character.music || undefined}
-
+        src={character.music}
         loop
-
+        preload="metadata"
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
       />
 
       <button
-
+        type="button"
         onClick={toggle}
-
         className="music-button"
-
+        aria-label={
+          playing
+            ? "Pause celestial music"
+            : "Play celestial music"
+        }
+        style={{
+          flexShrink: 0,
+        }}
       >
-
         {playing ? "❚❚" : "▶"}
-
       </button>
 
-      <span className="music-title">
-
+      <span
+        className="music-title"
+        style={{
+          maxWidth: "100%",
+          overflowWrap: "break-word",
+          wordBreak: "break-word",
+        }}
+      >
         Celestial Resonance
-
       </span>
-
     </section>
-
   );
-
 }
