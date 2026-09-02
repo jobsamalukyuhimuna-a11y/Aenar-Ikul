@@ -38,10 +38,8 @@ export default function CharacterCard({
         maxWidth: "100%",
         borderRadius: "24px",
         background: "rgba(10,10,10,.96)",
-        border:
-          "1px solid rgba(215,181,109,.35)",
-        boxShadow:
-          "0 25px 70px rgba(0,0,0,.75)",
+        border: "1px solid rgba(215,181,109,.35)",
+        boxShadow: "0 25px 70px rgba(0,0,0,.75)",
         boxSizing: "border-box",
       }}
     >
@@ -64,7 +62,7 @@ export default function CharacterCard({
         style={{
           position: "relative",
           width: "100%",
-          height: "520px",
+          height: "clamp(320px, 90vw, 520px)",
           overflow: "hidden",
           display: "flex",
           alignItems: "center",
@@ -78,6 +76,8 @@ export default function CharacterCard({
           src={imageSrc}
           alt={character.name}
           fill
+          priority
+          unoptimized
           sizes="
             (max-width: 480px) 92vw,
             (max-width: 768px) 88vw,
@@ -104,7 +104,7 @@ export default function CharacterCard({
           position: "relative",
           zIndex: 2,
           width: "100%",
-          padding: "30px",
+          padding: "clamp(20px, 5vw, 30px)",
           textAlign: "center",
           boxSizing: "border-box",
         }}
@@ -114,6 +114,7 @@ export default function CharacterCard({
         <div
           style={{
             width: "120px",
+            maxWidth: "60%",
             height: "2px",
             margin: "0 auto 20px",
             background:
@@ -127,11 +128,10 @@ export default function CharacterCard({
           style={{
             color: "#f2dfb4",
             fontFamily: "Cinzel, serif",
-            fontSize: "34px",
+            fontSize: "clamp(24px, 7vw, 34px)",
             fontWeight: 400,
             letterSpacing: "2px",
-            margin:
-              "0 0 14px",
+            margin: "0 0 14px",
             overflowWrap: "break-word",
             wordBreak: "break-word",
           }}
@@ -144,17 +144,14 @@ export default function CharacterCard({
         <p
           style={{
             color: "#d7b56d",
-            letterSpacing: "4px",
-            fontSize: "13px",
-            margin:
-              "0 0 30px",
+            letterSpacing: "clamp(2px, 1vw, 4px)",
+            fontSize: "clamp(11px, 3vw, 13px)",
+            margin: "0 0 30px",
             overflowWrap: "break-word",
             wordBreak: "break-word",
           }}
         >
-          ✦{" "}
-          {(character.title ?? "UNKNOWN").toUpperCase()}{" "}
-          ✦
+          ✦ {(character.title ?? "UNKNOWN").toUpperCase()} ✦
         </p>
 
         {/* PROFILE BUTTON */}
@@ -172,9 +169,10 @@ export default function CharacterCard({
             color: "#111",
             textDecoration: "none",
             fontWeight: 700,
-            letterSpacing: "3px",
+            letterSpacing: "clamp(1px, 1vw, 3px)",
             fontFamily: "Cinzel, serif",
             textAlign: "center",
+            fontSize: "clamp(12px, 3.5vw, 16px)",
           }}
         >
           ✦ VIEW PROFILE ✦
